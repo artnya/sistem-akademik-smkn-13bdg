@@ -1,0 +1,11 @@
+.circle-img {
+  width: 60px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.circle-img img {
+  height: 100%;
+  transform: translateX(-50%);
+  margin-left: 50%;
+}
