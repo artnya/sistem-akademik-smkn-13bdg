@@ -30,7 +30,7 @@
               <div class="active tab-pane" id="activity">
           <!-- Box Comment -->
           @foreach($posts as $post)
-          <div class="box box-widget">
+          <div id="reload" class="box box-widget">
             <div class="box-header with-border">
            @if($post->count())
               <div class="user-block">

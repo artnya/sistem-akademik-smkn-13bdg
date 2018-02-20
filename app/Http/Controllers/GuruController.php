@@ -91,7 +91,7 @@ class GuruController extends Controller
         $storage->id_mapel = $request->id_mapel;
         $storage->save();
 
-        return redirect()->back()->with('message', 'Guru' ."$storage->name". 'berhasil di tambah mata pelajarannya.');
+        return redirect()->back()->with('message', 'Guru ' ."$storage->name". ' berhasil telah di tambah mata pelajarannya.');
     }
 
     public function mapelproduktif($id)
@@ -105,7 +105,7 @@ class GuruController extends Controller
         $storage->id_mapel = $request->id_mapel;
         $storage->save();
 
-        return redirect('guru')->with('message', 'Guru'."$storage->name".'berhasil di tambah mata pelajarannya.');
+        return redirect('guru')->with('message', 'Guru '."$storage->name".' berhasil di tambah mata pelajarannya.');
     }
 
     /**

@@ -77,11 +77,11 @@
           </div>
           <!-- /.info-box -->
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
               <!-- USERS LIST -->
               <div class="box box-danger">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Akun yang baru terdaftar sekarang</h3>
+                  <h3 class="box-title">Akun yang baru terdaftar hari ini</h3><span class="label label-info"><?php echo e(date('jS F Y',strtotime($sekarang))); ?></span>
 
                   <div class="box-tools pull-right">
                     <span class="label label-danger"><?php echo e($siswa->count()); ?> <?php if($siswa->count() > 1): ?> New Account(s) <?php else: ?> New Account <?php endif; ?></span>
@@ -93,22 +93,32 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
-                  <ul class="users-list clearfix">
-                    <?php $__currentLoopData = $siswa; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li>
-                      <img 
-                            <?php if($in->photo == 'Not Setting' || $in->photo == NULL): ?> 
-                              src="https://s17.postimg.org/bfpk18wcv/default.jpg" 
-                            <?php else: ?> 
-                              src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($in->photo); ?>" 
-                            <?php endif; ?> 
-                            class="img-thumbnail" width="45" height="30" title="<?php echo e($in->name); ?>'s photo profile">
-                      <a data-toggle="modal" data-target="#detail<?php echo e($in->id); ?>" class="users-list-name" href="#"><?php echo e($in->name); ?></a>
-                      <span class="users-list-date"><?php echo e(date('D-M-Y', strtotime($in->created_at))); ?></span>
-                    </li>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  </ul>
-                  <!-- /.users-list -->
+                  <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <td><b>No</b></td>
+                        <td><b>Username</b></td>
+                        <td><b>Nama Asli</b></td>
+                        <td><b>Tanggal register</b></td>
+                        <td><b>Kapan</b></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <!-- Variable -->
+                        <?php $no = 1; ?>
+                        <!-- End Variable -->
+                        <?php $__currentLoopData = $siswa; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <td><?php echo e($no); ?></td>
+                          <td><?php echo e($in->username); ?></td>
+                          <td><?php echo e($in->name); ?></td>
+                          <td><?php echo e($in->created_at->format('l jS \\of F Y h:i:s A')); ?></td>
+                          <td><?php echo e($in->created_at->diffForHumans()); ?></td>
+                      </tr>
+                        <?php $no++; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </tbody>
+                  </table>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
@@ -119,14 +129,14 @@
               <!--/.box -->
             </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
               <!-- USERS LIST -->
               <div class="box box-solid box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Panel Request Verifikasi akun</h3>
+                  <h3 class="box-title">Panel request verifikasi akun siswa</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger"><?php echo e($accs->count()); ?> <?php if($accs->count() > 1): ?> <?php echo e($accs->count()); ?> New Account(s) <?php elseif($accs->count() == 1): ?> New Account  <?php else: ?> No account requested <?php endif; ?></span>
+                    <span class="label label-danger"><?php if($accs->count() > 1): ?> <?php echo e($accs->count()); ?> New Account(s) <?php elseif($accs->count() == 1): ?> New Account  <?php else: ?> Tidak ada permohonan verifikasi <?php endif; ?></span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -138,13 +148,15 @@
                   <ul class="users-list clearfix">
                     <?php $__currentLoopData = $accs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li>
-                      <img 
+                      <a data-toggle="modal" data-target="#edit<?php echo e($in->id); ?>" class="users-list-name" href="#">
+                        <img 
                             <?php if($in->photo == 'Not Setting' || $in->photo == NULL): ?> 
                               src="https://s17.postimg.org/bfpk18wcv/default.jpg" 
                             <?php else: ?> 
                               src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($in->photo); ?>" 
                             <?php endif; ?> 
                             class="img-thumbnail" width="45" height="30" title="<?php echo e($in->name); ?>'s photo profile">
+                      </a>
                       <a data-toggle="modal" data-target="#edit<?php echo e($in->id); ?>" class="users-list-name" href="#"><?php echo e($in->name); ?></a>
                       <span class="users-list-date"><?php echo e(date('D-M-Y', strtotime($in->created_at))); ?></span>
                     </li>

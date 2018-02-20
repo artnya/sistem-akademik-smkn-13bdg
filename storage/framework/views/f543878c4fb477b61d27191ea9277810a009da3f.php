@@ -49,7 +49,7 @@
         <?php endif; ?>
 
         <li class="header">MAIN NAVIGATION</li>
-        <li <?php echo e((Request::is('/home') ? 'class=active' : '')); ?> class="treeview">
+        <li class="treeview <?php echo e((Request::is('home') ? 'active' : '')); ?> <?php echo e((Request::is('home/timeline') ? 'active' : '')); ?> ">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
@@ -57,12 +57,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="/home"><i class="fa fa-circle-o"></i> Home Page</a></li>
-            <li><a href="/home/timeline"><i class="fa fa-circle-o"></i> Discuss Group</a>
+            <li <?php echo e((Request::is('home') ? 'class=active' : '')); ?>><a href="/home"><i class="fa fa-circle-o"></i> Home Page</a></li>
+            <li <?php echo e((Request::is('home/timeline') ? 'class=active' : '')); ?>><a href="/home/timeline"><i class="fa fa-circle-o"></i> Discuss Group</a>
           </ul>
         </li>
         <?php if(Auth()->user()): ?>
-        <li class="treeview">
+        <li class="treeview <?php echo e((Request::is('siswa') ? 'active' : '')); ?> <?php echo e((Request::is('rekap') ? 'active' : '')); ?>">
           <a href="#">
             <i class="fa fa-user"></i> <span>Data Siswa</span>
             <span class="pull-right-container">
@@ -70,13 +70,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/siswa"><i class="fa fa-circle-o"></i> Lihat Data Siswa</a></li>
+            <li <?php echo e((Request::is('siswa') ? 'clas=active' : '')); ?>><a href="/siswa"><i class="fa fa-circle-o"></i> Lihat Data Siswa</a></li>
             <?php if(Auth()->user()->role == '2' || Auth()->user()->role == '3'): ?>
-            <li><a href="/rekapnilai"><i class="fa fa-circle-o"></i> Rekap Nilai Siswa</a></li>
+            <li <?php echo e((Request::is('rekap') ? 'active' : '')); ?>><a href="/rekapnilai"><i class="fa fa-circle-o"></i> Rekap Nilai Siswa</a></li>
             <?php endif; ?>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview <?php echo e((Request::is('guru') ? 'active' : '')); ?>">
           <a href="#">
             <i class="fa fa-table"></i> <span>Data Guru</span>
             <span class="pull-right-container">
@@ -84,10 +84,10 @@
             </span>
           </a>
               <ul class="treeview-menu">
-                <li><a href="/guru"><i class="fa fa-circle-o"></i> Lihat Data Guru</a></li>
+                <li <?php echo e((Request::is('guru') ? 'class=active' : '')); ?>><a href="/guru"><i class="fa fa-circle-o"></i> Lihat Data Guru</a></li>
              </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview <?php echo e((Request::is('kelas') ? 'active' : '')); ?>">
           <a href="#">
             <i class="fa fa-university"></i> <span>Kelas</span>
             <span class="pull-right-container">
@@ -95,10 +95,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/kelas"><i class="fa fa-circle-o"></i> Lihat Data Kelas</a></li>
+            <li <?php echo e((Request::is('kelas') ? 'class=active' : '')); ?>><a href="/kelas"><i class="fa fa-circle-o"></i> Lihat Data Kelas</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview <?php echo e((Request::is('mapel') ? 'active' : '')); ?> <?php echo e((Request::is('mapel-produktif') ? 'active' : '')); ?>">
           <a href="#">
             <i class="fa fa-book"></i> <span>Mata Pelajaran</span>
             <span class="pull-right-container">
@@ -106,17 +106,17 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="mapel-produktif"><i class="fa fa-circle-o"></i> Produktif</a></li>
-            <li><a href="/mapel"><i class="fa fa-circle-o"></i> Non-Produktif</a></li>
+            <li <?php echo e((Request::is('mapel-produktif') ? 'class=active' : '')); ?>><a href="mapel-produktif"><i class="fa fa-circle-o"></i> Produktif</a></li>
+            <li <?php echo e((Request::is('mapel') ? 'class=active' : '')); ?>><a href="/mapel"><i class="fa fa-circle-o"></i> Non-Produktif</a></li>
           </ul>
         </li>
         <?php endif; ?>
         <?php if(Auth()->user()->role == '2'): ?>
         <li>
         <li class="header">ADMIN COMMAND AREA</li>
-        <li><a href="/account"><i class="fa fa-group text-red"></i> <span>Account users</span></a></li>
-        <li><a href="/tahun"><i class="fa fa-pencil text-yellow"></i> <span>Tahun Ajaran</span></a></li>
-        <li><a href="/jurusan"><i class="fa fa-university text-blue"></i> <span>Jurusan</span></a></li>
+        <li <?php echo e((Request::is('account') ? 'class=active' : '')); ?>><a href="/account"><i class="fa fa-group text-red"></i> <span>Account users</span></a></li>
+        <li <?php echo e((Request::is('tahun') ? 'class=active' : '')); ?>><a href="/tahun"><i class="fa fa-pencil text-yellow"></i> <span>Tahun Ajaran</span></a></li>
+        <li <?php echo e((Request::is('jurusan') ? 'class=active' : '')); ?>><a href="/jurusan"><i class="fa fa-university text-blue"></i> <span>Jurusan</span></a></li>
         </li>
         <?php endif; ?>
       </ul>

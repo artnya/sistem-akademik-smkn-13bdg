@@ -28,7 +28,7 @@
               <div class="active tab-pane" id="activity">
           <!-- Box Comment -->
           <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <div class="box box-widget">
+          <div id="reload" class="box box-widget">
             <div class="box-header with-border">
            <?php if($post->count()): ?>
               <div class="user-block">

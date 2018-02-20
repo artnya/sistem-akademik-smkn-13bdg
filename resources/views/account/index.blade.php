@@ -22,7 +22,7 @@
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
 <script>
-    swal("{!! session('message') !!}", "", "success");
+    swal("{!! session('message') !!}", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
 </script>
 @endif
     <!-- Main content -->
@@ -42,6 +42,7 @@
           </div>
         </div>
         <div class="box-body">
+          <a href="#" data-toggle="modal" data-target="#add" class="btn btn-default text-aqua ajax"><i class="fa fa-add"></i> Tambah Akun</a> 
           @foreach($account as $in)
           <form action="/account/deletechecked/{{ $in->id }}">
           @endforeach
@@ -70,15 +71,15 @@
                   <td>
                     <!-- back-end -->
                         @if($x->role == '1')
-                        <small class="text-green">Terverifikasi sebagai siswa</small>
+                        <small class="label label-info">Terverifikasi sebagai siswa</small>
                         @elseif($x->role == '2')
-                        <small class="text-orange">Terverifikasi sebagai Admin</small>
+                        <small class="label label-warning">Terverifikasi sebagai Admin</small>
                         @elseif($x->role == '3')
-                        <small class="text-blue">Terverifikasi sebagai Guru</small>
+                        <small class="label label-success">Terverifikasi sebagai Guru</small>
                         @elseif($x->role == '4')
-                        <small class="text-red">Account di banned!</small>
+                        <small class="label label-danger">Account di banned!</small>
                         @else
-                        <small class="text-red">Belum terverifikasi!</small>
+                        <small class="label label-default">Belum terverifikasi!</small>
                         @endif
                     <!-- end oef back end -->
                   </td>
@@ -107,6 +108,7 @@
     <!-- /.content -->
   </div>
 
+@include('account.create')
 @include('account.edit')
 @include('account.detail')
 

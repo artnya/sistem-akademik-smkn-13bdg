@@ -22,7 +22,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("{!! session('message') !!}", "", "success");
+        swal("{!! session('message') !!}", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
     </script>
 @endif
     <!-- Main content -->

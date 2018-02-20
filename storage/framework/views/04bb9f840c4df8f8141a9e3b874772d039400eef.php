@@ -20,7 +20,7 @@
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
 <script>
-    swal("<?php echo session('message'); ?>", "", "success");
+    swal("<?php echo session('message'); ?>", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
 </script>
 <?php endif; ?>
     <!-- Main content -->
@@ -40,6 +40,7 @@
           </div>
         </div>
         <div class="box-body">
+          <a href="#" data-toggle="modal" data-target="#add" class="btn btn-default text-aqua ajax"><i class="fa fa-add"></i> Tambah Akun</a> 
           <?php $__currentLoopData = $account; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <form action="/account/deletechecked/<?php echo e($in->id); ?>">
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -68,15 +69,15 @@
                   <td>
                     <!-- back-end -->
                         <?php if($x->role == '1'): ?>
-                        <small class="text-green">Terverifikasi sebagai siswa</small>
+                        <small class="label label-info">Terverifikasi sebagai siswa</small>
                         <?php elseif($x->role == '2'): ?>
-                        <small class="text-orange">Terverifikasi sebagai Admin</small>
+                        <small class="label label-warning">Terverifikasi sebagai Admin</small>
                         <?php elseif($x->role == '3'): ?>
-                        <small class="text-blue">Terverifikasi sebagai Guru</small>
+                        <small class="label label-success">Terverifikasi sebagai Guru</small>
                         <?php elseif($x->role == '4'): ?>
-                        <small class="text-red">Account di banned!</small>
+                        <small class="label label-danger">Account di banned!</small>
                         <?php else: ?>
-                        <small class="text-red">Belum terverifikasi!</small>
+                        <small class="label label-default">Belum terverifikasi!</small>
                         <?php endif; ?>
                     <!-- end oef back end -->
                   </td>
@@ -105,6 +106,7 @@
     <!-- /.content -->
   </div>
 
+<?php echo $__env->make('account.create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->make('account.edit', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->make('account.detail', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 

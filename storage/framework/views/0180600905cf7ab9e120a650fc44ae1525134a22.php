@@ -16,7 +16,13 @@
 
 <!-- notification session -->
 <?php if(session('message')): ?>      
-  <?php echo $__env->make('layouts.session', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <!-- sweet alert -->
+<link rel="stylesheet" href="/css/sweetalert.css">
+<!-- sweet alert -->
+<script src="/js/sweetalert.js"></script>
+<script>
+    swal("<?php echo session('message'); ?>", "", "success");
+</script>
 <?php endif; ?>
     <!-- Main content -->
     <section class="content">
@@ -65,7 +71,13 @@
                   </td>
                   <td><?php echo e($x->tingkat_kelas); ?></td>
                   <td><?php echo e($x->jumlah_kelas); ?></td>
-                  <td><?php echo e($x->user['name']); ?></td>
+                  <td>
+                    <?php if(($x->nip == NULL) || ($x->user['id'] == NULL)): ?>
+                      <span class="label label-danger">Tidak ada wali kelas/kosong</span>
+                    <?php else: ?>
+                      <span class="label label-success"><?php echo e($x->user['name']); ?></span>
+                    <?php endif; ?>
+                  </td>
                   <td><?php echo e($x->jurusan['nama_jurusan']); ?></td>
                   <td>
                     <div class="btn-group">

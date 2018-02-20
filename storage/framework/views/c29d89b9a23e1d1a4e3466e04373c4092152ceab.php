@@ -10,18 +10,23 @@
         <li><a href="#">Data Guru</a></li>
         <li class="active">Lihat Data Guru</li>
       </ol>
-      <?php if(session('message')): ?>      
-        <script>
-                alert('<?php echo e(session('message')); ?>');
-        </script>
-      <?php endif; ?>
+      <!-- notification session -->
+<?php if(session('message')): ?>      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('message'); ?>", "", "success");
+    </script>
+<?php endif; ?>
     </section>
     <!-- Main content -->
     <section class="content">
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Guru</h3>
+          <h3 class="box-title"><i class="fa fa-user-md"></i> Total guru sekarang (<?php echo e($guru->count()); ?>) Guru</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"

@@ -30,6 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        Carbon::setlocale(LC_TIME, 'id');
+        $sekarang = Carbon::now();
         $guru = User::where('role', '3')->get();
         $gurucount = $guru->count();
         $siswa = User::where('created_at', '>=', Carbon::today())->get();
@@ -47,7 +50,7 @@ class HomeController extends Controller
             return redirect()->route('verification.last.step', str_slug(Auth()->user()->name));
         }
         $account = User::all();
-        return view('home')->with('gurucount', $gurucount)->with('siswacount', $siswacount)->with('allcount', $allcount)->with('siswa', $siswa)->with('siswascount', $siswascount)->with('post', $post)->with('accs', $accs)->with('account', $account);
+        return view('home')->with('sekarang', $sekarang)->with('gurucount', $gurucount)->with('siswacount', $siswacount)->with('allcount', $allcount)->with('siswa', $siswa)->with('siswascount', $siswascount)->with('post', $post)->with('accs', $accs)->with('account', $account);
     }
 
 

@@ -16,8 +16,14 @@
     </section>
 
 <!-- notification session -->
-@if (session('message'))      
-  <script>alert('{{ session('message') }}');</script>
+@if(session('message'))      
+  <!-- sweet alert -->
+<link rel="stylesheet" href="/css/sweetalert.css">
+<!-- sweet alert -->
+<script src="/js/sweetalert.js"></script>
+<script>
+    swal("{!! session('message') !!}", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
+</script>
 @endif
     <!-- Main content -->
     <section class="content">

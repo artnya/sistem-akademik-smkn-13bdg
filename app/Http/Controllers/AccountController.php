@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Session;
 use Redirect;
+use Validator;
+use Illuminate\Support\Facades\Input;
+use Hash;
 
 class AccountController extends Controller
 {
@@ -41,27 +44,16 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-         $this->validate($request, [
-
-            'name' => 'required',
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role' => 'required',
-
-        ]);
-
-        $storage = new User();
-        $storage->name = $request->name;
-        $storage->username = $request->username;
-        $storage->email = $request->email;
-        $storage->role = $request->role;
-        $storage->save();
-
-        return redirect('account')->with('message', 'Data berhasil di tambahan');
-        //
+        // save the user to the database
+        $credentials = Input::only('email', 'password','name', 'username', 'role');
+        $credentials['password'] = Hash::make($credentials['password']);
+        $user = User::create($credentials);
+        // return a view 
+        return redirect()->back()->with('message', 'Akun berhasil di tambahkan');
+        
     }
 
     /**
@@ -120,10 +112,17 @@ class AccountController extends Controller
         {
             $role = 'Guru';
         }else{
-            $role = 'Ter-banned';
+            $role = 'terbanned/blokir';
         }
 
-        return redirect()->back()->with('message', "Akun ". $request->name ." berhasil di verifikasi sebagai ". $role ."");
+        if($storage->role =='4')
+        {
+        return redirect()->back()->with('message', "Anda telah berhasil memblokir akun ". $request->name .". Akun tidak dapat di akses selama prosedur ini berlangsung.");
+        }else
+        {
+        return redirect()->back()->with('message', "Akun ". $request->name ." berhasil di verifikasi sebagai akun ". $role .".");
+        }
+
     }
 
     /**

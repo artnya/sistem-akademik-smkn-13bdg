@@ -79,11 +79,11 @@
           </div>
           <!-- /.info-box -->
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
               <!-- USERS LIST -->
               <div class="box box-danger">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Akun yang baru terdaftar sekarang</h3>
+                  <h3 class="box-title">Akun yang baru terdaftar hari ini</h3><span class="label label-info">{{ date('jS F Y',strtotime($sekarang)) }}</span>
 
                   <div class="box-tools pull-right">
                     <span class="label label-danger">{{ $siswa->count() }} @if($siswa->count() > 1) New Account(s) @else New Account @endif</span>
@@ -95,22 +95,32 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
-                  <ul class="users-list clearfix">
-                    @foreach($siswa as $in)
-                    <li>
-                      <img 
-                            @if($in->photo == 'Not Setting' || $in->photo == NULL) 
-                              src="https://s17.postimg.org/bfpk18wcv/default.jpg" 
-                            @else 
-                              src="{{ url('uploadgambar') }}/{{ $in->photo }}" 
-                            @endif 
-                            class="img-thumbnail" width="45" height="30" title="{{ $in->name }}'s photo profile">
-                      <a data-toggle="modal" data-target="#detail{{$in->id}}" class="users-list-name" href="#">{{ $in->name }}</a>
-                      <span class="users-list-date">{{date('D-M-Y', strtotime($in->created_at)) }}</span>
-                    </li>
-                    @endforeach
-                  </ul>
-                  <!-- /.users-list -->
+                  <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <td><b>No</b></td>
+                        <td><b>Username</b></td>
+                        <td><b>Nama Asli</b></td>
+                        <td><b>Tanggal register</b></td>
+                        <td><b>Kapan</b></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <!-- Variable -->
+                        <?php $no = 1; ?>
+                        <!-- End Variable -->
+                        @foreach($siswa as $in)
+                          <td>{{ $no }}</td>
+                          <td>{{ $in->username }}</td>
+                          <td>{{ $in->name }}</td>
+                          <td>{{ $in->created_at->format('l jS \\of F Y h:i:s A') }}</td>
+                          <td>{{ $in->created_at->diffForHumans() }}</td>
+                      </tr>
+                        <?php $no++; ?>
+                        @endforeach
+                    </tbody>
+                  </table>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">
@@ -121,14 +131,14 @@
               <!--/.box -->
             </div>
 
-        <div class="col-md-6">
+        <div class="col-md-12">
               <!-- USERS LIST -->
               <div class="box box-solid box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Panel Request Verifikasi akun</h3>
+                  <h3 class="box-title">Panel request verifikasi akun siswa</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger">{{ $accs->count() }} @if($accs->count() > 1) {{ $accs->count() }} New Account(s) @elseif($accs->count() == 1) New Account  @else No account requested @endif</span>
+                    <span class="label label-danger">@if($accs->count() > 1) {{ $accs->count() }} New Account(s) @elseif($accs->count() == 1) New Account  @else Tidak ada permohonan verifikasi @endif</span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -140,13 +150,15 @@
                   <ul class="users-list clearfix">
                     @foreach($accs as $in)
                     <li>
-                      <img 
+                      <a data-toggle="modal" data-target="#edit{{$in->id}}" class="users-list-name" href="#">
+                        <img 
                             @if($in->photo == 'Not Setting' || $in->photo == NULL) 
                               src="https://s17.postimg.org/bfpk18wcv/default.jpg" 
                             @else 
                               src="{{ url('uploadgambar') }}/{{ $in->photo }}" 
                             @endif 
                             class="img-thumbnail" width="45" height="30" title="{{ $in->name }}'s photo profile">
+                      </a>
                       <a data-toggle="modal" data-target="#edit{{$in->id}}" class="users-list-name" href="#">{{ $in->name }}</a>
                       <span class="users-list-date">{{date('D-M-Y', strtotime($in->created_at)) }}</span>
                     </li>

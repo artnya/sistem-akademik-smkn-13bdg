@@ -73,7 +73,13 @@
                   </td>
                   <td>{{ $x->tingkat_kelas }}</td>
                   <td>{{ $x->jumlah_kelas }}</td>
-                  <td>{{ $x->user['name'] }}</td>
+                  <td>
+                    @if(($x->nip == NULL) || ($x->user['id'] == NULL))
+                      <span class="label label-danger">Tidak ada wali kelas/kosong</span>
+                    @else
+                      <span class="label label-success">{{ $x->user['name'] }}</span>
+                    @endif
+                  </td>
                   <td>{{ $x->jurusan['nama_jurusan'] }}</td>
                   <td>
                     <div class="btn-group">

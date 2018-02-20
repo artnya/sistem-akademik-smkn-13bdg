@@ -70,8 +70,8 @@ Route::get('clearNotify', function(){
 
 ////////////////////////////////////////////// END ADMIN AREA ////////////////////////////////////////////////////
 
-
-//siswa
+Route::group(['middleware' => 'revalidate'],function(){
+	//siswa
 Route::resource('siswa', 'SiswaController')->middleware('auth');
 Route::post('/siswa/update/{id}', 'SiswaController@update')->middleware('auth');
 Route::post('/siswa/uploadpic/{id}', 'SiswaController@uploadpic')->middleware('auth');
@@ -164,3 +164,5 @@ Route::get('/verification/user/success/{slug}', 'VerificationController@success'
 //to change password
 Route::get('/changepassword', 'HomeController@showchangepassword')->middleware('auth');
 Route::post('/changepassword/proses', 'HomeController@changepassword')->name('changepassword')->middleware('auth');
+
+});
