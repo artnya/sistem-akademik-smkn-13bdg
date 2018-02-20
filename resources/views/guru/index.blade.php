@@ -11,11 +11,16 @@
         <li><a href="#">Data Guru</a></li>
         <li class="active">Lihat Data Guru</li>
       </ol>
-      @if (session('message'))      
-        <script>
-                alert('{{session('message')}}');
-        </script>
-      @endif
+      <!-- notification session -->
+@if(session('message'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('message') !!}", "", "success");
+    </script>
+@endif
     </section>
     <!-- Main content -->
     <section class="content">

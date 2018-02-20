@@ -34,7 +34,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <!-- loading style -->
   <link rel="stylesheet" href="/css/loading.css">
   <!-- sweet alert -->
-  <link rel="stylesheet" href="/css/alertify.min.css">
+  <link rel="stylesheet" href="/css/sweetalert.css">
   <!-- select 2 -->
   <link rel="stylesheet" href="/css/select.min.css">
 
@@ -56,7 +56,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="/css/daterangepicker.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="/css/bootstrap3-wysihtml5.min.css">
+  <!-- <link rel="stylesheet" href="/css/bootstrap3-wysihtml5.min.css"> -->
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -135,7 +135,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
 <!-- Bootstrap WYSIHTML5 -->
 <script src="/js/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- sweet alert -->
-<script src="/js/alertify.min"></script>
+<script src="/js/sweetalert.js"></script>
 <!-- Slimscroll -->
 <script src="/js/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->

@@ -21,10 +21,10 @@ class RekapNilaiController extends Controller
     public function index()
     {
         $siswa = User::where('role', '1')->orderby('username', 'DESC')->get();
-        if (Auth()->user()->role != '0') {
+        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
             return view('rekapnilai.index', compact('siswa'));
         }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
+            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
         }
     }
 

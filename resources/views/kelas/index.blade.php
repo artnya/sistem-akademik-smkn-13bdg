@@ -17,8 +17,14 @@
     </section>
 
 <!-- notification session -->
-@if (session('message'))      
-  @include('layouts.session')
+@if(session('message'))      
+  <!-- sweet alert -->
+<link rel="stylesheet" href="/css/sweetalert.css">
+<!-- sweet alert -->
+<script src="/js/sweetalert.js"></script>
+<script>
+    swal("{!! session('message') !!}", "", "success");
+</script>
 @endif
     <!-- Main content -->
     <section class="content">

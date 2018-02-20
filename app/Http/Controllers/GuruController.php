@@ -21,10 +21,10 @@ class GuruController extends Controller
         $guru = User::where('role', '3')->get();
         $mapel = mapel::where('type_mapel', '=', 'Non produktif')->get();
         $mapelproduktif = mapel::where('type_mapel', '=', 'Produktif')->get();
-        if (Auth()->user()->role != '0') {
+        if (Auth()->user()->role != '0' || Auth()->user()->role != '5') {
             return view('guru.index', compact('guru','mapel', 'mapelproduktif'));
         }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
+            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
         }
     }
 

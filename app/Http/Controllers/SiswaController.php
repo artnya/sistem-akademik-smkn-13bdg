@@ -19,10 +19,10 @@ class SiswaController extends Controller
         $siswa = User::where('role', '1')->get();
         $jurusan = Jurusan::all();
         $kelas = Kelas::all();
-        if (Auth()->user()->role != '0') {
+        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
              return view('siswa.index', compact('siswa', 'jurusan', 'kelas'));
         }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
+            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
         }
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Session;
+use Redirect;
 
 class AccountController extends Controller
 {
@@ -18,7 +20,7 @@ class AccountController extends Controller
         if (Auth()->user()->role == '2') {
             return view('account.index', compact('account'));
         }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini!');
+            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini!');
         }
         
     }
@@ -109,9 +111,19 @@ class AccountController extends Controller
         $storage->email = $request->email;
         $storage->role = $request->role;
         $storage->save();
+        if ($storage->role == '1') {
+            $role = 'Siswa';
+        }elseif($storage->role == '2')
+        {
+            $role = 'Administrator';
+        }elseif($storage->role == '3')
+        {
+            $role = 'Guru';
+        }else{
+            $role = 'Ter-banned';
+        }
 
-        return redirect('account')->with('message', 'Data berhasil di tambahan');
-        //
+        return redirect()->back()->with('message', "Akun ". $request->name ." berhasil di verifikasi sebagai ". $role ."");
     }
 
     /**

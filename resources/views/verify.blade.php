@@ -14,6 +14,15 @@
                       <div class="alert alert-info alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-info"></i> Penting!</h4>
+                        @if(session('messageerror'))
+                         <!-- sweet alert -->
+                        <link rel="stylesheet" href="/css/sweetalert.css">
+                        <!-- sweet alert -->
+                        <script src="/js/sweetalert.js"></script>
+                        <script>
+                            swal("{!! session('messageerror') !!}", "", "error");
+                        </script>
+                        @endif
                         @if(session('message'))
                             {{ session('message') }}
                         @endif

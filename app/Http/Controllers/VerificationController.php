@@ -21,7 +21,7 @@ class VerificationController extends Controller
             $jurusan = Jurusan::orderBy('id')->get();
             return view('verify', compact('kelas', 'jurusan'));
         }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
+            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
         }
     }
 
@@ -106,7 +106,7 @@ class VerificationController extends Controller
         $storage->role = $request->role;
         $storage->save();
 
-        return redirect()->route('verification.last.step', Auth()->user()->id)->with('message', 'Akunmu telah di verifikasi, tunggu admin mengkonfirmasinya');
+        return redirect()->route('verification.last.step', Auth()->user()->id)->with('message', 'Verifikasi telah di kirim, mohon tunggu admin mengkonfirmasi akun mu.');
     }
 
     /**

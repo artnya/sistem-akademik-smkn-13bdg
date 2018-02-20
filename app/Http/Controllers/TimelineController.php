@@ -20,7 +20,7 @@ class TimelineController extends Controller
     {
         $posts = Timeline::orderBy('created_at', 'DESC')->get();
         $comments = Comment::all();
-        if (Auth()->user()->role != '0') {
+        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
           return view('timeline.index', compact('posts', 'comments'));
         }else{
             return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');

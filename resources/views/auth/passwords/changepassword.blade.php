@@ -6,7 +6,15 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Ganti password</div>
- 
+                    @if(session('message'))
+                     <!-- sweet alert -->
+                    <link rel="stylesheet" href="/css/sweetalert.css">
+                    <!-- sweet alert -->
+                    <script src="/js/sweetalert.js"></script>
+                    <script>
+                        swal("{!! session('message') !!}", "", "success");
+                    </script>
+                    @endif
                 <div class="panel-body">
                     @if (session('error'))
                         <div class="alert alert-danger">

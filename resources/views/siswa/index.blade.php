@@ -11,10 +11,16 @@
         <li><a href="#">Data Siswa</a></li>
         <li class="active">Lihat Data Siswa</li>
       </ol>
-      @if(session('message'))      
-        <script>alert('{{ session('message') }}');</script>
-      @endif
-    </section>
+<!-- notification session -->
+@if(session('message'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('message') !!}", "", "success");
+    </script>
+@endif
     <!-- Main content -->
     <section class="content">
       <!-- Default box -->

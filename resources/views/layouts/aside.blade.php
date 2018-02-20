@@ -49,7 +49,7 @@
         @endif
 
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
+        <li {{{ (Request::is('/home') ? 'class=active' : '') }}} class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">

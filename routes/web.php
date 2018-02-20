@@ -150,7 +150,7 @@ Auth::routes();
 //verification route
 
 Route::get('/home', 'HomeController@index', function(){
-	if (Auth()->user()->role == '0' || Auth()->user()->role == '5') {
+	if (Auth()->user()->role == '0' && Auth()->user()->role == '5') {
 		return view('verify');
 	}else{
 		return view('home');
