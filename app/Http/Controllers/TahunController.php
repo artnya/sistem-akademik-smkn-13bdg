@@ -11,6 +11,12 @@ class TahunController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['home']]);
+    }
+    
     public function index()
     {
         if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {

@@ -48,9 +48,10 @@ class HomeController extends Controller
         }elseif(Auth()->user()->role == '5')
         {
             return redirect()->route('verification.last.step', str_slug(Auth()->user()->name));
-        }
-        $account = User::all();
+        }else{
+            $account = User::all();
         return view('home')->with('sekarang', $sekarang)->with('gurucount', $gurucount)->with('siswacount', $siswacount)->with('allcount', $allcount)->with('siswa', $siswa)->with('siswascount', $siswascount)->with('post', $post)->with('accs', $accs)->with('account', $account);
+        }
     }
 
 

@@ -1,4 +1,28 @@
-<?php $__env->startSection('content'); ?><!-- Content Wrapper. Contains page content -->
+<?php $__env->startSection('content'); ?>
+<!-- Notify sweet alert-->
+
+<?php if(session('message')): ?>      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('message'); ?>", "", "success");
+    </script>
+<?php endif; ?>
+<!-- end Notify sweet alert -->
+<?php if(session('messageerror')): ?>      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('messageerror'); ?>", "", "error");
+    </script>
+<?php endif; ?>
+
+
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">

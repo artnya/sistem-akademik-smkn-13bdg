@@ -61,7 +61,7 @@ class KelasController extends Controller
         $storage->id_jurusan = $request->id_jurusan;
         $storage->save();
 
-        return redirect('kelas')->with('message', 'Data berhasil di tambahan');
+        return redirect('kelas')->with('message', 'Data berhasil di tambahkan');
     }
 
     /**
@@ -111,7 +111,7 @@ class KelasController extends Controller
         $storage->id_jurusan = $request->id_jurusan;
         $storage->save();
 
-        return redirect('kelas')->with('message', 'Data berhasil di tambahan');
+        return redirect('kelas')->with('message', 'Data berhasil di edit');
     }
 
     /**

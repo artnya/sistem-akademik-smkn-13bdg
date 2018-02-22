@@ -63,7 +63,7 @@
                                 <select id="id_kelas" class="form-control select2" name="id_kelas" value="<?php echo e(old('id_kelas')); ?>" required>
                                     <option selected disabled>---PILIH KELAS---</option>
                                     <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($in->id); ?>"><?php echo e($in->tingkat_kelas); ?> - <?php echo e($in->jumlah_kelas); ?></option>
+                                    <option value="<?php echo e($in->id); ?>"><?php echo e($in->tingkat_kelas); ?> <?php echo e($in->jurusan['nama_jurusan']); ?> <?php echo e($in->jumlah_kelas); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
 

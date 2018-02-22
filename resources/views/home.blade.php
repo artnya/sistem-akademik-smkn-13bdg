@@ -1,6 +1,30 @@
 @extends('master')
 
-@section('content')<!-- Content Wrapper. Contains page content -->
+@section('content')
+<!-- Notify sweet alert-->
+
+@if(session('message'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('message') !!}", "", "success");
+    </script>
+@endif
+<!-- end Notify sweet alert -->
+@if(session('messageerror'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('messageerror') !!}", "", "error");
+    </script>
+@endif
+
+
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">

@@ -67,7 +67,7 @@
                                 <select id="id_kelas" class="form-control select2" name="id_kelas" value="<?php echo e(old('id_kelas')); ?>" disabled required>
                                     <option selected disabled>---PILIH KELAS---</option>
                                     <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($in->id); ?>" <?php if((Auth()->user()->id_kelas) == ($in->id)): ?> selected <?php endif; ?>><?php echo e($in->tingkat_kelas); ?> - <?php echo e($in->jumlah_kelas); ?></option>
+                                    <option value="<?php echo e($in->id); ?>" <?php if((Auth()->user()->id_kelas) == ($in->id)): ?> selected <?php endif; ?>><?php echo e($in->tingkat_kelas); ?> - <?php echo e($in->jurusan['nama_jurusan']); ?> - <?php echo e($in->jumlah_kelas); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
 
@@ -79,31 +79,19 @@
                             </div>
                         </div>
 
-                        <div class="form-group<?php echo e($errors->has('id_jurusan') ? ' has-error' : ''); ?>">
-                            <label for="id_jurusan" class="col-md-4 control-label">Jurusan</label>
-
-                            <div class="col-md-6">
-                                <select id="id_jurusan" class="form-control select2" name="id_jurusan" value="<?php echo e(old('id_jurusan')); ?>" disabled required>
-                                    <option selected disabled>---PILIH JURUSAN---</option>
-                                    <?php $__currentLoopData = $jurusan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $on): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($on->id); ?>" <?php if((Auth()->user()->id_jurusan) == ($on->id)): ?> selected <?php endif; ?>><?php echo e($on->nama_jurusan); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>
-
-                                <?php if($errors->has('id_jurusan')): ?>
-                                    <span class="help-block">
-                                        <strong><?php echo e($errors->first('id_jurusan')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
                         <input type="hidden" value="5" name="role">
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary" disabled>
-                                    Tunggu konfirmasi...
-                                </button>
-                                <a class="btn btn-primary" href="/changepassword">Ganti Password</a>
+                            <div class="col-md-12 col-md-offset-6">
+                                <a class="btn btn-primary" href="<?php echo e(route('logout')); ?>"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-logout"></i>
+                                             Logout
+                                        </a>
+
+                                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                            <?php echo e(csrf_field()); ?>
+
+                                        </form>
                             </div>
                         </div>
                     </form>

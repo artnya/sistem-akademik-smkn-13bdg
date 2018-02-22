@@ -79,6 +79,9 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
 
   <?php echo $__env->make('layouts.control-sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
+  <?php if(session()->has('message')): ?>
+  <?php echo $__env->make('layouts.notify', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php endif; ?>
       <div class="ajax-content"></div>
 
   <!-- Add the sidebar's background. This div must be placed
@@ -233,35 +236,16 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
             'print'
         ]
     } );
+} );
+</script>
+<script>
+  $(document).ready(function(){
+
      $('#rekap').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [ 
-            {
-                extend:    'copyHtml5',
-                text:      '<i class="fa fa-files-o text-purple"></i>',
-                titleAttr: 'Copy'
-            },
-            {
-                extend:    'excelHtml5',
-                text:      '<i class="fa fa-file-excel-o text-green"></i>',
-                titleAttr: 'Excel'
-            },
-            {
-                extend:    'csvHtml5',
-                text:      '<i class="fa fa-file-text-o text-aqua"></i>',
-                titleAttr: 'CSV'
-            },
-            {
-                extend:    'pdfHtml5',
-                text:      '<i class="fa fa-file-pdf-o text-red"></i>',
-                titleAttr: 'PDF'
-            },
-            'colvis', 
-            'print'
-        ]
+       "pagingType": "full_numbers"
     } );
 
-} );
+  });
 </script>
 <!-- page script -->
 <script type="text/javascript">

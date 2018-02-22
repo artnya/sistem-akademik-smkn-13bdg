@@ -17,6 +17,11 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['home']]);
+    }
+    
     public function index()
     {
         $account = User::all();

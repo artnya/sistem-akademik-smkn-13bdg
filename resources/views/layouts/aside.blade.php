@@ -26,7 +26,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         @if(Auth()->user()->role == '1')
-        <li class="header">PERSONAL AREA</li>
+        <li class="header">STUDENT AREA</li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user"></i> <span>Data saya</span>
@@ -62,7 +62,7 @@
           </ul>
         </li>
         @if(Auth()->user())
-        <li class="treeview {{{ (Request::is('siswa') ? 'active' : '') }}} {{{ (Request::is('rekap') ? 'active' : '') }}}">
+        <li class="treeview {{{ (Request::is('siswa') ? 'active' : '') }}} {{{ (Request::is('rekapnilai') ? 'active' : '') }}}">
           <a href="#">
             <i class="fa fa-user"></i> <span>Data Siswa</span>
             <span class="pull-right-container">
@@ -72,7 +72,7 @@
           <ul class="treeview-menu">
             <li {{{ (Request::is('siswa') ? 'clas=active' : '') }}}><a href="/siswa"><i class="fa fa-circle-o"></i> Lihat Data Siswa</a></li>
             @if(Auth()->user()->role == '2' || Auth()->user()->role == '3')
-            <li {{{ (Request::is('rekap') ? 'active' : '') }}}><a href="/rekapnilai"><i class="fa fa-circle-o"></i> Rekap Nilai Siswa</a></li>
+            <li {{{ (Request::is('rekapnilai') ? 'class=active' : '') }}}><a href="/rekapnilai"><i class="fa fa-circle-o"></i> Input & Rekap Nilai Siswa</a></li>
             @endif
           </ul>
         </li>

@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 //this is just for admin authorized
-Route::get('/account', function () {
+Route::get('/account', ['middleware', 'admin', function () {
 	if (Auth()->user()->role == '2') {
 		$account = User::orderBy('id','DESC')->get();
 		return view('account.index', compact('account'));
@@ -34,7 +34,7 @@ Route::get('/account', function () {
 		Notification::send($user, new \App\Notifications\TaskAccess($userdata));
 		return redirect()->back()->with('message', 'Anda tidak di perkenankan masuk ke area ini!');
 	}
-})->middleware('auth');
+}])->middleware('auth');
 
 //detail notification
 Route::get('/admin/notification/{id}', function () {
@@ -144,7 +144,9 @@ Route::post('/home/timeline/share/add', 'TimelineController@shareStore')->middle
 
 //rekap nilai
 Route::resource('rekapnilai', 'RekapNilaiController')->middleware('auth');
-
+Route::get('rekapnilai/show/{id}', 'RekapNilaiController@show')->middleware('auth');
+Route::get('inputnilai/show/{slug}', 'RekapNilaiController@showInputNilai')->middleware('auth');
+Route::post('inputnilai/add', 'RekapNilaiController@storeNilai')->middleware('auth');
 Auth::routes();
 
 //verification route

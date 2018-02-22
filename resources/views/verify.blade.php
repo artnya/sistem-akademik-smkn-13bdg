@@ -63,7 +63,7 @@
                                 <select id="id_kelas" class="form-control select2" name="id_kelas" value="{{ old('id_kelas') }}" required>
                                     <option selected disabled>---PILIH KELAS---</option>
                                     @foreach($kelas as $in)
-                                    <option value="{{ $in->id }}">{{ $in->tingkat_kelas }} - {{ $in->jumlah_kelas }}</option>
+                                    <option value="{{ $in->id }}">{{ $in->tingkat_kelas }} {{ $in->jurusan['nama_jurusan'] }} {{ $in->jumlah_kelas }}</option>
                                     @endforeach
                                 </select>
 

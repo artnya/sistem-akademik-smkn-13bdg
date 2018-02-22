@@ -20,7 +20,7 @@
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
 <script>
-    swal("<?php echo session('message'); ?>", "Klik ok untuk menutup box ini", "success");
+    swal("<?php echo session('message'); ?>", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
 </script>
 <?php endif; ?>
     <!-- Main content -->

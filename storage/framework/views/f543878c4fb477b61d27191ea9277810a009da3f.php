@@ -26,7 +26,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <?php if(Auth()->user()->role == '1'): ?>
-        <li class="header">PERSONAL AREA</li>
+        <li class="header">STUDENT AREA</li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-user"></i> <span>Data saya</span>
@@ -62,7 +62,7 @@
           </ul>
         </li>
         <?php if(Auth()->user()): ?>
-        <li class="treeview <?php echo e((Request::is('siswa') ? 'active' : '')); ?> <?php echo e((Request::is('rekap') ? 'active' : '')); ?>">
+        <li class="treeview <?php echo e((Request::is('siswa') ? 'active' : '')); ?> <?php echo e((Request::is('rekapnilai') ? 'active' : '')); ?>">
           <a href="#">
             <i class="fa fa-user"></i> <span>Data Siswa</span>
             <span class="pull-right-container">
@@ -72,7 +72,7 @@
           <ul class="treeview-menu">
             <li <?php echo e((Request::is('siswa') ? 'clas=active' : '')); ?>><a href="/siswa"><i class="fa fa-circle-o"></i> Lihat Data Siswa</a></li>
             <?php if(Auth()->user()->role == '2' || Auth()->user()->role == '3'): ?>
-            <li <?php echo e((Request::is('rekap') ? 'active' : '')); ?>><a href="/rekapnilai"><i class="fa fa-circle-o"></i> Rekap Nilai Siswa</a></li>
+            <li <?php echo e((Request::is('rekapnilai') ? 'class=active' : '')); ?>><a href="/rekapnilai"><i class="fa fa-circle-o"></i> Input & Rekap Nilai Siswa</a></li>
             <?php endif; ?>
           </ul>
         </li>

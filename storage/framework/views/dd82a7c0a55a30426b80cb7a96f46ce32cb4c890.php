@@ -5,12 +5,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Rekap Nilai Siswa
+        Data Input / Rekap Nilai Siswa
       </h1> 
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Data Rekap Nilai Siswa</a></li>
-        <li class="active">Lihat Data Rekap Nilai Siswa</li>
+        <li><a href="#">Input & Rekap Nilai Siswa</a></li>
+        <li class="active">Lihat Data Siswa</li>
       </ol>
     </section>
 
@@ -24,8 +24,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Pilih Siswa yang akan di rekap</h3>
-
+          <h3 class="box-title">Cari Siswa yang akan di input / rekap nilai</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -41,7 +40,7 @@
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
-            <table id="example" class="table table-bordered table-hover table-responsive">
+            <table id="rekap" class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
                   <td>#</td>
@@ -62,7 +61,8 @@
                   <td><?php echo e($x->kelas['tingkat_kelas']); ?> - <?php echo e($x->jurusan['nama_jurusan']); ?> - <?php echo e($x->kelas['jumlah_kelas']); ?></td>
                   <td>
                     <div class="btn-group">
-                    <a data-toggle="modal" data-target="#edit<?php echo e($x->id); ?>" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
+                    <a href="inputnilai/show/<?php echo e($x->id); ?>" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
+                    <a href="rekapnilai/show/<?php echo e($x->id); ?>" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
                     </div>
                     </td>
                 </tr>
