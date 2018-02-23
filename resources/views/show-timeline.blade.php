@@ -96,11 +96,12 @@
               @if(Auth::check())
               <form method="POST" action="/home/comments/store/{{ $post->id }}">
                 {{ csrf_field() }}
-                <img class="img-responsive img-circle img-sm" @if($post->user['photo'] == 'Not Setting' || Auth::user()->photo == '') src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ Auth::user()->photo }}" @endif alt="Alt Text">
+                <img class="img-responsive img-circle img-sm" @if(Auth::user()->photo == 'Not Setting' || Auth::user()->photo == '') src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ Auth::user()->photo }}" @endif alt="Alt Text">
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
                   <input type="hidden" name="post_id" value="{{ $post->id }}">
                   <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                  <input type="hidden" name="id_user" value="{{ $post->id_user }}">
                   <input type="text" class="form-control input-sm" name="body" placeholder="Press enter to post comment">
                   <input type="submit" class="form-control input-sm btn-warning" value="Comment">
                 </div>

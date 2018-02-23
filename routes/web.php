@@ -98,7 +98,8 @@ Route::get('/kelas/deletechecked/{id}', 'KelasController@destroychecked')->middl
 Route::post('/account/add', 'AccountController@store')->middleware('auth');
 Route::post('/account/update/{id}', 'AccountController@update')->middleware('auth');
 Route::get('/account/delete/{id}', 'AccountController@destroy')->middleware('auth');
-Route::get('/account/deletechecked/{id}', 'AccountController@destroychecked')->middleware('auth');
+Route::delete('/account/deletechecked', 'AccountController@destroychecked')->middleware('auth');
+
 
 //mapel
 Route::resource('mapel', 'MapelController')->middleware('auth');

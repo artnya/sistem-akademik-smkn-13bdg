@@ -35,11 +35,11 @@
                   <?php if(Auth()->user()->notifications->count()): ?>
                   <?php $no = 1; ?>
                   <?php $__currentLoopData = Auth::user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li><a style="background-color: #d2d6de;" data-toggle="modal" data-target="#notify<?php echo e($notification->id); ?>" href="/admin/notification/<?php echo e($notification->id); ?>">(<?php echo e($no); ?>) <?php echo e($notification->data['id']); ?> - <?php echo e($notification->data['data']); ?></a></li>
+                  <li><a style="background-color: #d2d6de;" data-toggle="modal" data-target="#notify<?php echo e($notification->id); ?>" href="/admin/notification/<?php echo e($notification->id); ?>">(<?php echo e($no); ?>) <?php echo e($notification->data['id']); ?> <?php echo e($notification->data['data']); ?></a></li>
                   <?php $no++; ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php $__currentLoopData = Auth::user()->readNotifications()->paginate(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li class="active"><a href="#"><?php echo e($notification->data['id']); ?> - <?php echo e($notification->data['data']); ?></a></li>
+                  <li class="active"><a href="#"><?php echo e($notification->data['id']); ?> <?php echo e($notification->data['data']); ?></a></li>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php else: ?>
                   <li class=""><a href="#"> Tidak ada pemberitahuan apapun</a></li>

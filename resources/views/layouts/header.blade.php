@@ -35,11 +35,11 @@
                   @if(Auth()->user()->notifications->count())
                   <?php $no = 1; ?>
                   @foreach(Auth::user()->unreadNotifications as $notification)
-                  <li><a style="background-color: #d2d6de;" data-toggle="modal" data-target="#notify{{$notification->id}}" href="/admin/notification/{{ $notification->id }}">({{ $no }}) {{ $notification->data['id'] }} - {{ $notification->data['data'] }}</a></li>
+                  <li><a style="background-color: #d2d6de;" data-toggle="modal" data-target="#notify{{$notification->id}}" href="/admin/notification/{{ $notification->id }}">({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
                   <?php $no++; ?>
                   @endforeach
                   @foreach(Auth::user()->readNotifications()->paginate(3) as $notification)
-                  <li class="active"><a href="#">{{ $notification->data['id'] }} - {{ $notification->data['data'] }}</a></li>
+                  <li class="active"><a href="#">{{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
                   @endforeach
                   @else
                   <li class=""><a href="#"> Tidak ada pemberitahuan apapun</a></li>

@@ -5,7 +5,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <a href="<?php echo e(route('notify-read-one', $in->id)); ?>"><span aria-hidden="true">&times;</span></a>
-            <h4 class="modal-title" id="myModalLabel">Account Detail Who accessed the unauthorized page <?php echo e($in->data['id']); ?></h4>
+            <h4 class="modal-title" id="myModalLabel">Account Detail Who accessed the unauthorized page</h4>
           </div>
           <div class="modal-body">
           <table class="table table-striped">

@@ -9,6 +9,8 @@ use Redirect;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Hash;
+use App\Notifications\AcceptedVerification;
+use Notification;
 
 class AccountController extends Controller
 {
@@ -24,7 +26,7 @@ class AccountController extends Controller
     
     public function index()
     {
-        $account = User::all();
+        $account = User::orderBy('name', 'DESC')->get();
         if (Auth()->user()->role == '2') {
             return view('account.index', compact('account'));
         }else{
@@ -125,6 +127,9 @@ class AccountController extends Controller
         return redirect()->back()->with('message', "Anda telah berhasil memblokir akun ". $request->name .". Akun tidak dapat di akses selama prosedur ini berlangsung.");
         }else
         {
+
+        $users = User::find($id);
+        Notification::send($users, new AcceptedVerification($users));
         return redirect()->back()->with('message', "Akun ". $request->name ." berhasil di verifikasi sebagai akun ". $role .".");
         }
 
@@ -149,15 +154,14 @@ class AccountController extends Controller
 
     public function destroychecked(Request $request, $id)
     {
-         $checked = $request->input('checked',[]);
+         $checked = $request->input('checkeditems',[]);
         if (Auth()->user()->role == '2') {
             if ($checked == null) {
-              return redirect('Account')->with('message', 'Anda belum menceklis beberapa data untuk di hapus!');        
+              return redirect('account')->with('message', 'Anda belum menceklis beberapa data untuk di hapus!');        
             }else{
               User::whereIn("id",$checked)->delete();
-              return redirect('Account')->with('message', 'Data berhasil di hapus!');        
+              return redirect('account')->with('message', 'Data berhasil di hapus!');        
             }
-            # code...
         }else{
             return redirect()->back()->with('message', 'Anda tidak di perkenankan masuk ke area ini!');
         }

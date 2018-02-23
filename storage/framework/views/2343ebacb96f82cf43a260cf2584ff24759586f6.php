@@ -97,11 +97,12 @@
               <form method="POST" action="/home/comments/store/<?php echo e($post->id); ?>">
                 <?php echo e(csrf_field()); ?>
 
-                <img class="img-responsive img-circle img-sm" <?php if($post->user['photo'] == 'Not Setting' || Auth::user()->photo == ''): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e(Auth::user()->photo); ?>" <?php endif; ?> alt="Alt Text">
+                <img class="img-responsive img-circle img-sm" <?php if(Auth::user()->photo == 'Not Setting' || Auth::user()->photo == ''): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e(Auth::user()->photo); ?>" <?php endif; ?> alt="Alt Text">
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
                   <input type="hidden" name="post_id" value="<?php echo e($post->id); ?>">
                   <input type="hidden" name="user_id" value="<?php echo e(Auth::user()->id); ?>">
+                  <input type="hidden" name="id_user" value="<?php echo e($post->id_user); ?>">
                   <input type="text" class="form-control input-sm" name="body" placeholder="Press enter to post comment">
                   <input type="submit" class="form-control input-sm btn-warning" value="Comment">
                 </div>
