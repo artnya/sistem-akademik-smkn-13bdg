@@ -18,7 +18,7 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body>
+<body id="result">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">

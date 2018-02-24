@@ -43,6 +43,8 @@ class VerificationController extends Controller
             $kelas = Kelas::orderBy('id')->get();
             $jurusan = Jurusan::orderBy('id')->get();
             return view('success', compact('kelas', 'jurusan'));
+        }else{
+            return redirect()->route('home')->with('message', 'Akun berhasil di verifikasi oleh admin');
         }
     }
 

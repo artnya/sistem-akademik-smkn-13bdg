@@ -87,8 +87,8 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="fa fa-logout"></i>
                                              Logout
-                                        </a>
-
+                                </a>
+                                <button type="button" onclick="location.reload(true);" class="btn btn-info">Refresh</button>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>

@@ -41,16 +41,15 @@
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           <div>
               <input type="submit" id="actions" value="Hapus" hidden>
-              <input type="reset" id="actions" value="Unselect all">
           </div>
             <table id="example" class="table table-stripped table-responsive">
               <thead>
                 <tr>
-                  <td><input type="checkbox" name="select_all" id="select_all"></td>
-                  <td>NIS</td>
-                  <td>Nama Siswa</td>
-                  <td>Kelas</td>
-                  <td>Aksi</td>
+                  <th><input type="checkbox" name="select_all" id="select_all"></th>
+                  <th>NIS</th>
+                  <th>Nama Siswa</th>
+                  <th>Kelas</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -73,6 +72,15 @@
                 </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
+              <tfoot>
+                <tr>
+                  <th>#</th>
+                  <th>NIS</th>
+                  <th>Nama Siswa</th>
+                  <th>Kelas</th>
+                  <th>Aksi</th>
+                </tr>
+              </tfoot>
             </table>
           </form>
           <div class="ajax-content">

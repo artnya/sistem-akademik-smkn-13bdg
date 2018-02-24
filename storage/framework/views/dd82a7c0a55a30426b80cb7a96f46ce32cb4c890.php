@@ -40,14 +40,14 @@
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
+            <table id="example" class="display table table-stripped table-responsive">
               <thead>
                 <tr>
-                  <td>#</td>
-                  <td>NIS</td>
-                  <td>Nama Siswa</td>
-                  <td>Kelas</td>
-                  <td>Aksi</td>
+                  <th>#</th>
+                  <th>NIS</th>
+                  <th>Nama Siswa</th>
+                  <th>Kelas</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,6 +68,15 @@
                 </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
+              <tfoot>
+                <tr>
+                  <th>#</th>
+                  <th>NIS</th>
+                  <th>Nama Siswa</th>
+                  <th>Kelas</th>
+                  <th>Aksi</th>
+                </tr>
+              </tfoot>
             </table>
           </form>
         </div>

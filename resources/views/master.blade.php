@@ -18,6 +18,13 @@
   <link rel="stylesheet" href="/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="
 https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
+  <style>
+    tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+  </style>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/css/font-awesome.min.css">
   <!-- my css -->
@@ -110,8 +117,9 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
-<!-- Morris.js charts -->
+<!-- 
 <script src="/js/raphael.min.js"></script>
+ Morris.js charts -->
 
 <!-- <script src="/js/morris.min.js"></script> -->
 
@@ -129,14 +137,17 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
 <!-- daterangepicker -->
 
 <!-- <script src="/js/moment.min.js"></script> -->
-<!-- data pickrange -->
+<!-- 
 <script src="/js/daterangepicker.js"></script>
+data pickrange -->
+
 <!-- datepicker -->
 <script src="/js/bootstrap-datepicker.min.js"></script>
 <!-- select 2 -->
 <script src="/js/select.min.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
+<!-- 
 <script src="/js/bootstrap3-wysihtml5.all.min.js"></script>
+Bootstrap WYSIHTML5 -->
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
 <!-- Slimscroll -->
@@ -180,6 +191,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
 <script src="/js/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/js/demo.js"></script>
+<!--
 <script>
  $(document).ready(function() {
     $('#example').DataTable( {
@@ -238,14 +250,33 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
     } );
 } );
 </script>
+-->
 <script>
-  $(document).ready(function(){
-
-     $('#rekap').DataTable( {
-       "pagingType": "full_numbers"
+$(document).ready(function() {
+    $('#example').DataTable( {
+        stateSave: true,
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value="">Semua</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
     } );
-
-  });
+} );
 </script>
 <!-- page script -->
 <script type="text/javascript">

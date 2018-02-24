@@ -162,7 +162,7 @@ Route::get('/home', 'HomeController@index', function(){
 
 Route::get('/verification/user/{slug}', 'VerificationController@index')->name('verification')->middleware('auth');
 Route::post('/verification/user/send/{id}', 'VerificationController@update')->name('verify')->middleware('auth');
-Route::get('/verification/user/success/{slug}', 'VerificationController@success')->name('verification.last.step')->middleware('auth');
+Route::get('/verification/user/success/{id}', 'VerificationController@success')->name('verification.last.step')->middleware('auth');
 
 //to change password
 Route::get('/changepassword', 'HomeController@showchangepassword')->middleware('auth');

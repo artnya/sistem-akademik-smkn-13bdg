@@ -64,7 +64,7 @@
         <?php if(Auth()->user()): ?>
         <li class="treeview <?php echo e((Request::is('siswa') ? 'active' : '')); ?> <?php echo e((Request::is('rekapnilai') ? 'active' : '')); ?>">
           <a href="#">
-            <i class="fa fa-user"></i> <span>Data Siswa</span>
+            <i class="fa fa-user text-green"></i> <span>Data Siswa</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -78,7 +78,7 @@
         </li>
         <li class="treeview <?php echo e((Request::is('guru') ? 'active' : '')); ?>">
           <a href="#">
-            <i class="fa fa-table"></i> <span>Data Guru</span>
+            <i class="fa fa-table text-blue"></i> <span>Data Guru</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -89,7 +89,7 @@
         </li>
         <li class="treeview <?php echo e((Request::is('kelas') ? 'active' : '')); ?>">
           <a href="#">
-            <i class="fa fa-university"></i> <span>Kelas</span>
+            <i class="fa fa-university text-yellow"></i> <span>Kelas</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -100,7 +100,7 @@
         </li>
         <li class="treeview <?php echo e((Request::is('mapel') ? 'active' : '')); ?> <?php echo e((Request::is('mapel-produktif') ? 'active' : '')); ?>">
           <a href="#">
-            <i class="fa fa-book"></i> <span>Mata Pelajaran</span>
+            <i class="fa fa-book text-aqua"></i> <span>Mata Pelajaran</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
