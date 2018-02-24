@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Nilai {{  $siswa->name}}
+        {{  $siswa->username}} {{  $siswa->name}} - {{  $siswa->kelas['tingkat_kelas']}} {{  $siswa->jurusan['nama_jurusan']}} {{  $siswa->kelas['jumlah_kelas']}}
       </h1> 
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -18,8 +18,24 @@
     </section>
 
 <!-- notification session -->
-@if (session('message'))      
-  @include('layouts.session')
+@if(session('message'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('message') !!}", "Pastikan nilai lengkap dan sesuai yang di inputkan!", "success");
+    </script>
+@endif
+
+@if(session('messageerror'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('messageerror') !!}", "", "success");
+    </script>
 @endif
     <!-- Main content -->
     <section class="content">
@@ -43,36 +59,41 @@
             <table id="rekap" class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
-                	<td>Mata Pelajaran</td>
-                	<td>Tugas 1</td>
-                	<td>Tugas 2</td>
-                	<td>Tugas 3</td>
-                	<td>Sikap</td>
-                	<td>Pengetahuan</td>
-                	<td>UTS</td>
-                	<td>UAS</td>
-                	<td>KKM</td>
+                	<th>Mata Pelajaran</th>
+                	<th>Tugas 1</th>
+                	<th>Tugas 2</th>
+                	<th>Tugas 3</th>
+                	<th>Sikap</th>
+                	<th>Pengetahuan</th>
+                	<th>UTS</th>
+                	<th>UAS</th>
+                	<th>KKM</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                @if(!$rekapnilai->count() < 1)
                 @foreach($rekapnilai as $in)
                 	<td>{{ $in->mapel['nama_mapel'] }}</td>
-                	<td>{{ $in->tugas1 }}</td>
-                	<td>{{ $in->tugas2 }}</td>
-                	<td>{{ $in->tugas3 }}</td>
-                	<td>{{ $in->nilai_sikap }}</td>
-                	<td>{{ $in->nilai_pengetahuan }}</td>
-                	<td>{{ $in->uts }}</td>
-                	<td>{{ $in->uas }}</td>
-                	<td>{{ $in->mapel['kkm'] }}</td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->tugas1 }}" ></td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->tugas2 }}" ></td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->tugas3 }}" ></td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->nilai_sikap }}" ></td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->nilai_pengetahuan }}" ></td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->uts }}" ></td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->uas }}" ></td>
+                	<td><input type="text" class="form-control col-md-3" value="{{ $in->mapel['kkm'] }}"></td>
                 </tr>
                 @endforeach
+                @else
+                <td class="text-center" colspan="12">Belum ada nilai yang di input.</td>
+                @endif
               </tbody>
             </table>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
+          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}">Input Nilai</a>
         </div>
         <!-- /.box-footer-->
       </div>

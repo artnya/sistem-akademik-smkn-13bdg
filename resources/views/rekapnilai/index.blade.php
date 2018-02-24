@@ -17,8 +17,24 @@
     </section>
 
 <!-- notification session -->
-@if (session('message'))      
-  @include('layouts.session')
+@if(session('message'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('message') !!}", "Pastikan nilai lengkap dan sesuai yang di inputkan!", "success");
+    </script>
+@endif
+
+@if(session('messageerror'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('messageerror') !!}", "", "success");
+    </script>
 @endif
     <!-- Main content -->
     <section class="content">
@@ -60,10 +76,10 @@
                   </td>
                   <td>{{ $x->username }}</td>
                   <td>{{ $x->name }}</td>
-                  <td>{{ $x->kelas['tingkat_kelas'] }} - {{ $x->jurusan['nama_jurusan'] }} - {{ $x->kelas['jumlah_kelas'] }}</td>
+                  <td>{{ $x->kelas['tingkat_kelas'] }} {{ $x->jurusan['nama_jurusan'] }} {{ $x->kelas['jumlah_kelas'] }}</td>
                   <td>
                     <div class="btn-group">
-                    <a href="inputnilai/show/{{ $x->id }}" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
+                    <a href="inputnilai/siswa/{{ $x->id }}" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
                     <a href="rekapnilai/show/{{ $x->id }}" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
                     </div>
                     </td>

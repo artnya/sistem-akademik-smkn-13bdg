@@ -37,13 +37,13 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
   <!-- Pace style -->
-  <link rel="stylesheet" href="/css/themes/blue/pace-theme-center-simple.css">
+  <link rel="stylesheet" href="/css/pace.css">
   <!-- loading style -->
   <link rel="stylesheet" href="/css/loading.css">
   <!-- sweet alert -->
   <link rel="stylesheet" href="/css/sweetalert.css">
   <!-- select 2 -->
-  <link rel="stylesheet" href="/css/select.min.css">
+  <link rel="stylesheet" href="/css/select2.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -144,7 +144,7 @@ data pickrange -->
 <!-- datepicker -->
 <script src="/js/bootstrap-datepicker.min.js"></script>
 <!-- select 2 -->
-<script src="/js/select.min.js"></script>
+<script src="/js/select2.full.min.js"></script>
 <!-- 
 <script src="/js/bootstrap3-wysihtml5.all.min.js"></script>
 Bootstrap WYSIHTML5 -->

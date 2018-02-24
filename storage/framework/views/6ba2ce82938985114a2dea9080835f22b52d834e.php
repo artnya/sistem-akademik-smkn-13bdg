@@ -5,7 +5,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Input Nilai <?php echo e($siswa->name); ?>
+        <?php echo e($siswa->username); ?> <?php echo e($siswa->name); ?> - <?php echo e($siswa->kelas['tingkat_kelas']); ?> <?php echo e($siswa->jurusan['nama_jurusan']); ?> <?php echo e($siswa->kelas['jumlah_kelas']); ?>
 
       </h1> 
       <ol class="breadcrumb">
@@ -15,10 +15,25 @@
         <li class="active">Input Nilai <?php echo e($siswa->name); ?></li>
       </ol>
     </section>
-
 <!-- notification session -->
 <?php if(session('message')): ?>      
-  <?php echo $__env->make('layouts.session', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('message'); ?>", "Pastikan nilai lengkap dan sesuai yang di inputkan!", "success");
+    </script>
+<?php endif; ?>
+
+<?php if(session('messageerror')): ?>      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('messageerror'); ?>", "", "success");
+    </script>
 <?php endif; ?>
     <!-- Main content -->
     <section class="content">
@@ -39,9 +54,46 @@
         	<form class="form-horizontal" method="POST" action="/inputnilai/add">
                         <?php echo e(csrf_field()); ?>
 
-                        <input type="hidden" name="id_nis" value="<?php echo e($siswa->name); ?>">
-                        <input type="hidden" name="id_kelas" value="<?php echo e($siswa->id_kelas); ?>">
-                        <input type="hidden" name="id_jurusan" value="<?php echo e($siswa->id_jurusan); ?>">
+                            <input type="hidden" name="id_siswa" value="<?php echo e($siswa->id); ?>">
+                            <input type="hidden" name="id_kelas" value="<?php echo e($siswa->id_kelas); ?>">
+                            <input type="hidden" name="id_jurusan" value="<?php echo e($siswa->id_jurusan); ?>">
+                        <div class="form-group<?php echo e($errors->has('id_tahun') ? ' has-error' : ''); ?>">
+                            <label for="id_tahun" class="col-md-4 control-label">Tahun Ajaran</label>
+                            <div class="col-md-6">
+                                <select id="id_tahun" class="form-control select2" name="id_tahun" value="<?php echo e(old('id_tahun')); ?>" required autofocus>
+                                    <option disabled selected>Pilih Tahun Ajaran</option>
+                                    <?php $__currentLoopData = $tahun; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $now): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($now->id); ?>"><?php echo e($now->tahun); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+
+                                <?php if($errors->has('id_tahun')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('id_tahun')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="form-group<?php echo e($errors->has('semester') ? ' has-error' : ''); ?>">
+                            <label for="semester" class="col-md-4 control-label">Semester</label>
+                            <div class="col-md-6">
+                                <select id="semester" type="text" class="form-control select2" name="semester" value="<?php echo e(old('semester')); ?>" required autofocus>
+                                    <option disabled selected>Pilih Semester</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+
+                                <?php if($errors->has('semester')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('semester')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                         <div class="form-group<?php echo e($errors->has('id_mapel') ? ' has-error' : ''); ?>">
                             <label for="id_mapel" class="col-md-4 control-label">Mata Pelajaran</label>
 
@@ -157,6 +209,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Tambah Nilai
                                 </button>
+                                <a class="btn btn-info" href="/rekapnilai/show/<?php echo e($siswa->id); ?>">Lihat Nilai</a>
                             </div>
                         </div>
                     </form>

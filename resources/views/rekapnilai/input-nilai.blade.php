@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Input Nilai {{  $siswa->name}}
+        {{  $siswa->username}} {{  $siswa->name}} - {{  $siswa->kelas['tingkat_kelas']}} {{  $siswa->jurusan['nama_jurusan']}} {{  $siswa->kelas['jumlah_kelas']}}
       </h1> 
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -16,10 +16,25 @@
         <li class="active">Input Nilai {{ $siswa->name }}</li>
       </ol>
     </section>
-
 <!-- notification session -->
-@if (session('message'))      
-  @include('layouts.session')
+@if(session('message'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('message') !!}", "Pastikan nilai lengkap dan sesuai yang di inputkan!", "success");
+    </script>
+@endif
+
+@if(session('messageerror'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('messageerror') !!}", "", "success");
+    </script>
 @endif
     <!-- Main content -->
     <section class="content">
@@ -39,9 +54,46 @@
         <div class="box-body">
         	<form class="form-horizontal" method="POST" action="/inputnilai/add">
                         {{ csrf_field() }}
-                        <input type="hidden" name="id_nis" value="{{ $siswa->name }}">
-                        <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">
-                        <input type="hidden" name="id_jurusan" value="{{ $siswa->id_jurusan }}">
+                            <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
+                            <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">
+                            <input type="hidden" name="id_jurusan" value="{{ $siswa->id_jurusan }}">
+                        <div class="form-group{{ $errors->has('id_tahun') ? ' has-error' : '' }}">
+                            <label for="id_tahun" class="col-md-4 control-label">Tahun Ajaran</label>
+                            <div class="col-md-6">
+                                <select id="id_tahun" class="form-control select2" name="id_tahun" value="{{ old('id_tahun') }}" required autofocus>
+                                    <option disabled selected>Pilih Tahun Ajaran</option>
+                                    @foreach($tahun as $now)
+                                        <option value="{{ $now->id }}">{{ $now->tahun }}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('id_tahun'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('id_tahun') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('semester') ? ' has-error' : '' }}">
+                            <label for="semester" class="col-md-4 control-label">Semester</label>
+                            <div class="col-md-6">
+                                <select id="semester" type="text" class="form-control select2" name="semester" value="{{ old('semester') }}" required autofocus>
+                                    <option disabled selected>Pilih Semester</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+
+                                @if ($errors->has('semester'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('semester') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('id_mapel') ? ' has-error' : '' }}">
                             <label for="id_mapel" class="col-md-4 control-label">Mata Pelajaran</label>
 
@@ -157,6 +209,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Tambah Nilai
                                 </button>
+                                <a class="btn btn-info" href="/rekapnilai/show/{{ $siswa->id }}">Lihat Nilai</a>
                             </div>
                         </div>
                     </form>

@@ -16,7 +16,23 @@
 
 <!-- notification session -->
 <?php if(session('message')): ?>      
-  <?php echo $__env->make('layouts.session', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('message'); ?>", "Pastikan nilai lengkap dan sesuai yang di inputkan!", "success");
+    </script>
+<?php endif; ?>
+
+<?php if(session('messageerror')): ?>      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('messageerror'); ?>", "", "success");
+    </script>
 <?php endif; ?>
     <!-- Main content -->
     <section class="content">
@@ -58,10 +74,10 @@
                   </td>
                   <td><?php echo e($x->username); ?></td>
                   <td><?php echo e($x->name); ?></td>
-                  <td><?php echo e($x->kelas['tingkat_kelas']); ?> - <?php echo e($x->jurusan['nama_jurusan']); ?> - <?php echo e($x->kelas['jumlah_kelas']); ?></td>
+                  <td><?php echo e($x->kelas['tingkat_kelas']); ?> <?php echo e($x->jurusan['nama_jurusan']); ?> <?php echo e($x->kelas['jumlah_kelas']); ?></td>
                   <td>
                     <div class="btn-group">
-                    <a href="inputnilai/show/<?php echo e($x->id); ?>" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
+                    <a href="inputnilai/siswa/<?php echo e($x->id); ?>" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
                     <a href="rekapnilai/show/<?php echo e($x->id); ?>" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
                     </div>
                     </td>

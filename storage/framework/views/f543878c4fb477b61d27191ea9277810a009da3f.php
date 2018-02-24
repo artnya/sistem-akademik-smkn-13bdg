@@ -115,7 +115,7 @@
         <li>
         <li class="header">ADMIN COMMAND AREA</li>
         <li <?php echo e((Request::is('account') ? 'class=active' : '')); ?>><a href="/account"><i class="fa fa-group text-red"></i> <span>Account users</span></a></li>
-        <li <?php echo e((Request::is('tahun') ? 'class=active' : '')); ?>><a href="/tahun"><i class="fa fa-pencil text-yellow"></i> <span>Tahun Ajaran</span></a></li>
+        <li <?php echo e((Request::is('tahun-ajaran') ? 'class=active' : '')); ?>><a href="/tahun-ajaran"><i class="fa fa-pencil text-yellow"></i> <span>Tahun Ajaran</span></a></li>
         <li <?php echo e((Request::is('jurusan') ? 'class=active' : '')); ?>><a href="/jurusan"><i class="fa fa-university text-blue"></i> <span>Jurusan</span></a></li>
         </li>
         <?php endif; ?>

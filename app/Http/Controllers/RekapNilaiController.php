@@ -53,37 +53,6 @@ class RekapNilaiController extends Controller
     public function storeNilai(Request $request)
     { 
 
-        $this->validate($request, [
-
-            'id_nis' => 'required',
-            'id_mapel' => 'required',
-            'id_kelas' => 'required',
-            'id_jurusan' => 'required',
-            'tugas1' => 'required',
-            'tugas2' => 'required',
-            'tugas3' => 'required',
-            'nilai_sikap' => 'required',
-            'nilai_pengetahuan' => 'required',
-            'uts' => 'required',
-            'uas' => 'required',
-
-        ]);
-
-        $storage = new RekapNilai();
-        $storage->id_nis = $request->id_nis;
-        $storage->id_mapel = $request->id_mapel;
-        $storage->id_kelas = $request->id_kelas;
-        $storage->id_jurusan = $request->id_jurusan;
-        $storage->tugas1 = $request->tugas1;
-        $storage->tugas2 = $request->tugas2;
-        $storage->tugas3 = $request->tugas3;
-        $storage->nilai_sikap = $request->nilai_sikap;
-        $storage->nilai_pengetahuan = $request->nilai_pengetahuan;
-        $storage->uts = $request->uts;
-        $storage->uas = $request->uas;
-        $storage->save();
-
-        return redirect()->back()->with('message', 'Data berhasil di tambahkan');
     }
 
     /**
@@ -96,7 +65,7 @@ class RekapNilaiController extends Controller
     {
         $mapels = Mapel::all();
         $siswa = User::find($id);
-        $rekapnilai = RekapNilai::orderBy('id', 'DESC')->get();
+        $rekapnilai = RekapNilai::where('id_siswa', $id)->orderBy('id', 'DESC')->get();
 
         return view('rekapnilai.rekap-nilai', compact('siswa', 'mapels', 'rekapnilai'));
     }
@@ -104,11 +73,6 @@ class RekapNilaiController extends Controller
 
     public function showInputNilai($id)
     {
-        $mapel = Mapel::all();
-        $siswa = User::find($id);
-        $rekapnilai = RekapNilai::orderBy('id', 'DESC')->get();
-
-        return view('rekapnilai.input-nilai', compact('siswa', 'mapel', 'rekapnilai'));
     }
 
     /**

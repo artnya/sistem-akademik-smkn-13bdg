@@ -21,6 +21,16 @@
         swal("{!! session('message') !!}", "", "success");
     </script>
 @endif
+
+@if(session('messageerror'))      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('messageerror') !!}", "", "success");
+    </script>
+@endif
     <!-- Main content -->
     <section class="content">
       <!-- Default box -->
@@ -61,7 +71,7 @@
                   </td>
                   <td>{{ $x->username }}</td>
                   <td>{{ $x->name }}</td>
-                  <td>{{ $x->kelas['tingkat_kelas'] }} - {{ $x->jurusan['nama_jurusan'] }} - {{ $x->kelas['jumlah_kelas'] }}</td>
+                  <td>{{ $x->kelas['tingkat_kelas'] }} {{ $x->jurusan['nama_jurusan'] }} {{ $x->kelas['jumlah_kelas'] }}</td>
                   <td>
                     <a href="#" data-toggle="modal" data-target="#detail{{$x->id}}" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                     @if(Auth::user()->role == '2') 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tahun;
 
 class TahunController extends Controller
 {
@@ -19,6 +20,8 @@ class TahunController extends Controller
     
     public function index()
     {
+
+        $tahun = Tahun::all();
         if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
           return view('tahun-ajaran.index', compact('tahun'));
         }else{
@@ -44,7 +47,16 @@ class TahunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'tahun' => 'required'
+        ]);
+
+        Tahun::create([
+            'tahun' => $request->tahun,
+        ]);
+
+        return redirect()->back()->with('message', 'Tahun ajaran berhasil di tambahkan');
     }
 
     /**

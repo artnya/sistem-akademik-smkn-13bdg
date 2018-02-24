@@ -143,11 +143,21 @@ Route::get('/home/comments/post/share/{id}', 'TimelineController@share')->name('
 Route::post('/home/timeline/share/add', 'TimelineController@shareStore')->middleware('auth');
 ///timeline/share/add
 
+//tahun-ajaran
+
+Route::resource('tahun-ajaran', 'TahunController')->middleware('auth');
+Route::get('tahun-ajaran/show/{id}', 'TahunController@show')->middleware('auth');
+Route::post('tahun-ajaran/add', 'TahunController@store')->middleware('auth');
+
 //rekap nilai
 Route::resource('rekapnilai', 'RekapNilaiController')->middleware('auth');
-Route::get('rekapnilai/show/{id}', 'RekapNilaiController@show')->middleware('auth');
-Route::get('inputnilai/show/{slug}', 'RekapNilaiController@showInputNilai')->middleware('auth');
-Route::post('inputnilai/add', 'RekapNilaiController@storeNilai')->middleware('auth');
+Route::get('rekapnilai/show/{id}', 'RekapNilaiController@show')->name('rekapnilai.show')->middleware('auth');
+
+//input nilai
+Route::get('inputnilai/siswa/{slug}', 'InputNilaiController@show')->name('inputnilai')->middleware('auth');
+Route::post('inputnilai/add', 'InputNilaiController@store')->middleware('auth');
+
+//auth route
 Auth::routes();
 
 //verification route

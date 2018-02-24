@@ -20,6 +20,16 @@
         swal("<?php echo session('message'); ?>", "", "success");
     </script>
 <?php endif; ?>
+
+<?php if(session('messageerror')): ?>      
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("<?php echo session('messageerror'); ?>", "", "success");
+    </script>
+<?php endif; ?>
     <!-- Main content -->
     <section class="content">
       <!-- Default box -->
@@ -60,7 +70,7 @@
                   </td>
                   <td><?php echo e($x->username); ?></td>
                   <td><?php echo e($x->name); ?></td>
-                  <td><?php echo e($x->kelas['tingkat_kelas']); ?> - <?php echo e($x->jurusan['nama_jurusan']); ?> - <?php echo e($x->kelas['jumlah_kelas']); ?></td>
+                  <td><?php echo e($x->kelas['tingkat_kelas']); ?> <?php echo e($x->jurusan['nama_jurusan']); ?> <?php echo e($x->kelas['jumlah_kelas']); ?></td>
                   <td>
                     <a href="#" data-toggle="modal" data-target="#detail<?php echo e($x->id); ?>" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                     <?php if(Auth::user()->role == '2'): ?> 
