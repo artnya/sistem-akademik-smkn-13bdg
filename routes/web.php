@@ -157,6 +157,9 @@ Route::get('rekapnilai/show/{id}', 'RekapNilaiController@show')->name('rekapnila
 Route::get('inputnilai/siswa/{slug}', 'InputNilaiController@show')->name('inputnilai')->middleware('auth');
 Route::post('inputnilai/add', 'InputNilaiController@store')->middleware('auth');
 
+//lihat nilai saya (siswa section)
+Route::get('lihat-datasaya/lihat-nilai/{name}', 'DayaSayaController@show')->name('lihat.nilai')->middleware('auth');
+
 //auth route
 Auth::routes();
 

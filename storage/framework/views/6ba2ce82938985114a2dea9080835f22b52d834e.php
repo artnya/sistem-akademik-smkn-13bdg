@@ -37,6 +37,24 @@
 <?php endif; ?>
     <!-- Main content -->
     <section class="content">
+        <div class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-info"></i> Penting!</h4>
+                <?php if(session('messageerror')): ?>
+                 <!-- sweet alert -->
+                <link rel="stylesheet" href="/css/sweetalert.css">
+                <!-- sweet alert -->
+                <script src="/js/sweetalert.js"></script>
+                <script>
+                            swal("<?php echo session('messageerror'); ?>", "", "error");
+                </script>
+                <?php endif; ?>
+                <?php if(session('message')): ?>
+                    <?php echo e(session('message')); ?>
+
+                <?php endif; ?>
+                Dalam penginputan nilai siswa harus teliti dalam mengisi form nilai dan sesuaikan dengan semester dan tahun ajaran yang akan di masukan.
+        </div>
 
       <!-- Default box -->
       <div class="box">
@@ -100,7 +118,11 @@
                             <div class="col-md-6">
                                 <select id="id_mapel" type="text" class="form-control select2" name="id_mapel" value="<?php echo e(old('id_mapel')); ?>" required autofocus>
                                 <?php $__currentLoopData = $mapel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                	<option value="<?php echo e($in->id); ?>"><?php echo e($in->nama_mapel); ?></option>
+                                <?php if(Auth()->user()->id_mapel == $in->id): ?>
+                                    <option value="<?php echo e($in->id); ?>" selected><?php echo e($in->nama_mapel); ?></option>
+                                <?php else: ?>
+                                <option value="<?php echo e($in->id); ?>" disabled><?php echo e($in->nama_mapel); ?></option>
+                                <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
 

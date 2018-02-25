@@ -65,9 +65,14 @@ class RekapNilaiController extends Controller
     {
         $mapels = Mapel::all();
         $siswa = User::find($id);
-        $rekapnilai = RekapNilai::where('id_siswa', $id)->orderBy('id', 'DESC')->get();
+        $semester1 = RekapNilai::where('id_siswa', $id)->where('semester', '1')->get();
+        $semester2 = RekapNilai::where('id_siswa', $id)->where('semester', '2')->get();
+        $semester3 = RekapNilai::where('id_siswa', $id)->where('semester', '3')->get();
+        $semester4 = RekapNilai::where('id_siswa', $id)->where('semester', '4')->get();
+        $semester5 = RekapNilai::where('id_siswa', $id)->where('semester', '5')->get();
+        $semester6 = RekapNilai::where('id_siswa', $id)->where('semester', '6')->get();
 
-        return view('rekapnilai.rekap-nilai', compact('siswa', 'mapels', 'rekapnilai'));
+        return view('rekapnilai.rekap-nilai', compact('siswa', 'mapels', 'semester1', 'semester2', 'semester3', 'semester4', 'semester5', 'semester6'));
     }
 
 

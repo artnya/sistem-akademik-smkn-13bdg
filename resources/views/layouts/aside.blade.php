@@ -27,7 +27,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         @if(Auth()->user()->role == '1')
         <li class="header">STUDENT AREA</li>
-        <li class="treeview">
+        <li class="treeview {{{ (Request::is('/lihat-datasaya') ? 'class=active' : '') }}}">
           <a href="#">
             <i class="fa fa-user"></i> <span>Data saya</span>
             <span class="pull-right-container">
@@ -35,7 +35,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/siswa"><i class="fa fa-circle-o"></i> Lihat nilai saya
+            <li {{{ (Request::is('/lihat-datasaya') ? 'class=active' : '') }}}><a href="lihat-datasaya/lihat-nilai/{{ str_slug(Auth::user()->name) }}"><i class="fa fa-circle-o"></i> Lihat nilai saya
             <span class="pull-right-container">
               <small class="label pull-right bg-red">Soon</small>
             </span>
