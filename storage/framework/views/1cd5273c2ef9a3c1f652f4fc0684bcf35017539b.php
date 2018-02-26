@@ -88,7 +88,7 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" id="1">
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
@@ -147,7 +147,7 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" id="2">
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
@@ -206,7 +206,7 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" id="3">
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
@@ -265,7 +265,7 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" id="4">
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
@@ -324,7 +324,7 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" id="5">
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
@@ -382,7 +382,7 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" id="6">
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>

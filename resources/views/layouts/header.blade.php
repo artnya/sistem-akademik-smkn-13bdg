@@ -2,9 +2,9 @@
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>13</b>SIA</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>SMKN 13 BANDUNG</b> AKADEMIK</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -35,7 +35,7 @@
                   @if(Auth()->user()->notifications->count())
                   <?php $no = 1; ?>
                   @foreach(Auth::user()->unreadNotifications as $notification)
-                  <li><a style="background-color: #d2d6de;" data-toggle="modal" data-target="#notify{{$notification->id}}" href="/admin/notification/{{ $notification->id }}">({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  <li><a style="background-color: #d2d6de;" href="/home/timeline">({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
                   <?php $no++; ?>
                   @endforeach
                   @foreach(Auth::user()->readNotifications()->paginate(3) as $notification)

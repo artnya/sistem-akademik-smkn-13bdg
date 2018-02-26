@@ -130,18 +130,20 @@ Route::post('/jurusan/update/{id}', 'JurusanController@update')->middleware('aut
 Route::get('/jurusan/delete/{id}', 'JurusanController@destroy')->middleware('auth');
 Route::get('/jurusan/deletechecked/{id}', 'JurusanController@destroychecked')->middleware('auth');
 
-//timeline
-Route::get('/home/timeline', 'TimelineController@index')->name('home.timeline')->middleware('auth');
-Route::post('/timeline/add', 'TimelineController@store')->middleware('auth');
-Route::post('/timeline/update/{id}', 'TimelineController@update')->middleware('auth');
-Route::get('/timeline/delete/{id}', 'TimelineController@destroy')->middleware('auth');
-Route::get('/timeline/deletechecked/{id}', 'TimelineController@destroychecked')->middleware('auth');
-Route::get('/home/timeline/comment/post/{id}', 'TimelineController@show')->name('posts.show')->middleware('auth');
+//discuss-group
+Route::get('home/discuss-group', 'DiscussGroupController@index')->name('home.discuss-group')->middleware('auth');
+Route::post('/timeline/add', 'DiscussGroupController@store')->middleware('auth');
+Route::post('/timeline/update/{id}', 'DiscussGroupController@update')->middleware('auth');
+Route::get('/timeline/delete/{id}', 'DiscussGroupController@destroy')->middleware('auth');
+Route::get('/timeline/deletechecked/{id}', 'DiscussGroupController@destroychecked')->middleware('auth');
+Route::get('/home/discuss-group/comment/post/{id}', 'DiscussGroupController@show')->name('posts.show')->middleware('auth');
 Route::post('/home/comments/store', 'CommentController@store')->name('comment.store')->middleware('auth');
 Route::post('/home/comments/store/{id}', 'CommentController@store')->name('comment.store')->middleware('auth');
-Route::get('/home/comments/post/share/{id}', 'TimelineController@share')->name('home.comment.share')->middleware('auth');
-Route::post('/home/timeline/share/add', 'TimelineController@shareStore')->middleware('auth');
-///timeline/share/add
+Route::get('/home/discuss-group/share/{id}', 'DiscussGroupController@share')->name('home.comment.share')->middleware('auth');
+Route::post('/home/timeline/share/add', 'TimelineCDiscussGroupControllerontroller@shareStore')->middleware('auth');
+
+///timeline
+Route::resource('home/timeline', 'TimelineController')->middleware('auth');
 
 //tahun-ajaran
 

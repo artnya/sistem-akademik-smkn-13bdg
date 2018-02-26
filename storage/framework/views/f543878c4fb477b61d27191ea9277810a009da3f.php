@@ -58,7 +58,8 @@
           </a>
           <ul class="treeview-menu">
             <li <?php echo e((Request::is('home') ? 'class=active' : '')); ?>><a href="/home"><i class="fa fa-circle-o"></i> Home Page</a></li>
-            <li <?php echo e((Request::is('home/timeline') ? 'class=active' : '')); ?>><a href="/home/timeline"><i class="fa fa-circle-o"></i> Discuss Group</a>
+            <li <?php echo e((Request::is('home/discuss-group') ? 'class=active' : '')); ?>><a href="/home/discuss-group"><i class="fa fa-circle-o"></i> Grup Diskusi</a>
+            <li <?php echo e((Request::is('home/timeline') ? 'class=active' : '')); ?>><a href="<?php echo e(url('home/timeline')); ?>"><i class="fa fa-circle-o"></i> Timeline</a>
           </ul>
         </li>
         <?php if(Auth()->user()): ?>

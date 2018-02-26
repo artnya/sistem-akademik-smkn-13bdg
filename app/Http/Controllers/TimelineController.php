@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Timeline;
 use App\User;
 use App\Comment;
-
+use Illuminate\Support\Carbon;
 
 class TimelineController extends Controller
 {
@@ -18,13 +17,8 @@ class TimelineController extends Controller
      */
     public function index()
     {
-        $posts = Timeline::orderBy('created_at', 'DESC')->get();
-        $comments = Comment::all();
-        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
-          return view('timeline.index', compact('posts', 'comments'));
-        }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
-        }
+        $today = Carbon::now();
+        return view('timeline.timeline', compact('today'));
     }
 
     /**
@@ -45,18 +39,7 @@ class TimelineController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-
-            'post' => 'required',
-
-        ]);
-
-        $storage = new Timeline();
-        $storage->id_user = Auth::user()->id;
-        $storage->post = $request->post;
-        $storage->save();
-
-        return redirect('/home/timeline')->with('message', 'Data berhasil di tambahan');
+        //
     }
 
     /**
@@ -67,37 +50,7 @@ class TimelineController extends Controller
      */
     public function show($id)
     {
-        $post = Timeline::findOrFail($id);
-        $user = User::all();
-        $comment = Comment::whereIn('post_id', $post)->get();
-        return view('show-timeline', compact('post', 'user', 'comment'));
-    }
-
-
-    public function share($id)
-    {
-        $shares = Timeline::findOrFail($id);
-        return view('timeline.share', compact('shares'));
-    }
-
-    public function shareStore(Request $request)
-    {
-        $this->validate($request, [
-            
-            'shared_user' => 'required',
-            'shared_desc' => 'required',
-            'post' => 'required',
-
-        ]);
-
-        $post = new Timeline();
-        $post->id_user = Auth::id();
-        $post->post = $request->post;
-        $post->shared_user = $request->shared_user;
-        $post->shared_desc = $request->shared_desc;
-        $post->save();
-
-        return redirect('/home/timeline')->with('message', 'Data berhasil di tambahan');
+        //
     }
 
     /**
@@ -120,19 +73,7 @@ class TimelineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-
-            'id_user' => 'required',
-            'post' => 'required',
-
-        ]);
-
-        $storage = Timeline::find($id);
-        $storage->id_user = $request->id_user;
-        $storage->post = $request->post;
-        $storage->save();
-
-        return redirect('timeline')->with('message', 'Data berhasil di tambahan');
+        //
     }
 
     /**
@@ -143,20 +84,6 @@ class TimelineController extends Controller
      */
     public function destroy($id)
     {
-        $timeline = Timeline::find($id);
-        $timeline->delete();
-        return redirect('timeline')->with('message', 'Data berhasil di hapus');
-    }
-
-    public function destroychecked(Request $request, $id)
-    {
-         $checked = $request->input('checked',[]);
-    
-        if ($checked == null) {
-          return redirect('timeline')->with('message', 'Anda belum menceklis beberapa data untuk di hapus!');        
-        }else{
-          Timeline::whereIn("id",$checked)->delete();
-          return redirect('timeline')->with('message', 'Data berhasil di hapus!');        
-        }
+        //
     }
 }

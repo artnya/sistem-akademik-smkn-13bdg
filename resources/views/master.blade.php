@@ -191,6 +191,17 @@ Bootstrap WYSIHTML5 -->
 <script src="/js/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/js/demo.js"></script>
+<!-- CK EDITOR -->
+<script src="/js/ckeditor/ckeditor.js"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
 <!--
 <script>
  $(document).ready(function() {
@@ -297,6 +308,14 @@ $(document).ready(function() {
     //Initialize Select2 Elements
     $('.select2').select2().css('width', '100%');
   });
+</script>
+<script>  
+$(function(){
+  cache: false,
+  setInterval(function(){
+     $('#refresh').load('/home/discuss-group');
+  }, 2000
+});
 </script>
 </body>
 </html>

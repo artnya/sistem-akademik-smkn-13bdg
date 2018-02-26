@@ -2,9 +2,9 @@
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>13</b>SIA</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>SMKN 13 BANDUNG</b> AKADEMIK</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -35,7 +35,7 @@
                   <?php if(Auth()->user()->notifications->count()): ?>
                   <?php $no = 1; ?>
                   <?php $__currentLoopData = Auth::user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li><a style="background-color: #d2d6de;" data-toggle="modal" data-target="#notify<?php echo e($notification->id); ?>" href="/admin/notification/<?php echo e($notification->id); ?>">(<?php echo e($no); ?>) <?php echo e($notification->data['id']); ?> <?php echo e($notification->data['data']); ?></a></li>
+                  <li><a style="background-color: #d2d6de;" href="/home/timeline">(<?php echo e($no); ?>) <?php echo e($notification->data['id']); ?> <?php echo e($notification->data['data']); ?></a></li>
                   <?php $no++; ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php $__currentLoopData = Auth::user()->readNotifications()->paginate(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

@@ -43,7 +43,6 @@
           @endforeach
           <div>
               <input type="submit" id="actions" value="Hapus" hidden>
-              <input type="reset" id="actions" value="Unselect all">
           </div>
             <table id="example" class="table table-stripped table-responsive">
               <thead>
@@ -76,11 +75,11 @@
                     @endif
                   </td>
                   <td>
-                    <a href="#" data-toggle="modal" data-target="#detail{{$x->id}}" class="btn text-aqua"><i class="fa fa-eye"></i></a>
+                    <a title="Detail" href="#" data-toggle="modal" data-target="#detail{{$x->id}}" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                         @if(Auth::user()->role == '2')
-                          <a data-toggle="modal" data-target="#edit{{$x->id}}" class="btn text-yellow"><i class="fa fa-pencil"></i></a> 
-                          <a data-toggle="modal" data-target="#edit-photo{{$x->id}}" class="btn text-yellow"><i class="fa fa-upload"></i></a>
-                          <a href="#" data-toggle="modal" class="btn text-red" data-target="#delete{{$x->id}}"><i class="fa fa-trash"></i></a>                        
+                          <a title="Edit" data-toggle="modal" data-target="#edit{{$x->id}}" class="btn text-yellow"><i class="fa fa-pencil"></i></a> 
+                          <a title="Upload Photo" data-toggle="modal" data-target="#edit-photo{{$x->id}}" class="btn text-yellow"><i class="fa fa-upload"></i></a>
+                          <a title="Hapus/Akun" href="#" data-toggle="modal" class="btn text-red" data-target="#delete{{$x->id}}"><i class="fa fa-trash"></i></a>                        
                     @endif
                   </td>
                 </tr>

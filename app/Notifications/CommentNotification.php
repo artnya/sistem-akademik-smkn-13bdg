@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\User;
+use App\Comment;
+use App\Timeline;
 
 class CommentNotification extends Notification
 {
@@ -18,9 +20,15 @@ class CommentNotification extends Notification
      * @return void
      */
     private $yangkomentar;
-    public function __construct($yangkomentar)
+    private $isikomentar;
+    private $postmu;
+    private $last_row;
+    public function __construct($yangkomentar, $isikomentar, $postmu, $last_row)
     {
         $this->user = $yangkomentar;
+        $this->komentar = $isikomentar;
+        $this->postmu = $postmu;
+        $this->last_row = $last_row;
     }
 
     /**
@@ -58,7 +66,10 @@ class CommentNotification extends Notification
     {
         return [
             'id' => $this->user->name,
-            'data' => 'mengomentari postingan anda!'
+            'data' => 'mengomentari postingan anda!',
+            'comment' => $this->komentar,
+            'postmu'  => $this->postmu,
+            'last_row' => $this->last_row
         ];
     }
 }

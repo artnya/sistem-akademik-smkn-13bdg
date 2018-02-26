@@ -58,7 +58,8 @@
           </a>
           <ul class="treeview-menu">
             <li {{{ (Request::is('home') ? 'class=active' : '') }}}><a href="/home"><i class="fa fa-circle-o"></i> Home Page</a></li>
-            <li {{{ (Request::is('home/timeline') ? 'class=active' : '') }}}><a href="/home/timeline"><i class="fa fa-circle-o"></i> Discuss Group</a>
+            <li {{{ (Request::is('home/discuss-group') ? 'class=active' : '') }}}><a href="/home/discuss-group"><i class="fa fa-circle-o"></i> Grup Diskusi</a>
+            <li {{{ (Request::is('home/timeline') ? 'class=active' : '') }}}><a href="{{ url('home/timeline') }}"><i class="fa fa-circle-o"></i> Timeline</a>
           </ul>
         </li>
         @if(Auth()->user())

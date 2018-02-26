@@ -50,17 +50,23 @@
             <div class="box-body">
               <!-- <img class="img-responsive pad" src="../dist/img/photo2.png" alt="Photo"> -->
               @if($post->shared_user == NULL && $post->shared_desc == NULL)
-              <p>{{ $post->post }}</p>
+                {!! $post->post !!}
               @else
               <p>{{ $post->shared_desc }}</p>
               <div class="user-block">
                 <span class="username"><a href="#">{{ $post->shared_user }}</a></span>
-                <p class="description">{{ $post->post }}</p>
+                  {!! $post->post !!}
               </div>
               @endif
               <a href="/home/comments/post/share/{{ $post->id }}" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</a>
               <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-              <span class="pull-right text-muted text-blue"><i class="fa fa-comment"></i> {{ $comment->count() }} Comment</span>
+              <span class="pull-right text-muted text-silver"><i class="fa fa-comment"></i> {{ $comment->count() }} 
+                @if($comment->count() > 1 )
+                    comments
+                @else
+                    comment
+                @endif
+              </span>
             </div>
             <!-- /.box-body -->
             <div class="box-footer box-comments">
@@ -76,12 +82,12 @@
                   src="{{ url('uploadgambar') }}/{{ $wa->user['photo'] }}"
                  @endif alt="User Image">
 
-                <div class="comment-text">
-                      <span class="username">
-                        {{ $wa->user->name }}
-                        <span class="text-muted pull-right">{{$wa->created_at->diffForHumans() }}</span>
-                      </span><!-- /.username -->
-                   {{ $wa->body }}
+                <div id="{{ $wa->id }}" class="comment-text">
+                  <span class="username">
+                      {{ $wa->user->name }}
+                      <span class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{ $wa->created_at->format('h:i A') }} - {{$wa->created_at->diffForHumans() }}</span>
+                  </span><!-- /.username -->
+                   {!! $wa->body !!}
                 </div>
                 <!-- /.comment-text -->
               </div>
@@ -102,7 +108,7 @@
                   <input type="hidden" name="post_id" value="{{ $post->id }}">
                   <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                   <input type="hidden" name="id_user" value="{{ $post->id_user }}">
-                  <input type="text" class="form-control input-sm" name="body" placeholder="Press enter to post comment">
+                  <textarea name="body" id="editor1" cols="30" rows="10"></textarea>
                   <input type="submit" class="form-control input-sm btn-warning" value="Comment">
                 </div>
               </form>

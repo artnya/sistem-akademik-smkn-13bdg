@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Timeline
+        Diskusi Group
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -30,11 +30,10 @@
           <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <div id="reload" class="box box-widget">
             <div class="box-header with-border">
-           <?php if($post->count()): ?>
               <div class="user-block">
                 <img class="img-circle" <?php if($post->user->photo == 'Not Setting' || $post->user->photo == ''): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($post->user->photo); ?>" <?php endif; ?> alt="User Image">
                 <span class="username"><a href="#"><?php echo e($post->user->name); ?></a></span>
-                <span class="description">Posted at - <?php echo e($post->created_at->diffForHumans()); ?> </span>
+                <span id="refresh" class="description"><i class="fa fa-clock-o"></i> Posted at - <?php echo e($post->created_at->diffForHumans()); ?> </span>
               </div>
               <!-- /.user-block -->
               <div class="box-tools">
@@ -45,16 +44,16 @@
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
-              <!-- /.box-tools -->
-          <?php else: ?>
-          No has posted activity discuss right now.
-          <?php endif; ?>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
 
               <?php if($post->shared_user == NULL && $post->shared_desc == NULL): ?>
-              <p><?php echo e($post->post); ?></p>
+                  <?php echo $post->post; ?>
+
+                <?php if(strlen(strip_tags($post->post)) > 200): ?>
+                <a href="<?php echo e(action('DiscussGroupController@show', $post->id)); ?>">Read More</a>
+                <?php endif; ?>
               <?php else: ?>
               <p><?php echo e($post->shared_desc); ?></p>
               <div class="user-block">
@@ -65,8 +64,9 @@
 
             </div>
             <div class="box-footer">
-              <a href="/home/timeline/comment/post/<?php echo e($post->id); ?>" class="btn btn-primary btn-xs"><i class="fa fa-comment"></i> Lihat atau komentar</a>
-              <a href="/home/comments/post/share/<?php echo e($post->id); ?>" class="btn btn-info btn-xs"><i class="fa fa-share"></i> Share</a>
+              <a href="/home/discuss-group/comment/post/<?php echo e($post->id); ?>" class="btn btn-primary btn-xs"><i class="fa fa-comment"></i> Lihat atau komentar</a>
+              <a href="/home/discuss-group/share/<?php echo e($post->id); ?>" class="btn btn-info btn-xs"><i class="fa fa-share"></i> Share</a>
+              <span class="pull-right text-muted"><i class="fa fa-comment"></i><?php echo e($comments); ?> Last comment by </span>
             </div>
             <!-- /.box-footer -->
           </div>
@@ -133,17 +133,12 @@
                 <form class="form-horizontal" method="post" action="/timeline/add">
                   <?php echo e(csrf_field()); ?>
 
-                  <div class="form-group">
-                    <label for="post" class="col-sm-2 control-label">Description</label>
-                    <div class="col-sm-10">
-                      <textarea class="form-control" name="post" id="post"></textarea>
-                    </div>
+                  <div class="box-body pad">
+                    <textarea id="editor1" name="post" rows="10" cols="80">
+                                                
+                    </textarea>
                   </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
+                  <button type="submit" class="btn btn-danger">Submit</button>
                 </form>
               </div>
               <!-- /.tab-pane -->

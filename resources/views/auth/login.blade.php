@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>SMKN 13 BANDUNG SISTEM INFORMASI AKADEMIK</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -65,14 +65,16 @@
           @endif
       </div>
       <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-            </label>
+        <div class="form-group">
+          <div class="col-xs-8">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" class="" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+              </label>
+            </div>
           </div>
+          <!-- /.col -->
         </div>
-        <!-- /.col -->
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>

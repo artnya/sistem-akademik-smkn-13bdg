@@ -14,7 +14,7 @@ class Comment extends Model
  
   public function timeline()
   {
-    return $this->belongsTo('App\Timeline', 'post_id', 'id');
+    return $this->belongsTo('App\Timeline', 'user_id', 'id');
   }
  
   public function user()

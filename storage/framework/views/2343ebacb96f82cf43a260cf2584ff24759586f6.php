@@ -48,17 +48,25 @@
             <div class="box-body">
               <!-- <img class="img-responsive pad" src="../dist/img/photo2.png" alt="Photo"> -->
               <?php if($post->shared_user == NULL && $post->shared_desc == NULL): ?>
-              <p><?php echo e($post->post); ?></p>
+                <?php echo $post->post; ?>
+
               <?php else: ?>
               <p><?php echo e($post->shared_desc); ?></p>
               <div class="user-block">
                 <span class="username"><a href="#"><?php echo e($post->shared_user); ?></a></span>
-                <p class="description"><?php echo e($post->post); ?></p>
+                  <?php echo $post->post; ?>
+
               </div>
               <?php endif; ?>
               <a href="/home/comments/post/share/<?php echo e($post->id); ?>" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</a>
               <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-              <span class="pull-right text-muted text-blue"><i class="fa fa-comment"></i> <?php echo e($comment->count()); ?> Comment</span>
+              <span class="pull-right text-muted text-silver"><i class="fa fa-comment"></i> <?php echo e($comment->count()); ?> 
+                <?php if($comment->count() > 1 ): ?>
+                    comments
+                <?php else: ?>
+                    comment
+                <?php endif; ?>
+              </span>
             </div>
             <!-- /.box-body -->
             <div class="box-footer box-comments">
@@ -74,13 +82,13 @@
                   src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($wa->user['photo']); ?>"
                  <?php endif; ?> alt="User Image">
 
-                <div class="comment-text">
-                      <span class="username">
-                        <?php echo e($wa->user->name); ?>
+                <div id="<?php echo e($wa->id); ?>" class="comment-text">
+                  <span class="username">
+                      <?php echo e($wa->user->name); ?>
 
-                        <span class="text-muted pull-right"><?php echo e($wa->created_at->diffForHumans()); ?></span>
-                      </span><!-- /.username -->
-                   <?php echo e($wa->body); ?>
+                      <span class="text-muted pull-right"><i class="fa fa-clock-o"></i> <?php echo e($wa->created_at->format('h:i A')); ?> - <?php echo e($wa->created_at->diffForHumans()); ?></span>
+                  </span><!-- /.username -->
+                   <?php echo $wa->body; ?>
 
                 </div>
                 <!-- /.comment-text -->
@@ -103,7 +111,7 @@
                   <input type="hidden" name="post_id" value="<?php echo e($post->id); ?>">
                   <input type="hidden" name="user_id" value="<?php echo e(Auth::user()->id); ?>">
                   <input type="hidden" name="id_user" value="<?php echo e($post->id_user); ?>">
-                  <input type="text" class="form-control input-sm" name="body" placeholder="Press enter to post comment">
+                  <textarea name="body" id="editor1" cols="30" rows="10"></textarea>
                   <input type="submit" class="form-control input-sm btn-warning" value="Comment">
                 </div>
               </form>

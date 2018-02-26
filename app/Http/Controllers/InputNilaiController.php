@@ -71,7 +71,7 @@ class InputNilaiController extends Controller
         $storage->uas = $request->uas;
         $storage->save();
 
-        return redirect()->route('rekapnilai.show', $request->id_siswa)->with('message', 'Data berhasil di tambahkan');
+        return redirect()->route('rekapnilai.show', $request->id_siswa . '#' . $storage->semester)->with('message', 'Data berhasil di tambahkan');
     }
 
     /**

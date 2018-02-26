@@ -42,7 +42,6 @@
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           <div>
               <input type="submit" id="actions" value="Hapus" hidden>
-              <input type="reset" id="actions" value="Unselect all">
           </div>
             <table id="example" class="table table-stripped table-responsive">
               <thead>
@@ -77,11 +76,11 @@
                     <?php endif; ?>
                   </td>
                   <td>
-                    <a href="#" data-toggle="modal" data-target="#detail<?php echo e($x->id); ?>" class="btn text-aqua"><i class="fa fa-eye"></i></a>
+                    <a title="Detail" href="#" data-toggle="modal" data-target="#detail<?php echo e($x->id); ?>" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                         <?php if(Auth::user()->role == '2'): ?>
-                          <a data-toggle="modal" data-target="#edit<?php echo e($x->id); ?>" class="btn text-yellow"><i class="fa fa-pencil"></i></a> 
-                          <a data-toggle="modal" data-target="#edit-photo<?php echo e($x->id); ?>" class="btn text-yellow"><i class="fa fa-upload"></i></a>
-                          <a href="#" data-toggle="modal" class="btn text-red" data-target="#delete<?php echo e($x->id); ?>"><i class="fa fa-trash"></i></a>                        
+                          <a title="Edit" data-toggle="modal" data-target="#edit<?php echo e($x->id); ?>" class="btn text-yellow"><i class="fa fa-pencil"></i></a> 
+                          <a title="Upload Photo" data-toggle="modal" data-target="#edit-photo<?php echo e($x->id); ?>" class="btn text-yellow"><i class="fa fa-upload"></i></a>
+                          <a title="Hapus/Akun" href="#" data-toggle="modal" class="btn text-red" data-target="#delete<?php echo e($x->id); ?>"><i class="fa fa-trash"></i></a>                        
                     <?php endif; ?>
                   </td>
                 </tr>
