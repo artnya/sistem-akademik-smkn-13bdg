@@ -4,7 +4,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>13</b>SIA</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>@if(Auth()->user()->role == '2')ADMIN PANEL @else SMKN 13 BANDUNG @endif</b> AKADEMIK
+      <span class="logo-lg"><b>@if(Auth()->user()->role == '2')ADMIN PANEL @elseif(Auth()->user()->role == '3') PANEL GURU @else SMKN 13 BANDUNG @endif</b> AKADEMIK
       </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
@@ -65,8 +65,15 @@
                 <img @if(Auth::user()->photo == 'Not Setting' || Auth::user()->photo == NULL) src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ Auth::user()->photo }}" @endif class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name}} - @if(Auth::user()->role == '2') <small>Admin</small> @endif
-                  <small>Member since Nov. 2012</small>
+                  {{ Auth::user()->name}} - 
+                  @if(Auth::user()->role == '2')
+                    <small>Anda login sebagai Admin</small> 
+                  @elseif(Auth::user()->role == '3')
+                    <small>Anda login sebagai Guru</small> 
+                  @elseif(Auth::user()->role == '1')
+                    <small>Anda login sebagai Siswa</small> 
+                  @endif
+                  <small>Member sejak {{ Auth::user()->created_at->format('F Y h:i') }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -87,10 +94,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/profile/{{ str_slug(Auth::user()->name) }}" class="btn btn-default btn-flat"><i class="fa fa-user"></i>Profile</a>
                 </div>
                 <div class="pull-right">
-                  	<a class="btn btn-default btn-flat" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                  	<a class="btn btn-default btn-flat" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a>
                   	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 						{{ csrf_field() }}
 					</form>

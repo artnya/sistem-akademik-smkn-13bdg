@@ -164,6 +164,12 @@ Route::post('inputnilai/add', 'InputNilaiController@store')->middleware('auth');
 //lihat nilai saya (siswa section)
 Route::get('/lihat-datasaya/lihat-nilai/{name}', 'DayaSayaController@show')->name('lihat.nilai')->middleware('auth');
 
+//profile (user)
+Route::get('profile/{id}', 'ProfileController@myProfile')->middleware('auth');
+Route::post('/profile/uploadpic/{id}', 'ProfileController@uploadPic')->middleware('auth');
+Route::post('/profile/resetpic/{id}', 'ProfileController@resetpic')->middleware('auth');
+
+
 //auth route
 Auth::routes();
 
@@ -186,3 +192,4 @@ Route::get('/changepassword', 'HomeController@showchangepassword')->middleware('
 Route::post('/changepassword/proses', 'HomeController@changepassword')->name('changepassword')->middleware('auth');
 
 });
+

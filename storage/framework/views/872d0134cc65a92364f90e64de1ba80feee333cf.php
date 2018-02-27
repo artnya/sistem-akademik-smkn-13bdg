@@ -72,7 +72,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Ganti password
                                 </button>
-                                <a href="/" class="btn btn-info">Kembali</a>
+                                <a href="<?php echo e(URL::previous()); ?>" class="btn btn-info">Kembali</a>
                             </div>
                         </div>
                     </form>

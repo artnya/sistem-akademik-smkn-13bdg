@@ -8,7 +8,7 @@
             <h4 class="modal-title" id="myModalLabel">Detail {{ $in->name }}</h4>
           </div>
           <div class="modal-body"><a href="{{ url('uploadgambar') }}/{{ $in->photo }}">
-            <img id="showgambar" @if($in->photo == 'Not Setting') src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ $in->photo }}" @endif class="user-image img-responsive img-thumbnail" height="300" width="234" style="float:left;"></a>
+            <img id="showgambar" @if($in->photo == 'Not Setting') src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ $in->photo }}" @endif class="user-image img-responsive img-thumbnail" style="float:left;"></a>
           <table class="table table-striped">
                 <thead>
                     <tr>

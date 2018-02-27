@@ -16,7 +16,7 @@
                             <label for="photo" class="col-md-4 control-label">Foto</label>
 
                             <div class="col-md-6">
-                                <img id="showgambar" <?php if($in->photo == 'Not Setting' || $in->photo == NULL): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($in->photo); ?>" <?php endif; ?> class="img-thumbnail img-responsive" width="100" height="100">
+                                <img id="showgambar" <?php if($in->photo == 'Not Setting' || $in->photo == NULL): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($in->photo); ?>" <?php endif; ?> class="img-thumbnail img-responsive">
                                 <?php if($errors->has('photo')): ?>
                                     <span class="help-block">
                                         <strong><?php echo e($errors->first('photo')); ?></strong>

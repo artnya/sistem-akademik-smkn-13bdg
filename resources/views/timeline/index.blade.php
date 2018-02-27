@@ -72,6 +72,7 @@
             <!-- /.box-footer -->
           </div>
           @endforeach
+          {{ $posts->links() }}
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane" id="settings">

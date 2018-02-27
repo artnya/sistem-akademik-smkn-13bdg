@@ -7,6 +7,7 @@ use App\User;
 use App\Mapel;
 use App\MapelProduktif;
 use App\Jurusan;
+use Image;
 
 
 class GuruController extends Controller
@@ -173,19 +174,26 @@ class GuruController extends Controller
 
      public function uploadpic(Request $request, $id)
     {
-        $this->validate($request, [
+        $this->validate($request,
+            [
+                'photo'         => 'required|image|mimes:jpg,png|max:5000',                    ]
+            );
 
-            'photo' => 'required',
-
-        ]);
 
         $storage = User::find($id);
-        $gambar = $request->file('photo');
-        $namaFile = $gambar->getClientOriginalName();
-        $request->file('photo')->move('uploadgambar', $namaFile);
-        $storage->photo = $namaFile;
-        $storage->save();
-        return redirect('guru')->with('message', 'Foto profil telah di ganti!');
+        if( $request->hasFile('photo') ) {
+            $thumbnail     = $request->file('photo');
+            $filename           = time() . '.' . $thumbnail->getClientOriginalExtension();
+            
+            $path       = 'uploadgambar/' . $filename;   // direktori gambar dengan nama uploads
+            // resize gambar ke ukuran 100x100px
+            Image::make($thumbnail)->resize(256, 290)->save($path);  
+
+            $storage->photo = $filename;
+            $storage->save();
+            return redirect()->back()->with('message', 'Foto profil telah di ganti!');
+        }
+        
     }
 
     public function resetpic(Request $request, $id)

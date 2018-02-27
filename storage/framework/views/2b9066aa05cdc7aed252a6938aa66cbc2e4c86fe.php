@@ -4,7 +4,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>13</b>SIA</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b><?php if(Auth()->user()->role == '2'): ?>ADMIN PANEL <?php else: ?> SMKN 13 BANDUNG <?php endif; ?></b> AKADEMIK
+      <span class="logo-lg"><b><?php if(Auth()->user()->role == '2'): ?>ADMIN PANEL <?php elseif(Auth()->user()->role == '3'): ?> PANEL GURU <?php else: ?> SMKN 13 BANDUNG <?php endif; ?></b> AKADEMIK
       </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
@@ -65,8 +65,15 @@
                 <img <?php if(Auth::user()->photo == 'Not Setting' || Auth::user()->photo == NULL): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e(Auth::user()->photo); ?>" <?php endif; ?> class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo e(Auth::user()->name); ?> - <?php if(Auth::user()->role == '2'): ?> <small>Admin</small> <?php endif; ?>
-                  <small>Member since Nov. 2012</small>
+                  <?php echo e(Auth::user()->name); ?> - 
+                  <?php if(Auth::user()->role == '2'): ?>
+                    <small>Anda login sebagai Admin</small> 
+                  <?php elseif(Auth::user()->role == '3'): ?>
+                    <small>Anda login sebagai Guru</small> 
+                  <?php elseif(Auth::user()->role == '1'): ?>
+                    <small>Anda login sebagai Siswa</small> 
+                  <?php endif; ?>
+                  <small>Member sejak <?php echo e(Auth::user()->created_at->format('F Y h:i')); ?></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -87,10 +94,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/profile/<?php echo e(str_slug(Auth::user()->name)); ?>" class="btn btn-default btn-flat"><i class="fa fa-user"></i>Profile</a>
                 </div>
                 <div class="pull-right">
-                  	<a class="btn btn-default btn-flat" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                  	<a class="btn btn-default btn-flat" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a>
                   	<form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
 						<?php echo e(csrf_field()); ?>
 

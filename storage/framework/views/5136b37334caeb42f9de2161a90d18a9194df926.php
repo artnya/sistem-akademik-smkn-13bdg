@@ -8,7 +8,7 @@
             <h4 class="modal-title" id="myModalLabel">Detail <?php echo e($in->name); ?></h4>
           </div>
           <div class="modal-body"><a href="<?php echo e(url('uploadgambar')); ?>/<?php echo e($in->photo); ?>">
-            <img id="showgambar" <?php if($in->photo == 'Not Setting'): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($in->photo); ?>" <?php endif; ?> class="user-image img-responsive img-thumbnail" height="300" width="234" style="float:left;"></a>
+            <img id="showgambar" <?php if($in->photo == 'Not Setting'): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($in->photo); ?>" <?php endif; ?> class="user-image img-responsive img-thumbnail" style="float:left;"></a>
           <table class="table table-striped">
                 <thead>
                     <tr>

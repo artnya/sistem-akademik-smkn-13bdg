@@ -15,7 +15,7 @@
                             <label for="photo" class="col-md-4 control-label">Foto</label>
 
                             <div class="col-md-6">
-                                <img id="showgambar" @if($in->photo == 'Not Setting' || $in->photo == NULL) src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ $in->photo }}" @endif class="img-thumbnail img-responsive" width="100" height="100">
+                                <img id="showgambar" @if($in->photo == 'Not Setting' || $in->photo == NULL) src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ $in->photo }}" @endif class="img-thumbnail img-responsive">
                                 @if ($errors->has('photo'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('photo') }}</strong>

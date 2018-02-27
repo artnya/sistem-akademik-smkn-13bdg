@@ -19,7 +19,7 @@ class DiscussGroupController extends Controller
     public function index()
     {
         if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
-            $posts = Timeline::withCount('comments')->orderBy('created_at', 'DESC')->get();
+            $posts = Timeline::withCount('comments')->orderBy('created_at', 'DESC')->paginate(5);
             foreach ($posts as $post) {
                 $comments = $post->comments->count();
             }
