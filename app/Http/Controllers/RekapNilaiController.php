@@ -26,7 +26,7 @@ class RekapNilaiController extends Controller
 
     public function index()
     {
-        $siswa = User::where('role', '1')->orderby('username', 'DESC')->get();
+        $siswa = User::where('role', '1')->orderby('name', 'ASC')->get();
         if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
             return view('rekapnilai.index', compact('siswa'));
         }else{
@@ -88,7 +88,9 @@ class RekapNilaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $siswa = RekapNilai::find($id);
+        $mapel = Mapel::orderBy('nama_mapel', 'DESC')->get();
+        return view('rekapnilai.edit-nilai', compact('siswa', 'mapel'));
     }
 
     /**
@@ -100,7 +102,29 @@ class RekapNilaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+
+            'tugas1' => 'required',
+            'tugas2' => 'required',
+            'tugas3' => 'required',
+            'nilai_sikap' => 'required',
+            'nilai_pengetahuan' => 'required',
+            'uts' => 'required',
+            'uas' => 'required',
+
+        ]);
+
+        $storage = RekapNilai::find($id);
+        $storage->tugas1 = $request->tugas1;
+        $storage->tugas2 = $request->tugas2;
+        $storage->tugas3 = $request->tugas3;
+        $storage->nilai_sikap = $request->nilai_sikap;
+        $storage->nilai_pengetahuan = $request->nilai_pengetahuan;
+        $storage->uts = $request->uts;
+        $storage->uas = $request->uas;
+        $storage->save();
+
+        return redirect()->back()->with('message', 'Nilai berhasil di edit');
     }
 
     /**

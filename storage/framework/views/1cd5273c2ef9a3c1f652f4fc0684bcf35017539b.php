@@ -92,7 +92,7 @@
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
+            <table id="rekap" class="table table-striped table-bordered table-hover table-responsive">
               <thead>
                 <tr>
                 	<th>Mata Pelajaran</th>
@@ -120,7 +120,7 @@
                   <td><?php echo e($in->uts); ?></td>
                   <td><?php echo e($in->uas); ?></td>
                   <td><?php echo e($in->mapel['kkm']); ?></td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
@@ -179,7 +179,7 @@
                   <td><?php echo e($in->uts); ?></td>
                   <td><?php echo e($in->uas); ?></td>
                   <td><?php echo e($in->mapel['kkm']); ?></td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
@@ -238,7 +238,7 @@
                   <td><?php echo e($in->uts); ?></td>
                   <td><?php echo e($in->uas); ?></td>
                   <td><?php echo e($in->mapel['kkm']); ?></td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
@@ -297,7 +297,7 @@
                   <td><?php echo e($in->uts); ?></td>
                   <td><?php echo e($in->uas); ?></td>
                   <td><?php echo e($in->mapel['kkm']); ?></td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
@@ -356,7 +356,7 @@
                   <td><?php echo e($in->uts); ?></td>
                   <td><?php echo e($in->uas); ?></td>
                   <td><?php echo e($in->mapel['kkm']); ?></td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>
@@ -414,7 +414,7 @@
                   <td><?php echo e($in->uts); ?></td>
                   <td><?php echo e($in->uas); ?></td>
                   <td><?php echo e($in->mapel['kkm']); ?></td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <?php else: ?>

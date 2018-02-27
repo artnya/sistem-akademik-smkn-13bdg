@@ -80,7 +80,7 @@
                   <td>
                     <div class="btn-group">
                     <a href="inputnilai/siswa/{{ $x->id }}" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
-                    <a href="rekapnilai/show/{{ $x->id }}" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
+                    <a href="/rekapnilai/lihat-nilai/{{ str_slug($x->id) }}" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
                     </div>
                     </td>
                 </tr>

@@ -56,10 +56,8 @@
               <thead>
                 <tr>
                   <td>#</td>
-                  <td>Tingkat Kelas</td>
-                  <td>Urutan Kelas Ke</td>
+                  <td>Kelas</td>
                   <td>Wali Kelas</td>
-                  <td>Jurusan</td>
                   <td>Aksi</td>
                 </tr>
               </thead>
@@ -69,16 +67,13 @@
                   <td>
                       <input type="checkbox" name="checked[]" id="option-1">
                   </td>
-                  <td><?php echo e($x->tingkat_kelas); ?></td>
-                  <td><?php echo e($x->jumlah_kelas); ?></td>
+                  <td><?php echo e($x->tingkat_kelas); ?> <?php echo e($x->jurusan['nama_jurusan']); ?> <?php echo e($x->jumlah_kelas); ?></td>
                   <td>
                     <?php if(($x->nip == NULL) || ($x->user['id'] == NULL)): ?>
                       <span class="label label-danger">Tidak ada wali kelas/kosong</span>
                     <?php else: ?>
                       <span class="label label-success"><?php echo e($x->user['name']); ?></span>
                     <?php endif; ?>
-                  </td>
-                  <td><?php echo e($x->jurusan['nama_jurusan']); ?></td>
                   <td>
                     <div class="btn-group">
                     <a href="#" data-toggle="modal" data-target="#detail<?php echo e($x->id); ?>" class="btn btn-default text-aqua"><i class="fa fa-eye"></i></a> 

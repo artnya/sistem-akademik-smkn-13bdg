@@ -30,7 +30,7 @@
     <section class="content">
 
       <!-- Default box -->
-      <div class="box box-solid box-success">
+      <div class="box box-solid box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Nilai Saya Semester I</h3>
 
@@ -66,7 +66,7 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Edit Nilai</td>
+                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -82,11 +82,11 @@
                       <td>{{ $in->uts }}</td>
                       <td>{{ $in->uas }}</td>
                       <td>{{ $in->mapel['kkm'] }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else
-                    <td class="text-center" colspan="12">Nilai Mata Pelajaran belum ada nilai yang di input.</td>
+                    <td class="text-center" colspan="12">Nilai pada semester ini belum di input.</td>
                     @endif
                   </tbody>
                 </table>                  
@@ -101,7 +101,7 @@
       </div>
 
       <!-- SEMESTER II -->
-      <div class="box box-solid box-success">
+      <div class="box box-solid box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Nilai Saya Semester II</h3>
 
@@ -137,7 +137,7 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Edit Nilai</td>
+                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -153,11 +153,11 @@
                       <td>{{ $in->uts }}</td>
                       <td>{{ $in->uas }}</td>
                       <td>{{ $in->mapel['kkm'] }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else
-                    <td class="text-center" colspan="12">Nilai Mata Pelajaran belum ada nilai yang di input.</td>
+                    <td class="text-center" colspan="12">Nilai pada semester ini belum di input.</td>
                     @endif
                   </tbody>
                 </table>                  
@@ -172,7 +172,7 @@
       </div>
 
       <!-- SEMESTER III -->
-      <div class="box box-solid box-success">
+      <div class="box box-solid box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Nilai Saya Semester III</h3>
 
@@ -208,7 +208,7 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Edit Nilai</td>
+                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -224,11 +224,11 @@
                       <td>{{ $on->uts }}</td>
                       <td>{{ $on->uas }}</td>
                       <td>{{ $on->mapel['kkm'] }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else
-                    <td class="text-center" colspan="12">Nilai Mata Pelajaran belum ada nilai yang di input.</td>
+                    <td class="text-center" colspan="12">Nilai pada semester ini belum di input.</td>
                     @endif
                   </tbody>
                 </table>                  
@@ -243,7 +243,7 @@
       </div>
 
     <!-- SEMESTER III -->
-      <div class="box box-solid box-success">
+      <div class="box box-solid box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Nilai Saya Semester III</h3>
 
@@ -279,7 +279,7 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Edit Nilai</td>
+                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -295,11 +295,11 @@
                       <td>{{ $on->uts }}</td>
                       <td>{{ $on->uas }}</td>
                       <td>{{ $on->mapel['kkm'] }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else
-                    <td class="text-center" colspan="12">Nilai Mata Pelajaran belum ada nilai yang di input.</td>
+                    <td class="text-center" colspan="12">Nilai pada semester ini belum di input.</td>
                     @endif
                   </tbody>
                 </table>                  
@@ -314,7 +314,7 @@
       </div>
 
     <!-- SEMESTER IV -->
-      <div class="box box-solid box-success">
+      <div class="box box-solid box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Nilai Saya Semester IV</h3>
 
@@ -350,7 +350,7 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Edit Nilai</td>
+                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -366,11 +366,11 @@
                       <td>{{ $on->uts }}</td>
                       <td>{{ $on->uas }}</td>
                       <td>{{ $on->mapel['kkm'] }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else
-                    <td class="text-center" colspan="12">Nilai Mata Pelajaran belum ada nilai yang di input.</td>
+                    <td class="text-center" colspan="12">Nilai pada semester ini belum di input.</td>
                     @endif
                   </tbody>
                 </table>                  
@@ -385,7 +385,7 @@
       </div>
 
     <!-- SEMESTER V -->
-      <div class="box box-solid box-success">
+      <div class="box box-solid box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Nilai Saya Semester V</h3>
 
@@ -421,7 +421,7 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Edit Nilai</td>
+                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -437,11 +437,11 @@
                       <td>{{ $on->uts }}</td>
                       <td>{{ $on->uas }}</td>
                       <td>{{ $on->mapel['kkm'] }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else
-                    <td class="text-center" colspan="12">Nilai Mata Pelajaran belum ada nilai yang di input.</td>
+                    <td class="text-center" colspan="12">Nilai pada semester ini belum di input.</td>
                     @endif
                   </tbody>
                 </table>                  
@@ -456,7 +456,7 @@
       </div>
 
     <!-- SEMESTER VI -->
-      <div class="box box-solid box-success">
+      <div class="box box-solid box-info">
         <div class="box-header with-border">
           <h3 class="box-title">Nilai Saya Semester VI</h3>
 
@@ -492,7 +492,7 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Edit Nilai</td>
+                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -508,11 +508,11 @@
                       <td>{{ $on->uts }}</td>
                       <td>{{ $on->uas }}</td>
                       <td>{{ $on->mapel['kkm'] }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else
-                    <td class="text-center" colspan="12">Nilai Mata Pelajaran belum ada nilai yang di input.</td>
+                    <td class="text-center" colspan="12">Nilai pada semester ini belum di input.</td>
                     @endif
                   </tbody>
                 </table>                  

@@ -93,7 +93,7 @@
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
+            <table id="rekap" class="table table-striped table-bordered table-hover table-responsive">
               <thead>
                 <tr>
                 	<th>Mata Pelajaran</th>
@@ -121,7 +121,7 @@
                   <td>{{ $in->uts }}</td>
                   <td>{{ $in->uas }}</td>
                   <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 @endforeach
                 @else
@@ -180,7 +180,7 @@
                   <td>{{ $in->uts }}</td>
                   <td>{{ $in->uas }}</td>
                   <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 @endforeach
                 @else
@@ -239,7 +239,7 @@
                   <td>{{ $in->uts }}</td>
                   <td>{{ $in->uas }}</td>
                   <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 @endforeach
                 @else
@@ -298,7 +298,7 @@
                   <td>{{ $in->uts }}</td>
                   <td>{{ $in->uas }}</td>
                   <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 @endforeach
                 @else
@@ -357,7 +357,7 @@
                   <td>{{ $in->uts }}</td>
                   <td>{{ $in->uas }}</td>
                   <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 @endforeach
                 @else
@@ -415,7 +415,7 @@
                   <td>{{ $in->uts }}</td>
                   <td>{{ $in->uas }}</td>
                   <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Edit</button></td>
+                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
                 </tr>
                 @endforeach
                 @else

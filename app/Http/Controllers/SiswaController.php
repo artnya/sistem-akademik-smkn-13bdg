@@ -16,7 +16,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = User::where('role', '1')->orderBy('name','ESC')->get();
+        $siswa = User::where('role', '1')->orderBy('name','ASC')->get();
         $jurusan = Jurusan::all();
         $kelas = Kelas::all();
         if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {

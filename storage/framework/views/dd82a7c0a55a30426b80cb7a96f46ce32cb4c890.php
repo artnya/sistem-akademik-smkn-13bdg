@@ -78,7 +78,7 @@
                   <td>
                     <div class="btn-group">
                     <a href="inputnilai/siswa/<?php echo e($x->id); ?>" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
-                    <a href="rekapnilai/show/<?php echo e($x->id); ?>" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
+                    <a href="/rekapnilai/lihat-nilai/<?php echo e($x->id); ?>/<?php echo e(str_slug($x->name)); ?>" class="btn btn-info"><i class="fa fa-check"></i> Rekapitulasi Nilai</a>
                     </div>
                     </td>
                 </tr>

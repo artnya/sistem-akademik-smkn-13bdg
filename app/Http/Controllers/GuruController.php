@@ -16,11 +16,6 @@ class GuruController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('admin', ['except' => ['home']]);
-    }
-    
     public function index()
     {
         $guru = User::where('role', '3')->get();

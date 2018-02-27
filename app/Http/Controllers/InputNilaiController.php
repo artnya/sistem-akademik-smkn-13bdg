@@ -98,7 +98,7 @@ class InputNilaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
