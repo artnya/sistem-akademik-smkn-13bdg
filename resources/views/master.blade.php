@@ -60,8 +60,9 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <link rel="stylesheet" href="/js/jquery-jvectormap.min.css"> -->
   <!-- Date Picker -->
   <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
-  <!-- Daterange picker -->
+  <!-- Daterange picker 
   <link rel="stylesheet" href="/css/daterangepicker.min.css">
+  -->
   <!-- bootstrap wysihtml5 - text editor -->
   <!-- <link rel="stylesheet" href="/css/bootstrap3-wysihtml5.min.css"> -->
 

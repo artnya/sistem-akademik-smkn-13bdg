@@ -77,10 +77,45 @@
           <!-- /.widget-user -->
         </div>
       </div>
-      <!-- Default box -->
+      <!-- Default box --> 
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cari Semester</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body" id="1">
+            
+          <!-- searching -->
+          <form action="/nilai/cari/{{ $siswa->id }}" method="GET">
+            <div class="col-md-3">
+              <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
+              <select name="q" class="form-control">
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+                <option value="4">Semester 4</option>
+                <option value="5">Semester 5</option>
+                <option value="6">Semester 6</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>
+            </div>
+          </form>
+        </div>
+        
+      </div>
+      <!-- Default box --> 
+      @if(count($hasil))
       <div class="box box-solid box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Nilai SEMESTER I KELAS X</h3>
+          <h3 class="box-title">Hasil Nilai Semester {{ $q }}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -110,9 +145,8 @@
               </thead>
               <tbody>
                 <tr>
-                @if(!$semester1->count() < 1)
-                @foreach($semester1 as $in)
-                  <td>{{ $in->mapel['nama_mapel'] }}</td>
+                @foreach($hasil as $in)
+                  <td>{{ $in->id_mapel }}</td>
                   <td>{{ $in->tugas1 }}</td>
                   <td>{{ $in->tugas2 }}</td>
                   <td>{{ $in->tugas3 }}</td>
@@ -120,26 +154,38 @@
                   <td>{{ $in->nilai_pengetahuan }}</td>
                   <td>{{ $in->uts }}</td>
                   <td>{{ $in->uas }}</td>
-                  <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
+                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a>
+                  </td>
                 </tr>
                 @endforeach
-                @else
-                <td class="text-center" colspan="12">Belum ada nilai yang di input.</td>
-                @endif
               </tbody>
             </table>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}">Input Nilai</a>
+          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+          <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+                <div class="col-md-6 col-md-offset-6">
+                  <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
+                  <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">
+                  <input type="hidden" name="id_jurusan" value="{{ $siswa->id_jurusan }}">
+                  <input type="file" class="form-control" name="imported-file" required=/>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Import Nilai</button>
+                      @if ($errors->has('nama_mapel'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('nama_mapel') }}</strong>
+                          </span>
+                      @endif
+                </div>
+          </form> 
         </div>
         <!-- /.box-footer-->
       </div>
-      <!-- /.box -->
+      @else
       <div class="box box-solid box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Nilai SEMESTER II KELAS X</h3>
+          <h3 class="box-title">Hasil Nilai Semester {{ $q }}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -148,300 +194,33 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="box-body" id="2">
-            <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
-            </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr>
-                  <th>Mata Pelajaran</th>
-                  <th>Tugas 1</th>
-                  <th>Tugas 2</th>
-                  <th>Tugas 3</th>
-                  <th>Sikap</th>
-                  <th>Pengetahuan</th>
-                  <th>UTS</th>
-                  <th>UAS</th>
-                  <th>KKM</th>
-                  <td>Edit Nilai</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                @if(!$semester2->count() < 1)
-                @foreach($semester2 as $in)
-                  <td>{{ $in->mapel['nama_mapel'] }}</td>
-                  <td>{{ $in->tugas1 }}</td>
-                  <td>{{ $in->tugas2 }}</td>
-                  <td>{{ $in->tugas3 }}</td>
-                  <td>{{ $in->nilai_sikap }}</td>
-                  <td>{{ $in->nilai_pengetahuan }}</td>
-                  <td>{{ $in->uts }}</td>
-                  <td>{{ $in->uas }}</td>
-                  <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
-                </tr>
-                @endforeach
-                @else
-                <td class="text-center" colspan="12">Belum ada nilai yang di input.</td>
-                @endif
-              </tbody>
-            </table>
+        <div class="box-body" id="1">
+            <p class="text-center text-muted">Belum ada nilai di Semester {{ $q }}.</p>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}">Input Nilai</a>
+          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+          <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+                <div class="col-md-6 col-md-offset-6">
+                  <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
+                  <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">
+                  <input type="hidden" name="id_jurusan" value="{{ $siswa->id_jurusan }}">
+                  <input type="file" class="form-control" name="imported-file" required=/>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Import Nilai</button>
+                      @if ($errors->has('nama_mapel'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('nama_mapel') }}</strong>
+                          </span>
+                      @endif
+                </div>
+          </form> 
         </div>
         <!-- /.box-footer-->
       </div>
-      <!-- /.box -->
-      <div class="box box-solid box-warning">
-        <div class="box-header with-border">
-          <h3 class="box-title">Nilai SEMESTER III KELAS XI</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body" id="3">
-            <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
-            </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr>
-                  <th>Mata Pelajaran</th>
-                  <th>Tugas 1</th>
-                  <th>Tugas 2</th>
-                  <th>Tugas 3</th>
-                  <th>Sikap</th>
-                  <th>Pengetahuan</th>
-                  <th>UTS</th>
-                  <th>UAS</th>
-                  <th>KKM</th>
-                  <td>Edit Nilai</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                @if(!$semester3->count() < 1)
-                @foreach($semester3 as $in)
-                  <td>{{ $in->mapel['nama_mapel'] }}</td>
-                  <td>{{ $in->tugas1 }}</td>
-                  <td>{{ $in->tugas2 }}</td>
-                  <td>{{ $in->tugas3 }}</td>
-                  <td>{{ $in->nilai_sikap }}</td>
-                  <td>{{ $in->nilai_pengetahuan }}</td>
-                  <td>{{ $in->uts }}</td>
-                  <td>{{ $in->uas }}</td>
-                  <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
-                </tr>
-                @endforeach
-                @else
-                <td class="text-center" colspan="12">Belum ada nilai yang di input.</td>
-                @endif
-              </tbody>
-            </table>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}">Input Nilai</a>
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
-      <div class="box box-solid box-warning">
-        <div class="box-header with-border">
-          <h3 class="box-title">Nilai SEMESTER IV KELAS XI</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body" id="4">
-            <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
-            </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr>
-                  <th>Mata Pelajaran</th>
-                  <th>Tugas 1</th>
-                  <th>Tugas 2</th>
-                  <th>Tugas 3</th>
-                  <th>Sikap</th>
-                  <th>Pengetahuan</th>
-                  <th>UTS</th>
-                  <th>UAS</th>
-                  <th>KKM</th>
-                  <td>Edit Nilai</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                @if(!$semester4->count() < 1)
-                @foreach($semester4 as $in)
-                  <td>{{ $in->mapel['nama_mapel'] }}</td>
-                  <td>{{ $in->tugas1 }}</td>
-                  <td>{{ $in->tugas2 }}</td>
-                  <td>{{ $in->tugas3 }}</td>
-                  <td>{{ $in->nilai_sikap }}</td>
-                  <td>{{ $in->nilai_pengetahuan }}</td>
-                  <td>{{ $in->uts }}</td>
-                  <td>{{ $in->uas }}</td>
-                  <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
-                </tr>
-                @endforeach
-                @else
-                <td class="text-center" colspan="12">Belum ada nilai yang di input.</td>
-                @endif
-              </tbody>
-            </table>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}">Input Nilai</a>
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
-      <div class="box box-solid box-warning">
-        <div class="box-header with-border">
-          <h3 class="box-title">Nilai SEMESTER V KELAS XII</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body" id="5">
-            <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
-            </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr>
-                  <th>Mata Pelajaran</th>
-                  <th>Tugas 1</th>
-                  <th>Tugas 2</th>
-                  <th>Tugas 3</th>
-                  <th>Sikap</th>
-                  <th>Pengetahuan</th>
-                  <th>UTS</th>
-                  <th>UAS</th>
-                  <th>KKM</th>
-                  <td>Edit Nilai</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                @if(!$semester5->count() < 1)
-                @foreach($semester5 as $in)
-                  <td>{{ $in->mapel['nama_mapel'] }}</td>
-                  <td>{{ $in->tugas1 }}</td>
-                  <td>{{ $in->tugas2 }}</td>
-                  <td>{{ $in->tugas3 }}</td>
-                  <td>{{ $in->nilai_sikap }}</td>
-                  <td>{{ $in->nilai_pengetahuan }}</td>
-                  <td>{{ $in->uts }}</td>
-                  <td>{{ $in->uas }}</td>
-                  <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
-                </tr>
-                @endforeach
-                @else
-                <td class="text-center" colspan="12">Belum ada nilai yang di input.</td>
-                @endif
-              </tbody>
-            </table>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}">Input Nilai</a>
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <div class="box box-solid box-warning">
-        <div class="box-header with-border">
-          <h3 class="box-title">Nilai SEMESTER VI KELAS XII</h3>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body" id="6">
-            <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
-            </div>
-            <table id="rekap" class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr>
-                  <th>Mata Pelajaran</th>
-                  <th>Tugas 1</th>
-                  <th>Tugas 2</th>
-                  <th>Tugas 3</th>
-                  <th>Sikap</th>
-                  <th>Pengetahuan</th>
-                  <th>UTS</th>
-                  <th>UAS</th>
-                  <th>KKM</th>
-                  <td>Edit Nilai</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                @if(!$semester6->count() < 1)
-                @foreach($semester6 as $in)
-                  <td>{{ $in->mapel['nama_mapel'] }}</td>
-                  <td>{{ $in->tugas1 }}</td>
-                  <td>{{ $in->tugas2 }}</td>
-                  <td>{{ $in->tugas3 }}</td>
-                  <td>{{ $in->nilai_sikap }}</td>
-                  <td>{{ $in->nilai_pengetahuan }}</td>
-                  <td>{{ $in->uts }}</td>
-                  <td>{{ $in->uas }}</td>
-                  <td>{{ $in->mapel['kkm'] }}</td>
-                  <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a></td>
-                </tr>
-                @endforeach
-                @else
-                <td class="text-center" colspan="12">Belum ada nilai yang di input.</td>
-                @endif
-              </tbody>
-            </table>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}">Input Nilai</a>
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
+      @endif
       <!-- /.box -->
     </section>
     <!-- /.content -->
   </div>
-
-<script>
-  $(function(){
-      $('#elementId').click(function(){
-              $('#edit-form').prop( "disabled", false );
-      });
-  });
-</script>
-
 @endsection

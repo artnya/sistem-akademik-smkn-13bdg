@@ -8,6 +8,9 @@ use App\RekapNilai;
 use App\Mapel;
 use App\Tahun;
 use Carbon;
+use Excel;
+use Input;
+
 
 class InputNilaiController extends Controller
 {
@@ -111,6 +114,50 @@ class InputNilaiController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function importNilai(Request $request)
+    {
+        if($request->hasFile('imported-file'))
+      {
+                $path = $request->file('imported-file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+                {
+                    $reader->select(array('id_siswa', 'id_jurusan','id_kelas','tahun','pelajaran','semester','tugas1','tugas2','tugas3','sikap','pengetahuan','uts','uas'));
+
+                })->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'id_siswa' => $request->id_siswa,
+                  'id_jurusan' => $request->id_jurusan,
+                  'id_kelas' => $request->id_kelas,
+                  'id_tahun' => $row['tahun'],
+                  'id_mapel' => $row['pelajaran'],
+                  'semester' => $row['semester'],
+                  'tugas1' => $row['tugas1'],
+                  'tugas2' => $row['tugas2'],
+                  'tugas3' => $row['tugas3'],
+                  'nilai_sikap' => $row['sikap'],
+                  'nilai_pengetahuan' => $row['pengetahuan'],
+                  'uts' => $row['uts'],
+                  'uas' => $row['uas']
+                ];
+              }
+          }
+          if(!empty($dataArray))
+          {
+             RekapNilai::insert($dataArray);
+             return back();
+           }
+         }
+       }
     }
 
     /**

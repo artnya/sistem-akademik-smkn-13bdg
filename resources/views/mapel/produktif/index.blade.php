@@ -59,7 +59,7 @@
                       <td><input type="checkbox" name="select_all" id="select_all"></td>
                       <td>Mata Pelajaran Produktif</td>
                       <td>Mata Pelajaran Program/Jurusan</td>
-                      <td>Type Jurusan</td>
+                      <td>Jurusan</td>
                       <td>KKM</td>
                       @if(Auth()->user()->role == '2')
                       <td>Aksi</td>

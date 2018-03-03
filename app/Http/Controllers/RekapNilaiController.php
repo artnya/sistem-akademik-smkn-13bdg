@@ -61,20 +61,50 @@ class RekapNilaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $mapels = Mapel::all();
+
         $siswa = User::find($id);
-        $semester1 = RekapNilai::where('id_siswa', $id)->where('semester', '1')->get();
+        $q = $request->get('q');
+        if ($request->get('q')) {
+        $hasil = RekapNilai::when($q, function ($query) use ($request) {
+        $query->where('id_siswa', 'like', "%{$request->id_siswa}%")->where('semester', 'like', "%{$request->q}%");
+            })->get();
+        return view('rekapnilai.rekap-nilai', compact('hasil', 'siswa', 'q'));   
+        }else{
+            $q = 1;
+            $hasil = RekapNilai::where('id_siswa', $id)->where('semester', $q)->get();    
+            return view('rekapnilai.rekap-nilai', compact('hasil', 'siswa', 'q'))->with('messageerror', 'Nilai semester'. $q .' belum di di masukan.');   
+        }
+
+       /* $mapels = Mapel::all();
+        $in1 = RekapNilai::where('id_siswa', $id)->where('semester', '1')->get();
+        $semester2 = RekapNilai::where('id_siswa', $id)->where('semester', '2')->get();
+        $in2 = RekapNilai::where('id_siswa', $id)->where('semester', '2')->get();
+        $semester3 = RekapNilai::where('id_siswa', $id)->where('semester', '3')->get();
+        $in3 = RekapNilai::where('id_siswa', $id)->where('semester', '3')->get();
+        $semester4 = RekapNilai::where('id_siswa', $id)->where('semester', '4')->get();
+        $in4 = RekapNilai::where('id_siswa', $id)->where('semester', '4')->get();
+        $semester5 = RekapNilai::where('id_siswa', $id)->where('semester', '5')->get();
+        $in5 = RekapNilai::where('id_siswa', $id)->where('semester', '5')->get();
+        $semester6 = RekapNilai::where('id_siswa', $id)->where('semester', '6')->get();
+        $in6 = RekapNilai::where('id_siswa', $id)->where('semester', '6')->get();
+
+        return view('rekapnilai.rekap-nilai', compact('siswa', 'mapels', 'semester1', 'semester2', 'semester3', 'semester4', 'semester5', 'semester6', 'in1', 'in2', 'in3', 'in4', 'in5', 'in6'));
+        */
+    }
+
+    public function cetak($semester, $id)
+    {
+        $un = User::find($id);
+        $semester = RekapNilai::where('id_siswa', $id)->where('semester', $semester)->get();
         $semester2 = RekapNilai::where('id_siswa', $id)->where('semester', '2')->get();
         $semester3 = RekapNilai::where('id_siswa', $id)->where('semester', '3')->get();
         $semester4 = RekapNilai::where('id_siswa', $id)->where('semester', '4')->get();
         $semester5 = RekapNilai::where('id_siswa', $id)->where('semester', '5')->get();
         $semester6 = RekapNilai::where('id_siswa', $id)->where('semester', '6')->get();
-
-        return view('rekapnilai.rekap-nilai', compact('siswa', 'mapels', 'semester1', 'semester2', 'semester3', 'semester4', 'semester5', 'semester6'));
-    }
-
+        return view('rekapnilai.cetak-nilai.cetak', compact('un', 'semester', 'semester2', 'semester3', 'semester4', 'semester5', 'semester6'));
+    }    
 
     public function showInputNilai($id)
     {

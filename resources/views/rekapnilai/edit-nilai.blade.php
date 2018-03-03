@@ -46,7 +46,7 @@
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-black" style="background: url('/uploadgambar/photo1.png') center center;">
-              <h3 class="widget-user-username">{{  $siswa->user->name }}</h3>
+              <h3 class="widget-user-username">{{  $siswa->user['name'] }}</h3>
               <h5 class="widget-user-desc">Siswa</h5>
             </div>
             <div class="widget-user-image">
@@ -80,7 +80,7 @@
       <!-- Default box -->
       <div class="box box-solid box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Edit Nilai {{ $siswa->mapel->nama_mapel }} SEMESTER {{ $siswa->semester }} KELAS {{$siswa->kelas->tingkat_kelas}} {{$siswa->jurusan->nama_jurusan}} {{$siswa->kelas->jumlah_kelas}}</h3>
+          <h3 class="box-title">Edit Nilai {{ $siswa->id_mapel }} SEMESTER {{ $siswa->semester }} </h3> 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -112,7 +112,7 @@
                       <form id="edit-nilai-form" action="{{ route('rekap.update', $siswa->id) }}" method="POST">
                         {{ csrf_field() }}
                     @if(!$siswa->count() < 1)
-                      <td><input type="text" class="form-control" name="id_mapel" value="{{ $siswa->mapel['nama_mapel'] }}" disabled></td>
+                      <td><input type="text" class="form-control" name="id_mapel" value="{{ $siswa->id_mapel }}" disabled></td>
                       <td><input type="text" class="form-control" name="tugas1" value="{{ $siswa->tugas1 }}"></td>
                       <td><input type="text" class="form-control" name="tugas2" value="{{ $siswa->tugas2 }}"></td>
                       <td><input type="text" class="form-control" name="tugas3" value="{{ $siswa->tugas3 }}"></td>
@@ -135,7 +135,7 @@
                                   document.getElementById('edit-nilai-form').submit();">
           <i class="fa fa-check"></i> Edit Nilai
         </a>
-        <a href="/rekapnilai/show/{{ $siswa->id_siswa }}" class="btn btn-warning">Kembali</a>
+        <a href="/rekapnilai/lihat-nilai/{{ $siswa->id_siswa }}" class="btn btn-warning">Kembali</a>
         </div>
         <!-- /.box-footer-->
       </div>

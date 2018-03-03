@@ -80,7 +80,7 @@
                                 <select id="id_tahun" class="form-control select2" name="id_tahun" value="{{ old('id_tahun') }}" required autofocus>
                                     <option disabled selected>Pilih Tahun Ajaran</option>
                                     @foreach($tahun as $now)
-                                        <option value="{{ $now->id }}">{{ $now->tahun }}</option>
+                                        <option value="{{ $now->tahun }}">{{ $now->tahun }}</option>
                                     @endforeach
                                 </select>
 
@@ -118,9 +118,9 @@
                                 <select id="id_mapel" type="text" class="form-control select2" name="id_mapel" value="{{ old('id_mapel') }}" required autofocus>
                                 @foreach($mapel as $in)
                                 @if(Auth()->user()->id_mapel == $in->id)
-                                    <option value="{{ $in->id }}" selected>{{ $in->nama_mapel }}</option>
+                                    <option value="{{ $in->nama_mapel }}" selected>{{ $in->nama_mapel }}</option>
                                 @else
-                                <option value="{{ $in->id }}" disabled>{{ $in->nama_mapel }}</option>
+                                <option value="{{ $in->nama_mapel }}" disabled>{{ $in->nama_mapel }}</option>
                                 @endif
                                 @endforeach
                                 </select>

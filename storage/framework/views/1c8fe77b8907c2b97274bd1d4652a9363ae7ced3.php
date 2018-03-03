@@ -45,7 +45,7 @@
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-black" style="background: url('/uploadgambar/photo1.png') center center;">
-              <h3 class="widget-user-username"><?php echo e($siswa->user->name); ?></h3>
+              <h3 class="widget-user-username"><?php echo e($siswa->user['name']); ?></h3>
               <h5 class="widget-user-desc">Siswa</h5>
             </div>
             <div class="widget-user-image">
@@ -79,7 +79,7 @@
       <!-- Default box -->
       <div class="box box-solid box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Edit Nilai <?php echo e($siswa->mapel->nama_mapel); ?> SEMESTER <?php echo e($siswa->semester); ?> KELAS <?php echo e($siswa->kelas->tingkat_kelas); ?> <?php echo e($siswa->jurusan->nama_jurusan); ?> <?php echo e($siswa->kelas->jumlah_kelas); ?></h3>
+          <h3 class="box-title">Edit Nilai <?php echo e($siswa->id_mapel); ?> SEMESTER <?php echo e($siswa->semester); ?> </h3> 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -112,7 +112,7 @@
                         <?php echo e(csrf_field()); ?>
 
                     <?php if(!$siswa->count() < 1): ?>
-                      <td><input type="text" class="form-control" name="id_mapel" value="<?php echo e($siswa->mapel['nama_mapel']); ?>" disabled></td>
+                      <td><input type="text" class="form-control" name="id_mapel" value="<?php echo e($siswa->id_mapel); ?>" disabled></td>
                       <td><input type="text" class="form-control" name="tugas1" value="<?php echo e($siswa->tugas1); ?>"></td>
                       <td><input type="text" class="form-control" name="tugas2" value="<?php echo e($siswa->tugas2); ?>"></td>
                       <td><input type="text" class="form-control" name="tugas3" value="<?php echo e($siswa->tugas3); ?>"></td>
@@ -135,7 +135,7 @@
                                   document.getElementById('edit-nilai-form').submit();">
           <i class="fa fa-check"></i> Edit Nilai
         </a>
-        <a href="/rekapnilai/show/<?php echo e($siswa->id_siswa); ?>" class="btn btn-warning">Kembali</a>
+        <a href="/rekapnilai/lihat-nilai/<?php echo e($siswa->id_siswa); ?>" class="btn btn-warning">Kembali</a>
         </div>
         <!-- /.box-footer-->
       </div>
