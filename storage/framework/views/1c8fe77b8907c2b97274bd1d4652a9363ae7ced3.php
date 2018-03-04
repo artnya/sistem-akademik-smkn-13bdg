@@ -135,7 +135,7 @@
                                   document.getElementById('edit-nilai-form').submit();">
           <i class="fa fa-check"></i> Edit Nilai
         </a>
-        <a href="/rekapnilai/lihat-nilai/<?php echo e($siswa->id_siswa); ?>" class="btn btn-warning">Kembali</a>
+        <a href="<?php echo e(URL::previous()); ?>" class="btn btn-warning">Kembali</a>
         </div>
         <!-- /.box-footer-->
       </div>

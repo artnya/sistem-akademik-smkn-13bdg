@@ -156,6 +156,10 @@ Route::resource('rekapnilai', 'RekapNilaiController')->middleware('auth');
 Route::get('rekapnilai/edit/{id}', 'RekapNilaiController@edit')->name('rekapnilai.edit')->middleware('auth');
 Route::post('rekapnilai/edit-nilai/{id}', 'RekapNilaiController@update')->name('rekap.update')->middleware('auth');
 Route::get('rekapnilai/cetak-nilai/semester-{slug}/{id} ', 'RekapNilaiController@cetak')->middleware('auth');
+Route::get('/rekapnilai/hapus/{id}', ['as'=>'rekapnilai.destroy', 'uses'=>'RekapNilaiController@destroy']);
+
+//download nilai
+Route::get('/downloadHasilNilai/{type}', 'RekapNilaiController@downloadNilai')->middleware('auth');
 
 //input nilai
 Route::get('inputnilai/siswa/{slug}', 'InputNilaiController@show')->name('inputnilai')->middleware('auth');
@@ -163,7 +167,7 @@ Route::post('inputnilai/add', 'InputNilaiController@store')->middleware('auth');
 Route::post('inputnilai/import-excel', 'InputNilaiController@importNilai')->middleware('auth');
 
 //lihat nilai saya (siswa section)
-Route::get('/lihat-datasaya/lihat-nilai/{name}', 'DayaSayaController@show')->name('lihat.nilai')->middleware('auth');
+Route::get('/lihat-datasaya/lihat-nilai/{name}', 'DayaSayaController@index')->name('lihat.nilai')->middleware('auth');
 Route::get('/nilai/cari/{id}', 'RekapNilaiController@show')->middleware('auth');
 
 //profile (user)

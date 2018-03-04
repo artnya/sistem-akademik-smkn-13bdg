@@ -9,7 +9,7 @@ use App\Kelas;
 use App\Mapel;
 use App\Tahun;
 use App\Jurusan;
-
+use Excel;
 
 class RekapNilaiController extends Controller
 {
@@ -94,21 +94,23 @@ class RekapNilaiController extends Controller
         */
     }
 
+    public function downloadNilai($type)
+    {
+        $data = RekapNilai::select('id','id_siswa','semester','id_mapel','tugas1','tugas2','tugas3','nilai_sikap', 'nilai_pengetahuan','uts','uas')->get()->toArray();
+        return Excel::create('hasil_nilai', function($excel) use ($data) {
+            $excel->sheet('mySheet', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
+    }
+
     public function cetak($semester, $id)
     {
         $un = User::find($id);
         $semester = RekapNilai::where('id_siswa', $id)->where('semester', $semester)->get();
-        $semester2 = RekapNilai::where('id_siswa', $id)->where('semester', '2')->get();
-        $semester3 = RekapNilai::where('id_siswa', $id)->where('semester', '3')->get();
-        $semester4 = RekapNilai::where('id_siswa', $id)->where('semester', '4')->get();
-        $semester5 = RekapNilai::where('id_siswa', $id)->where('semester', '5')->get();
-        $semester6 = RekapNilai::where('id_siswa', $id)->where('semester', '6')->get();
-        return view('rekapnilai.cetak-nilai.cetak', compact('un', 'semester', 'semester2', 'semester3', 'semester4', 'semester5', 'semester6'));
+        return view('rekapnilai.cetak-nilai.cetak', compact('un', 'semester'));
     }    
-
-    public function showInputNilai($id)
-    {
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -144,15 +146,9 @@ class RekapNilaiController extends Controller
 
         ]);
 
+        $all = $request->all();
         $storage = RekapNilai::find($id);
-        $storage->tugas1 = $request->tugas1;
-        $storage->tugas2 = $request->tugas2;
-        $storage->tugas3 = $request->tugas3;
-        $storage->nilai_sikap = $request->nilai_sikap;
-        $storage->nilai_pengetahuan = $request->nilai_pengetahuan;
-        $storage->uts = $request->uts;
-        $storage->uas = $request->uas;
-        $storage->save();
+        $storage->update($all);
 
         return redirect()->back()->with('message', 'Nilai berhasil di edit');
     }
@@ -163,8 +159,9 @@ class RekapNilaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $hapus = RekapNilai::destroy($request->checked); 
+        return back()->with('message', 'Nilai berhasil di hapus!');
     }
 }

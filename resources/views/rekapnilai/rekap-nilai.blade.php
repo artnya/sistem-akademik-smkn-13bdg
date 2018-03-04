@@ -45,7 +45,7 @@
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('/uploadgambar/photo1.png') center center;">
+            <div class="widget-user-header bg-black" style="background: url('/images/jamanold.jpg') center center;">
               <h3 class="widget-user-username">{{  $siswa->name }}</h3>
               <h5 class="widget-user-desc">Siswa</h5>
             </div>
@@ -96,6 +96,9 @@
             <div class="col-md-3">
               <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
               <select name="q" class="form-control">
+                @if($q)
+                <option value="{{ $q }}" selected disabled>Semester {{ $q }}</option>
+                @endif
                 <option value="1">Semester 1</option>
                 <option value="2">Semester 2</option>
                 <option value="3">Semester 3</option>
@@ -124,13 +127,18 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
+        @foreach($hasil as $in)
+        <form action="{{ route('rekapnilai.destroy', $in->id) }}">
+        @endforeach
+            {{ csrf_field() }}
         <div class="box-body" id="1">
             <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
+                <input type="submit" id="actions" value="Hapus" hidden>
             </div>
             <table id="rekap" class="table table-striped table-bordered table-hover table-responsive">
               <thead>
                 <tr>
+                  <th><input type="checkbox" id="select_all" name="select_all" /></th>
                 	<th>Mata Pelajaran</th>
                 	<th>Tugas 1</th>
                 	<th>Tugas 2</th>
@@ -139,13 +147,15 @@
                 	<th>Pengetahuan</th>
                 	<th>UTS</th>
                 	<th>UAS</th>
-                	<th>KKM</th>
                   <td>Edit Nilai</td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                 @foreach($hasil as $in)
+                  <td>
+                    <input type="checkbox" name="checked[]" data-id="checkbox" value="{{$in->id}}" />
+                  </td>
                   <td>{{ $in->id_mapel }}</td>
                   <td>{{ $in->tugas1 }}</td>
                   <td>{{ $in->tugas2 }}</td>
@@ -161,24 +171,33 @@
               </tbody>
             </table>
         </div>
+      </form>
         <!-- /.box-body -->
         <div class="box-footer">
           <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+          @if(count($hasil) > 0)
+          <a class="btn btn-info" href="/rekapnilai/cetak-nilai/semester-{{ $q }}/{{ $siswa->id }}"><i class="fa fa-print"></i> Cetak</a>
+          <a class="btn btn-info" href="/downloadHasilNilai/xlsx"><i class="fa fa-download"></i> Download Nilai</a>
+          @endif
           <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="col-md-6 col-md-offset-6">
                   <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                   <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">
                   <input type="hidden" name="id_jurusan" value="{{ $siswa->id_jurusan }}">
-                  <input type="file" class="form-control" name="imported-file" required=/>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Import Nilai</button>
+                  <input type="file" class="form-control" name="imported-file" data-toggle="tooltip" title="Hanya wali kelas yang bisa meng-import semua nilai" required />
+                  @if(Auth::user()->id == $siswa->kelas->nip)
+                  <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> Import Nilai</button>
+                  @else
+                  <button type="submit" class="btn btn-info" disabled><i class="fa fa-lock"></i> Import Nilai</button>
+                  @endif
                       @if ($errors->has('nama_mapel'))
                           <span class="help-block">
                               <strong>{{ $errors->first('nama_mapel') }}</strong>
                           </span>
                       @endif
                 </div>
-          </form> 
+          </form>
         </div>
         <!-- /.box-footer-->
       </div>
@@ -206,15 +225,19 @@
                   <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                   <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">
                   <input type="hidden" name="id_jurusan" value="{{ $siswa->id_jurusan }}">
-                  <input type="file" class="form-control" name="imported-file" required=/>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Import Nilai</button>
+                  <input type="file" class="form-control" name="imported-file" data-toggle="tooltip" title="Hanya wali kelas yang bisa meng-import semua nilai" required />
+                  @if(Auth::user()->id == $siswa->kelas->nip)
+                  <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> Import Nilai</button>
+                  @else
+                  <button type="submit" class="btn btn-info" disabled><i class="fa fa-lock"></i> Import Nilai</button>
+                  @endif
                       @if ($errors->has('nama_mapel'))
                           <span class="help-block">
                               <strong>{{ $errors->first('nama_mapel') }}</strong>
                           </span>
                       @endif
                 </div>
-          </form> 
+          </form>
         </div>
         <!-- /.box-footer-->
       </div>
@@ -223,4 +246,10 @@
     </section>
     <!-- /.content -->
   </div>
+  <script type="text/javascript">
+      $("#checkAll").change(function () {
+        $("input:checkbox").prop('checked', $(this).prop("checked"));
+    });
+  </script>
+
 @endsection

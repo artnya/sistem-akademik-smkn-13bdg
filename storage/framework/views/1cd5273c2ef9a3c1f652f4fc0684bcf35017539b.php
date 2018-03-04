@@ -44,7 +44,7 @@
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('/uploadgambar/photo1.png') center center;">
+            <div class="widget-user-header bg-black" style="background: url('/images/jamanold.jpg') center center;">
               <h3 class="widget-user-username"><?php echo e($siswa->name); ?></h3>
               <h5 class="widget-user-desc">Siswa</h5>
             </div>
@@ -95,6 +95,9 @@
             <div class="col-md-3">
               <input type="hidden" name="id_siswa" value="<?php echo e($siswa->id); ?>">
               <select name="q" class="form-control">
+                <?php if($q): ?>
+                <option value="<?php echo e($q); ?>" selected disabled>Semester <?php echo e($q); ?></option>
+                <?php endif; ?>
                 <option value="1">Semester 1</option>
                 <option value="2">Semester 2</option>
                 <option value="3">Semester 3</option>
@@ -123,13 +126,19 @@
               <i class="fa fa-times"></i></button>
           </div>
         </div>
+        <?php $__currentLoopData = $hasil; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <form action="<?php echo e(route('rekapnilai.destroy', $in->id)); ?>">
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php echo e(csrf_field()); ?>
+
         <div class="box-body" id="1">
             <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
+                <input type="submit" id="actions" value="Hapus" hidden>
             </div>
             <table id="rekap" class="table table-striped table-bordered table-hover table-responsive">
               <thead>
                 <tr>
+                  <th><input type="checkbox" id="select_all" name="select_all" /></th>
                 	<th>Mata Pelajaran</th>
                 	<th>Tugas 1</th>
                 	<th>Tugas 2</th>
@@ -138,13 +147,15 @@
                 	<th>Pengetahuan</th>
                 	<th>UTS</th>
                 	<th>UAS</th>
-                	<th>KKM</th>
                   <td>Edit Nilai</td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                 <?php $__currentLoopData = $hasil; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <td>
+                    <input type="checkbox" name="checked[]" data-id="checkbox" value="<?php echo e($in->id); ?>" />
+                  </td>
                   <td><?php echo e($in->id_mapel); ?></td>
                   <td><?php echo e($in->tugas1); ?></td>
                   <td><?php echo e($in->tugas2); ?></td>
@@ -160,9 +171,14 @@
               </tbody>
             </table>
         </div>
+      </form>
         <!-- /.box-body -->
         <div class="box-footer">
           <a class="btn btn-info" href="/inputnilai/siswa/<?php echo e($siswa->id); ?>"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+          <?php if(count($hasil) > 0): ?>
+          <a class="btn btn-info" href="/rekapnilai/cetak-nilai/semester-<?php echo e($q); ?>/<?php echo e($siswa->id); ?>"><i class="fa fa-print"></i> Cetak</a>
+          <a class="btn btn-info" href="/downloadHasilNilai/xlsx"><i class="fa fa-download"></i> Download Nilai</a>
+          <?php endif; ?>
           <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
@@ -170,15 +186,19 @@
                   <input type="hidden" name="id_siswa" value="<?php echo e($siswa->id); ?>">
                   <input type="hidden" name="id_kelas" value="<?php echo e($siswa->id_kelas); ?>">
                   <input type="hidden" name="id_jurusan" value="<?php echo e($siswa->id_jurusan); ?>">
-                  <input type="file" class="form-control" name="imported-file" required=/>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Import Nilai</button>
+                  <input type="file" class="form-control" name="imported-file" data-toggle="tooltip" title="Hanya wali kelas yang bisa meng-import semua nilai" required />
+                  <?php if(Auth::user()->id == $siswa->kelas->nip): ?>
+                  <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> Import Nilai</button>
+                  <?php else: ?>
+                  <button type="submit" class="btn btn-info" disabled><i class="fa fa-lock"></i> Import Nilai</button>
+                  <?php endif; ?>
                       <?php if($errors->has('nama_mapel')): ?>
                           <span class="help-block">
                               <strong><?php echo e($errors->first('nama_mapel')); ?></strong>
                           </span>
                       <?php endif; ?>
                 </div>
-          </form> 
+          </form>
         </div>
         <!-- /.box-footer-->
       </div>
@@ -207,15 +227,19 @@
                   <input type="hidden" name="id_siswa" value="<?php echo e($siswa->id); ?>">
                   <input type="hidden" name="id_kelas" value="<?php echo e($siswa->id_kelas); ?>">
                   <input type="hidden" name="id_jurusan" value="<?php echo e($siswa->id_jurusan); ?>">
-                  <input type="file" class="form-control" name="imported-file" required=/>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-upload"></i> Import Nilai</button>
+                  <input type="file" class="form-control" name="imported-file" data-toggle="tooltip" title="Hanya wali kelas yang bisa meng-import semua nilai" required />
+                  <?php if(Auth::user()->id == $siswa->kelas->nip): ?>
+                  <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> Import Nilai</button>
+                  <?php else: ?>
+                  <button type="submit" class="btn btn-info" disabled><i class="fa fa-lock"></i> Import Nilai</button>
+                  <?php endif; ?>
                       <?php if($errors->has('nama_mapel')): ?>
                           <span class="help-block">
                               <strong><?php echo e($errors->first('nama_mapel')); ?></strong>
                           </span>
                       <?php endif; ?>
                 </div>
-          </form> 
+          </form>
         </div>
         <!-- /.box-footer-->
       </div>
@@ -224,6 +248,12 @@
     </section>
     <!-- /.content -->
   </div>
+  <script type="text/javascript">
+      $("#checkAll").change(function () {
+        $("input:checkbox").prop('checked', $(this).prop("checked"));
+    });
+  </script>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

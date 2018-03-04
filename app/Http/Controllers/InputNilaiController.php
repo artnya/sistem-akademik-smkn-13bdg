@@ -58,21 +58,8 @@ class InputNilaiController extends Controller
 
         ]);
 
-        $storage = new RekapNilai();
-        $storage->id_tahun = $request->id_tahun;
-        $storage->semester = $request->semester;
-        $storage->id_siswa = $request->id_siswa;
-        $storage->id_mapel = $request->id_mapel;
-        $storage->id_kelas = $request->id_kelas;
-        $storage->id_jurusan = $request->id_jurusan;
-        $storage->tugas1 = $request->tugas1;
-        $storage->tugas2 = $request->tugas2;
-        $storage->tugas3 = $request->tugas3;
-        $storage->nilai_sikap = $request->nilai_sikap;
-        $storage->nilai_pengetahuan = $request->nilai_pengetahuan;
-        $storage->uts = $request->uts;
-        $storage->uas = $request->uas;
-        $storage->save();
+        $all = $request->all();
+        $storage = RekapNilai::create($all);
 
         return redirect()->route('rekapnilai.show', $request->id_siswa . '#' . $storage->semester)->with('message', 'Data berhasil di tambahkan');
     }
@@ -123,7 +110,7 @@ class InputNilaiController extends Controller
                 $path = $request->file('imported-file')->getRealPath();
                 $data = Excel::load($path, function($reader)
                 {
-                    $reader->select(array('id_siswa', 'id_jurusan','id_kelas','tahun','pelajaran','semester','tugas1','tugas2','tugas3','sikap','pengetahuan','uts','uas'));
+                    $reader->select(array('id_siswa', 'id_jurusan','id_kelas','tahun','pelajaran','semester','tugas1','tugas2','tugas3','sikap','pengetahuan','uts','uas', 'kkm'));
 
                 })->get();
 
@@ -147,14 +134,15 @@ class InputNilaiController extends Controller
                   'nilai_sikap' => $row['sikap'],
                   'nilai_pengetahuan' => $row['pengetahuan'],
                   'uts' => $row['uts'],
-                  'uas' => $row['uas']
+                  'uas' => $row['uas'],
+                  'kkm' => $row['kkm']
                 ];
               }
           }
           if(!empty($dataArray))
           {
              RekapNilai::insert($dataArray);
-             return back();
+             return back()->with('message', 'Nilai berhasil di masukan!');
            }
          }
        }
