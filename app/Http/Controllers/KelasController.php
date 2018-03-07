@@ -127,15 +127,9 @@ class KelasController extends Controller
         return redirect('kelas')->with('message', 'Data berhasil di hapus');
     }
 
-    public function destroychecked(Request $request, $id)
+    public function destroychecked(Request $request)
     {
-         $checked = $request->input('checked',[]);
-    
-        if ($checked == null) {
-          return redirect('kelas')->with('message', 'Anda belum menceklis beberapa data untuk di hapus!');        
-        }else{
-          Kelas::whereIn("id",$checked)->delete();
-          return redirect('kelas')->with('message', 'Data berhasil di hapus!');        
-        }
+        $hapus = Kelas::destroy($request->checked); 
+        return back()->with('message', 'Kelas berhasil di hapus!');
     }
 }

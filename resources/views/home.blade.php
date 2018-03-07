@@ -162,7 +162,8 @@
                   <h3 class="box-title">Panel request verifikasi akun siswa</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger">@if($accs->count() > 1) {{ $accs->count() }} New Account(s) @elseif($accs->count() == 1) New Account  @else Tidak ada permohonan verifikasi @endif</span>
+                    <span class="label label-danger">
+                      @if($accs->count() > 1) {{ $accs->count() }} New Account(s) @elseif($accs->count() == 1) One Account requested  @else Tidak ada permohonan verifikasi @endif</span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -171,6 +172,34 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
+                  <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <td><b>No</b></td>
+                        <td><b>Username</b></td>
+                        <td><b>Nama Asli</b></td>
+                        <td><b>Request pada</b></td>
+                        <td><b>Aksi</b></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <!-- Variable -->
+                        <?php $no = 1; ?>
+                        <!-- End Variable -->
+                        @foreach($accs as $in)
+                          <td>{{ $no }}</td>
+                          <td>{{ $in->username }}</td>
+                          <td>{{ $in->name }}</td>
+                          <td>{{ $in->created_at->format('l jS \\of F Y h:i:s A') }}</td>
+                          <td>{{ $in->created_at->diffForHumans() }}</td>
+                          <td><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit{{$in->id}}"><i class="fa fa-check"></i> Verifikasi</a></td>
+                      </tr>
+                        <?php $no++; ?>
+                        @endforeach
+                    </tbody>
+                  </table>
+                  <!--
                   <ul class="users-list clearfix">
                     @foreach($accs as $in)
                     <li>
@@ -188,7 +217,7 @@
                     </li>
                     @endforeach
                   </ul>
-                  <!-- /.users-list -->
+                -->
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">

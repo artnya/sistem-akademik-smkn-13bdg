@@ -32,7 +32,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("{!! session('messageerror') !!}", "", "success");
+        swal("{!! session('messageerror') !!}", "", "error");
     </script>
 @endif
     <!-- Main content -->
@@ -219,8 +219,8 @@
                           <div id="reload" class="box box-widget">
                             <div class="box-header with-border">
                               <div class="user-block">
-                                <img class="img-circle" @if($post->user->photo == 'Not Setting' || $post->user->photo == '') src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ $post->user->photo }}" @endif alt="User Image">
-                                <span class="username"><a href="#">{{ $post->user->name }}</a></span>
+                                <img class="img-circle" @if($post->user['photo'] == 'Not Setting' || $post->user['photo'] == '') src="https://s17.postimg.org/bfpk18wcv/default.jpg" @else src="{{ url('uploadgambar') }}/{{ $post->user['photo'] }}" @endif alt="User Image">
+                                <span class="username"><a href="#">{{ $post->user['name'] }}</a></span>
                                 <span id="refresh" class="description"><i class="fa fa-clock-o"></i> Posted at - {{ $post->created_at->diffForHumans() }} </span>
                               </div>
                               <!-- /.user-block -->

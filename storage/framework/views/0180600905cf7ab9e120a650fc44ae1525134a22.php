@@ -43,6 +43,8 @@
         <div class="box-body">
           <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <form action="/kelas/deletechecked/<?php echo e($in->id); ?>">
+            <?php echo e(csrf_field()); ?>
+
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <div>
             <?php if(Auth()->user()->role == '2'): ?>
@@ -55,7 +57,9 @@
             <table id="example" class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
-                  <td>#</td>
+                  <?php if(Auth::user()->role == '2'): ?>
+                  <td><input type="checkbox" name="select_all" id="select_all"></td>
+                  <?php endif; ?>
                   <td>Kelas</td>
                   <td>Wali Kelas</td>
                   <td>Aksi</td>
@@ -64,15 +68,18 @@
               <tbody>
                 <tr>
                   <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if(Auth::user()->role == '2'): ?>
                   <td>
-                      <input type="checkbox" name="checked[]" id="option-1">
+                      <input type="checkbox" name="checked[]" id="option-1" value="<?php echo e($x->id); ?>">
                   </td>
+                  <?php endif; ?>
                   <td><?php echo e($x->tingkat_kelas); ?> <?php echo e($x->jurusan['nama_jurusan']); ?> <?php echo e($x->jumlah_kelas); ?></td>
                   <td>
                     <?php if(($x->nip == NULL) || ($x->user['id'] == NULL)): ?>
                       <span class="label label-danger">Tidak ada wali kelas/kosong</span>
                     <?php else: ?>
-                      <span class="label label-success"><?php echo e($x->user['name']); ?></span>
+                      <?php echo e($x->user['name']); ?>
+
                     <?php endif; ?>
                   <td>
                     <div class="btn-group">

@@ -154,16 +154,8 @@ class AccountController extends Controller
 
     public function destroychecked(Request $request, $id)
     {
-         $checked = $request->input('checkeditems',[]);
-        if (Auth()->user()->role == '2') {
-            if ($checked == null) {
-              return redirect('account')->with('message', 'Anda belum menceklis beberapa data untuk di hapus!');        
-            }else{
-              User::whereIn("id",$checked)->delete();
-              return redirect('account')->with('message', 'Data berhasil di hapus!');        
-            }
-        }else{
-            return redirect()->back()->with('message', 'Anda tidak di perkenankan masuk ke area ini!');
-        }
+        
+        $hapus = User::destroy($request->checked); 
+        return back()->with('message', 'Account berhasil di hapus!');
     }
 }

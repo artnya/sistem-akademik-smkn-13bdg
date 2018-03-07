@@ -160,7 +160,8 @@
                   <h3 class="box-title">Panel request verifikasi akun siswa</h3>
 
                   <div class="box-tools pull-right">
-                    <span class="label label-danger"><?php if($accs->count() > 1): ?> <?php echo e($accs->count()); ?> New Account(s) <?php elseif($accs->count() == 1): ?> New Account  <?php else: ?> Tidak ada permohonan verifikasi <?php endif; ?></span>
+                    <span class="label label-danger">
+                      <?php if($accs->count() > 1): ?> <?php echo e($accs->count()); ?> New Account(s) <?php elseif($accs->count() == 1): ?> One Account requested  <?php else: ?> Tidak ada permohonan verifikasi <?php endif; ?></span>
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
@@ -169,6 +170,34 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
+                  <table class="table table-responsive table-striped table-hover">
+                    <thead>
+                      <tr>
+                        <td><b>No</b></td>
+                        <td><b>Username</b></td>
+                        <td><b>Nama Asli</b></td>
+                        <td><b>Request pada</b></td>
+                        <td><b>Aksi</b></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <!-- Variable -->
+                        <?php $no = 1; ?>
+                        <!-- End Variable -->
+                        <?php $__currentLoopData = $accs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <td><?php echo e($no); ?></td>
+                          <td><?php echo e($in->username); ?></td>
+                          <td><?php echo e($in->name); ?></td>
+                          <td><?php echo e($in->created_at->format('l jS \\of F Y h:i:s A')); ?></td>
+                          <td><?php echo e($in->created_at->diffForHumans()); ?></td>
+                          <td><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit<?php echo e($in->id); ?>"><i class="fa fa-check"></i> Verifikasi</a></td>
+                      </tr>
+                        <?php $no++; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </tbody>
+                  </table>
+                  <!--
                   <ul class="users-list clearfix">
                     <?php $__currentLoopData = $accs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li>
@@ -186,7 +215,7 @@
                     </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </ul>
-                  <!-- /.users-list -->
+                -->
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer text-center">

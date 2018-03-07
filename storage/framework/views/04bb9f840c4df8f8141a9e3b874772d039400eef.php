@@ -41,8 +41,10 @@
         </div>
         <div class="box-body">
           <a href="#" data-toggle="modal" data-target="#add" class="btn btn-default text-aqua ajax"><i class="fa fa-add"></i> Tambah Akun</a> 
-          <?php $__currentLoopData = $account; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <form action="/account/deletechecked/<?php echo e($in->id); ?>">
+          <?php $__currentLoopData = $account; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <form action="<?php echo e(route('account.destroy', $x->id)); ?>">
+            <?php echo e(csrf_field()); ?>
+
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
@@ -50,7 +52,7 @@
             <table id="example" class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
-                  <td>#</td>
+                  <td><input type="checkbox" id="select_all" name="select_all" /></td>
                   <td>Nama pengguna</td>
                   <td>Username</td>
                   <td>Verifikasi sebagai</td>
@@ -62,7 +64,7 @@
                 <tr>
                   <?php $__currentLoopData = $account; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <td>
-                      <input type="checkbox" name="checked[]" id="option-1">
+                    <input type="checkbox" name="checked[]" data-id="checkbox" value="<?php echo e($x->id); ?>" />
                   </td>
                   <td><?php echo e($x->name); ?></td>
                   <td><?php echo e($x->username); ?></td>

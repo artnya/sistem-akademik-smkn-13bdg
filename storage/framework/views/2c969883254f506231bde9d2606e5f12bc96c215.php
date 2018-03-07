@@ -30,9 +30,6 @@
             </table>
           </div>
           <div class="modal-footer">
-               <a class="btn btn-xs btn-warning" href="#" data-dismiss="modal" data-toggle="modal" data-target="#confirm-edit<?php echo e($in->id); ?>">Edit</a>
-                                   <!-- Button trigger modal -->
-                <a class="btn btn-xs btn-danger" href="#" data-href="/kelas/delete/<?php echo e($in->id); ?>" data-toggle="modal" data-target="#confirm-delete" data-confirm="Are you sure you want to delete?">Delete</a>
             <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>

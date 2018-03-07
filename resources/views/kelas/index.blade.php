@@ -45,6 +45,7 @@
         <div class="box-body">
           @foreach($kelas as $in)
           <form action="/kelas/deletechecked/{{ $in->id }}">
+            {{ csrf_field() }}
           @endforeach
             <div>
             @if(Auth()->user()->role == '2')
@@ -57,7 +58,9 @@
             <table id="example" class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
-                  <td>#</td>
+                  @if(Auth::user()->role == '2')
+                  <td><input type="checkbox" name="select_all" id="select_all"></td>
+                  @endif
                   <td>Kelas</td>
                   <td>Wali Kelas</td>
                   <td>Aksi</td>
@@ -66,15 +69,17 @@
               <tbody>
                 <tr>
                   @foreach($kelas as $x)
+                  @if(Auth::user()->role == '2')
                   <td>
-                      <input type="checkbox" name="checked[]" id="option-1">
+                      <input type="checkbox" name="checked[]" id="option-1" value="{{ $x->id }}">
                   </td>
+                  @endif
                   <td>{{ $x->tingkat_kelas }} {{ $x->jurusan['nama_jurusan'] }} {{ $x->jumlah_kelas }}</td>
                   <td>
                     @if(($x->nip == NULL) || ($x->user['id'] == NULL))
                       <span class="label label-danger">Tidak ada wali kelas/kosong</span>
                     @else
-                      <span class="label label-success">{{ $x->user['name'] }}</span>
+                      {{ $x->user['name'] }}
                     @endif
                   <td>
                     <div class="btn-group">

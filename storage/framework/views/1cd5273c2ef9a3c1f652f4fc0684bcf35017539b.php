@@ -147,6 +147,7 @@
                 	<th>Pengetahuan</th>
                 	<th>UTS</th>
                 	<th>UAS</th>
+                  <th>KKM</th>
                   <td>Edit Nilai</td>
                 </tr>
               </thead>
@@ -157,13 +158,63 @@
                     <input type="checkbox" name="checked[]" data-id="checkbox" value="<?php echo e($in->id); ?>" />
                   </td>
                   <td><?php echo e($in->id_mapel); ?></td>
-                  <td><?php echo e($in->tugas1); ?></td>
-                  <td><?php echo e($in->tugas2); ?></td>
-                  <td><?php echo e($in->tugas3); ?></td>
-                  <td><?php echo e($in->nilai_sikap); ?></td>
-                  <td><?php echo e($in->nilai_pengetahuan); ?></td>
-                  <td><?php echo e($in->uts); ?></td>
-                  <td><?php echo e($in->uas); ?></td>
+                  <td>
+                    <?php if($in->tugas1 < $in->kkm): ?>
+                      <span class="label label-danger"><?php echo e($in->tugas1); ?></span>
+                    <?php else: ?>
+                      <?php echo e($in->tugas1); ?>
+
+                    <?php endif; ?>
+                  </td>
+                  <td>
+                    <?php if($in->tugas2 < $in->kkm): ?>
+                      <span class="label label-danger"><?php echo e($in->tugas2); ?></span>
+                    <?php else: ?>
+                      <?php echo e($in->tugas2); ?>
+
+                    <?php endif; ?>
+                  </td>
+                  <td>
+                    <?php if($in->tugas3 < $in->kkm): ?>
+                      <span class="label label-danger"><?php echo e($in->tugas3); ?></span>
+                    <?php else: ?>
+                      <?php echo e($in->tugas3); ?>
+
+                    <?php endif; ?>
+                  </td>
+                  <td>
+                    <?php if($in->nilai_sikap < $in->kkm): ?>
+                      <span class="label label-danger"><?php echo e($in->nilai_sikap); ?></span>
+                    <?php else: ?>
+                      <?php echo e($in->nilai_sikap); ?>
+
+                    <?php endif; ?>
+                  </td>
+                  <td>
+                    <?php if($in->nilai_pengetahuan < $in->kkm): ?>
+                      <span class="label label-danger"><?php echo e($in->nilai_pengetahuan); ?></span>
+                    <?php else: ?>
+                      <?php echo e($in->nilai_pengetahuan); ?>
+
+                    <?php endif; ?>
+                  </td>
+                  <td>
+                    <?php if($in->uts < $in->kkm): ?>
+                      <span class="label label-danger"><?php echo e($in->uts); ?></span>
+                    <?php else: ?>
+                      <?php echo e($in->uts); ?>
+
+                    <?php endif; ?>
+                  </td>
+                  <td>
+                    <?php if($in->uas < $in->kkm): ?>
+                      <span class="label label-danger"><?php echo e($in->uas); ?></span>
+                    <?php else: ?>
+                      <?php echo e($in->uas); ?>
+
+                    <?php endif; ?>
+                  </td>
+                  <td><?php echo e($in->kkm); ?></td>
                   <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a>
                   </td>
                 </tr>
@@ -182,6 +233,7 @@
           <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
+            <p>Note :  Nilai bertanda merah nilai yang masih di bawah rata-rata.</p>
                 <div class="col-md-6 col-md-offset-6">
                   <input type="hidden" name="id_siswa" value="<?php echo e($siswa->id); ?>">
                   <input type="hidden" name="id_kelas" value="<?php echo e($siswa->id_kelas); ?>">

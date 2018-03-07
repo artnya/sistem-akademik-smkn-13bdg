@@ -29,8 +29,9 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
   <!-- my css -->
   <link rel="stylesheet" href="/css/mycss.css">
-  <!-- Ionicons -->
+  <!-- Ionicons 
   <link rel="stylesheet" href="/css/ionicons.min.css">
+  -->
   <!-- Theme style -->
   <link rel="stylesheet" href="/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -295,13 +296,6 @@ $(document).ready(function() {
   // To make Pace works on Ajax calls
   $(document).ajaxStart(function () {
     Pace.restart()
-  })
-  $('.ajax').click(function () {
-    $.ajax({
-      url: '#', success: function (result) {
-        $('.ajax-content').html('<hr>Ajax Request Completed !')
-      }
-    })
   })
 </script>
 <script>

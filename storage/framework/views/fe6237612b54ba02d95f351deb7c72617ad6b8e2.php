@@ -30,7 +30,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("<?php echo session('messageerror'); ?>", "", "success");
+        swal("<?php echo session('messageerror'); ?>", "", "error");
     </script>
 <?php endif; ?>
     <!-- Main content -->
@@ -92,8 +92,7 @@
                               <?php elseif(Auth()->user()->role == '2'): ?>
                                 -
                               <?php elseif(Auth()->user()->role == '3'): ?>
-                                <?php echo e(Auth::user()->mapel['nama_mapel']); ?>
-
+                                
                               <?php endif; ?>
                             </a>
                           </li>
@@ -221,8 +220,8 @@
                           <div id="reload" class="box box-widget">
                             <div class="box-header with-border">
                               <div class="user-block">
-                                <img class="img-circle" <?php if($post->user->photo == 'Not Setting' || $post->user->photo == ''): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($post->user->photo); ?>" <?php endif; ?> alt="User Image">
-                                <span class="username"><a href="#"><?php echo e($post->user->name); ?></a></span>
+                                <img class="img-circle" <?php if($post->user['photo'] == 'Not Setting' || $post->user['photo'] == ''): ?> src="https://s17.postimg.org/bfpk18wcv/default.jpg" <?php else: ?> src="<?php echo e(url('uploadgambar')); ?>/<?php echo e($post->user['photo']); ?>" <?php endif; ?> alt="User Image">
+                                <span class="username"><a href="#"><?php echo e($post->user['name']); ?></a></span>
                                 <span id="refresh" class="description"><i class="fa fa-clock-o"></i> Posted at - <?php echo e($post->created_at->diffForHumans()); ?> </span>
                               </div>
                               <!-- /.user-block -->

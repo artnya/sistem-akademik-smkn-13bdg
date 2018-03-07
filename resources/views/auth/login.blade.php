@@ -83,8 +83,8 @@
     </form>
     <!-- /.social-auth-links -->
 
-    <a href="{{ route('password.request') }}">I forgot my password</a><br>
-    <a href="/register" class="text-center">Register a new membership</a>
+    <a href="{{ route('password.request') }}">Lupa password?</a><br>
+    <a href="/register" class="text-center">Register untuk siswa</a>
 
   </div>
   <!-- /.login-box-body -->

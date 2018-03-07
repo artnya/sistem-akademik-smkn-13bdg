@@ -147,6 +147,7 @@
                 	<th>Pengetahuan</th>
                 	<th>UTS</th>
                 	<th>UAS</th>
+                  <th>KKM</th>
                   <td>Edit Nilai</td>
                 </tr>
               </thead>
@@ -157,13 +158,56 @@
                     <input type="checkbox" name="checked[]" data-id="checkbox" value="{{$in->id}}" />
                   </td>
                   <td>{{ $in->id_mapel }}</td>
-                  <td>{{ $in->tugas1 }}</td>
-                  <td>{{ $in->tugas2 }}</td>
-                  <td>{{ $in->tugas3 }}</td>
-                  <td>{{ $in->nilai_sikap }}</td>
-                  <td>{{ $in->nilai_pengetahuan }}</td>
-                  <td>{{ $in->uts }}</td>
-                  <td>{{ $in->uas }}</td>
+                  <td>
+                    @if($in->tugas1 < $in->kkm)
+                      <span class="label label-danger">{{ $in->tugas1 }}</span>
+                    @else
+                      {{ $in->tugas1 }}
+                    @endif
+                  </td>
+                  <td>
+                    @if($in->tugas2 < $in->kkm)
+                      <span class="label label-danger">{{ $in->tugas2 }}</span>
+                    @else
+                      {{ $in->tugas2 }}
+                    @endif
+                  </td>
+                  <td>
+                    @if($in->tugas3 < $in->kkm)
+                      <span class="label label-danger">{{ $in->tugas3 }}</span>
+                    @else
+                      {{ $in->tugas3 }}
+                    @endif
+                  </td>
+                  <td>
+                    @if($in->nilai_sikap < $in->kkm)
+                      <span class="label label-danger">{{ $in->nilai_sikap }}</span>
+                    @else
+                      {{ $in->nilai_sikap }}
+                    @endif
+                  </td>
+                  <td>
+                    @if($in->nilai_pengetahuan < $in->kkm)
+                      <span class="label label-danger">{{ $in->nilai_pengetahuan }}</span>
+                    @else
+                      {{ $in->nilai_pengetahuan }}
+                    @endif
+                  </td>
+                  <td>
+                    @if($in->uts < $in->kkm)
+                      <span class="label label-danger">{{ $in->uts }}</span>
+                    @else
+                      {{ $in->uts }}
+                    @endif
+                  </td>
+                  <td>
+                    @if($in->uas < $in->kkm)
+                      <span class="label label-danger">{{ $in->uas }}</span>
+                    @else
+                      {{ $in->uas }}
+                    @endif
+                  </td>
+                  <td>{{ $in->kkm }}</td>
                   <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a>
                   </td>
                 </tr>
@@ -181,6 +225,7 @@
           @endif
           <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <p>Note :  Nilai bertanda merah nilai yang masih di bawah rata-rata.</p>
                 <div class="col-md-6 col-md-offset-6">
                   <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                   <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">

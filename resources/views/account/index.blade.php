@@ -43,8 +43,9 @@
         </div>
         <div class="box-body">
           <a href="#" data-toggle="modal" data-target="#add" class="btn btn-default text-aqua ajax"><i class="fa fa-add"></i> Tambah Akun</a> 
-          @foreach($account as $in)
-          <form action="/account/deletechecked/{{ $in->id }}">
+          @foreach($account as $x)
+          <form action="{{ route('account.destroy', $x->id) }}">
+            {{ csrf_field() }}
           @endforeach
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
@@ -52,7 +53,7 @@
             <table id="example" class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
-                  <td>#</td>
+                  <td><input type="checkbox" id="select_all" name="select_all" /></td>
                   <td>Nama pengguna</td>
                   <td>Username</td>
                   <td>Verifikasi sebagai</td>
@@ -64,7 +65,7 @@
                 <tr>
                   @foreach($account as $x)
                   <td>
-                      <input type="checkbox" name="checked[]" id="option-1">
+                    <input type="checkbox" name="checked[]" data-id="checkbox" value="{{$x->id}}" />
                   </td>
                   <td>{{ $x->name }}</td>
                   <td>{{ $x->username }}</td>

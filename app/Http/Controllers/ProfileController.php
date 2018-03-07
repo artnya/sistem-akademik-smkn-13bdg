@@ -21,11 +21,11 @@ class ProfileController extends Controller
 
     }
 
-    public function myProfile()
+    public function myProfile($id)
     {
-        $timeline = Timeline::all();
+        $timeline = Timeline::orderBy('created_at', 'DESC')->get();
         $currentuserid = Auth::id();
-        $postsaya = Timeline::where('id_user', $currentuserid)->get();
+        $postsaya = Timeline::where('id_user', $currentuserid)->orderBy('created_at', 'ASC')->get();  
         return view('profile-user.index', compact('timeline', 'postsaya'));
     }
 
