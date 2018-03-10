@@ -41,7 +41,7 @@
                             <label for="nip" class="col-md-4 control-label">Wali Kelas</label>
 
                             <div class="col-md-6">
-                                <select id="nip" type="text" class="form-control" name="nip">
+                                <select id="nip" type="text" class="form-control select2" data-width="100%" name="nip">
                                     @foreach($user as $x)
                                     <option value="{{ $x->id }}" @if(($in->nip) == ($x->id)) selected @endif>{{ $x->name }}</option>
                                     @endforeach

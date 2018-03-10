@@ -22,7 +22,7 @@
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
 <script>
-    swal("{!! session('message') !!}", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
+    swal("{{ session('message') }}", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
 </script>
 @endif
     <!-- Main content -->
@@ -42,11 +42,11 @@
           </div>
         </div>
         <div class="box-body">
-          <a href="#" data-toggle="modal" data-target="#add" class="btn btn-default text-aqua ajax"><i class="fa fa-add"></i> Tambah Akun</a> 
+          <a href="#" data-toggle="modal" data-target="#add" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Akun</a> 
           @foreach($account as $x)
-          <form action="{{ route('account.destroy', $x->id) }}">
-            {{ csrf_field() }}
+          <form action="/account/deletechecked/{{ $x->id }}" method="POST">
           @endforeach
+            {{ csrf_field() }}
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
@@ -54,6 +54,7 @@
               <thead>
                 <tr>
                   <td><input type="checkbox" id="select_all" name="select_all" /></td>
+                  <td>No</td>
                   <td>Nama pengguna</td>
                   <td>Username</td>
                   <td>Verifikasi sebagai</td>
@@ -63,24 +64,26 @@
               </thead>
               <tbody>
                 <tr>
+                  <?php $no = 1; ?>
                   @foreach($account as $x)
                   <td>
                     <input type="checkbox" name="checked[]" data-id="checkbox" value="{{$x->id}}" />
                   </td>
+                  <td>{{ $no }}</td>
                   <td>{{ $x->name }}</td>
                   <td>{{ $x->username }}</td>
                   <td>
                     <!-- back-end -->
                         @if($x->role == '1')
-                        <small class="label label-info">Terverifikasi sebagai siswa</small>
+                        Terverifikasi sebagai siswa
                         @elseif($x->role == '2')
-                        <small class="label label-warning">Terverifikasi sebagai Admin</small>
+                        Terverifikasi sebagai Admin
                         @elseif($x->role == '3')
-                        <small class="label label-success">Terverifikasi sebagai Guru</small>
+                        Terverifikasi sebagai Guru
                         @elseif($x->role == '4')
-                        <small class="label label-danger">Account di banned!</small>
+                        Account di banned!
                         @else
-                        <small class="label label-default">Belum terverifikasi!</small>
+                        Belum terverifikasi!
                         @endif
                     <!-- end oef back end -->
                   </td>
@@ -92,6 +95,7 @@
                     </div>
                     </td>
                 </tr>
+                <?php $no++; ?>
                   @endforeach
               </tbody>
             </table>
@@ -99,6 +103,22 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
+          <div class="row">
+            <div class="col-md-6">
+              <form action="/account/import-excel" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="file" name="imported-file" class="form-control" required>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-file-excel-o"></i> Import akun siswa via excel</button>
+              </form>              
+            </div>
+            <div class="col-md-6">
+              <form action="/account/import-excel/guru" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="file" name="imported-file-guru" class="form-control" required>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-file-excel-o"></i> Import akun guru via excel</button>
+              </form>
+            </div>
+          </div>
         </div>
         <!-- /.box-footer-->
       </div>

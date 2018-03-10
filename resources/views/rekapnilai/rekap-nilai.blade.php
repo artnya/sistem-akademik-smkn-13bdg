@@ -34,7 +34,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("{!! session('messageerror') !!}", "", "success");
+        swal("{!! session('messageerror') !!}", "", "error");
     </script>
 @endif
     <!-- Main content -->
@@ -269,13 +269,10 @@
                 <div class="col-md-6 col-md-offset-6">
                   <input type="hidden" name="id_siswa" value="{{ $siswa->id }}">
                   <input type="hidden" name="id_kelas" value="{{ $siswa->id_kelas }}">
+                  <input type="hidden" name="id_walikelas" value="{{ $siswa->kelas->nip }}">
                   <input type="hidden" name="id_jurusan" value="{{ $siswa->id_jurusan }}">
                   <input type="file" class="form-control" name="imported-file" data-toggle="tooltip" title="Hanya wali kelas yang bisa meng-import semua nilai" required />
-                  @if(Auth::user()->id == $siswa->kelas->nip)
                   <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> Import Nilai</button>
-                  @else
-                  <button type="submit" class="btn btn-info" disabled><i class="fa fa-lock"></i> Import Nilai</button>
-                  @endif
                       @if ($errors->has('nama_mapel'))
                           <span class="help-block">
                               <strong>{{ $errors->first('nama_mapel') }}</strong>

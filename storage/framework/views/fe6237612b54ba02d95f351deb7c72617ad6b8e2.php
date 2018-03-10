@@ -71,10 +71,25 @@
                             Admin SMKN 13 Bandung
                           <?php elseif(Auth()->user()->role == '3'): ?>
                             Guru SMKN 13 Bandung
+                            <?php echo e(Auth::user()->mapel['nama_mapel']); ?>
+
                           <?php endif; ?>
                         </p>
 
                         <ul class="list-group list-group-unbordered">
+                          <li class="list-group-item">
+                            <?php if(Auth::user()->role == '3'): ?>
+                            <b>NIP</b>
+                            <?php elseif(Auth::user()->role == '2'): ?>
+                            <b>USERNAME</b>
+                            <?php elseif(Auth::user()->role == '1'): ?>
+                            <b>NIS</b>
+                            <?php endif; ?>
+                            <a class="pull-right">
+                              <?php echo e(Auth::user()->username); ?>
+
+                            </a>
+                          </li>
                           <li class="list-group-item">
                             <b>
                               <?php if(Auth()->user()->role == '1'): ?>
@@ -82,7 +97,7 @@
                               <?php elseif(Auth()->user()->role == '2'): ?>
                                 -
                               <?php elseif(Auth()->user()->role == '3'): ?>
-                                Guru
+                                Wali Kelas
                               <?php endif; ?>
                             </b>
                             <a class="pull-right">
@@ -92,15 +107,11 @@
                               <?php elseif(Auth()->user()->role == '2'): ?>
                                 -
                               <?php elseif(Auth()->user()->role == '3'): ?>
-                                
-                              <?php endif; ?>
-                            </a>
-                          </li>
-                          <li class="list-group-item">
-                            <b>Username</b>
-                            <a class="pull-right">
-                              <?php echo e(Auth::user()->username); ?>
+                                <?php $__currentLoopData = $walikelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php echo e($in->tingkat_kelas); ?> <?php echo e($in->jurusan['nama_jurusan']); ?> <?php echo e($in->jumlah_kelas); ?>
 
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              <?php endif; ?>
                             </a>
                           </li>
                           <?php if(Auth::user()->role == '1'): ?>

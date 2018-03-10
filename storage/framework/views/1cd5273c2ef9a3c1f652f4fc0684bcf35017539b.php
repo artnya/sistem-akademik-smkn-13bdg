@@ -33,7 +33,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("<?php echo session('messageerror'); ?>", "", "success");
+        swal("<?php echo session('messageerror'); ?>", "", "error");
     </script>
 <?php endif; ?>
     <!-- Main content -->
@@ -278,13 +278,10 @@
                 <div class="col-md-6 col-md-offset-6">
                   <input type="hidden" name="id_siswa" value="<?php echo e($siswa->id); ?>">
                   <input type="hidden" name="id_kelas" value="<?php echo e($siswa->id_kelas); ?>">
+                  <input type="hidden" name="id_walikelas" value="<?php echo e($siswa->kelas->nip); ?>">
                   <input type="hidden" name="id_jurusan" value="<?php echo e($siswa->id_jurusan); ?>">
                   <input type="file" class="form-control" name="imported-file" data-toggle="tooltip" title="Hanya wali kelas yang bisa meng-import semua nilai" required />
-                  <?php if(Auth::user()->id == $siswa->kelas->nip): ?>
                   <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> Import Nilai</button>
-                  <?php else: ?>
-                  <button type="submit" class="btn btn-info" disabled><i class="fa fa-lock"></i> Import Nilai</button>
-                  <?php endif; ?>
                       <?php if($errors->has('nama_mapel')): ?>
                           <span class="help-block">
                               <strong><?php echo e($errors->first('nama_mapel')); ?></strong>

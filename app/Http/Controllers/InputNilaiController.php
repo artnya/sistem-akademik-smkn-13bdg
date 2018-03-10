@@ -141,8 +141,13 @@ class InputNilaiController extends Controller
           }
           if(!empty($dataArray))
           {
-             RekapNilai::insert($dataArray);
-             return back()->with('message', 'Nilai berhasil di masukan!');
+            $request = $request->get('id_walikelas');
+            if (Auth()->user()->id != $request) {
+                return back()->with('messageerror', 'Anda bukan wali kelas ini.');
+            }else{
+                 RekapNilai::insert($dataArray);
+                 return back()->with('message', 'Nilai berhasil di masukan!');   
+            }
            }
          }
        }

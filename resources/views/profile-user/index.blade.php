@@ -73,10 +73,23 @@
                             Admin SMKN 13 Bandung
                           @elseif(Auth()->user()->role == '3')
                             Guru SMKN 13 Bandung
+                            {{ Auth::user()->mapel['nama_mapel'] }}
                           @endif
                         </p>
 
                         <ul class="list-group list-group-unbordered">
+                          <li class="list-group-item">
+                            @if(Auth::user()->role == '3')
+                            <b>NIP</b>
+                            @elseif(Auth::user()->role == '2')
+                            <b>USERNAME</b>
+                            @elseif(Auth::user()->role == '1')
+                            <b>NIS</b>
+                            @endif
+                            <a class="pull-right">
+                              {{ Auth::user()->username }}
+                            </a>
+                          </li>
                           <li class="list-group-item">
                             <b>
                               @if(Auth()->user()->role == '1')
@@ -84,7 +97,7 @@
                               @elseif(Auth()->user()->role == '2')
                                 -
                               @elseif(Auth()->user()->role == '3')
-                                Guru
+                                Wali Kelas
                               @endif
                             </b>
                             <a class="pull-right">
@@ -93,14 +106,10 @@
                               @elseif(Auth()->user()->role == '2')
                                 -
                               @elseif(Auth()->user()->role == '3')
-                                {{ Auth::user()->mapel['nama_mapel'] }}
+                                @foreach($walikelas as $in)
+                                    {{ $in->tingkat_kelas  }} {{ $in->jurusan['nama_jurusan']  }} {{ $in->jumlah_kelas  }}
+                                @endforeach
                               @endif
-                            </a>
-                          </li>
-                          <li class="list-group-item">
-                            <b>Username</b>
-                            <a class="pull-right">
-                              {{ Auth::user()->username }}
                             </a>
                           </li>
                           @if(Auth::user()->role == '1')

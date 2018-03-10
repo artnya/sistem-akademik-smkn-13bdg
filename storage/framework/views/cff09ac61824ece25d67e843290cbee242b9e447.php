@@ -36,6 +36,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <link rel="stylesheet" href="/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
+  
   <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
   <!-- Pace style -->
   <link rel="stylesheet" href="/css/pace.css">
@@ -152,8 +153,9 @@ data pickrange -->
 Bootstrap WYSIHTML5 -->
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
-<!-- Slimscroll -->
+<!-- Slimscroll 
 <script src="/js/jquery.slimscroll.min.js"></script>
+-->
 <!-- FastClick -->
 <!-- PACE -->
 <script src="/js/pace.js"></script>
@@ -268,6 +270,7 @@ Bootstrap WYSIHTML5 -->
 $(document).ready(function() {
     $('#example').DataTable( {
         stateSave: true,
+        "processing": true,
         initComplete: function () {
             this.api().columns().every( function () {
                 var column = this;

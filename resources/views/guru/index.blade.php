@@ -51,6 +51,7 @@
                   <td>NIP</td>
                   <td>Nama Guru</td>
                   <td>Mata Pelajaran</td>
+                  <td>L/P</td>
                   <td>Aksi</td>
                 </tr>
               </thead>
@@ -74,6 +75,7 @@
                     {{ $x->mapelproduktif['nama_mapel'] }}
                     @endif
                   </td>
+                  <td>{{ $x->jenis_kelamin }}</td>
                   <td>
                     <a title="Detail" href="#" data-toggle="modal" data-target="#detail{{$x->id}}" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                         @if(Auth::user()->role == '2')

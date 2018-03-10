@@ -107,10 +107,10 @@
     <!-- /.content -->
   </div>
 
-<?php echo $__env->make('siswa.detail', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php echo $__env->make('siswa.edit', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php echo $__env->make('siswa.delete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php echo $__env->make('siswa.upload-pic', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->yieldContent('siswa.detail'); ?>
+<?php echo $__env->yieldContent('siswa.edit'); ?>
+<?php echo $__env->yieldContent('siswa.delete'); ?>
+<?php echo $__env->yieldContent('siswa.upload-pic'); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

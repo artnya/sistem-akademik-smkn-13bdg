@@ -22,17 +22,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//this is just for admin authorized
+//this is just for an admin authorized
 Route::get('/account', ['middleware', 'admin', function () {
 	if (Auth()->user()->role == '2') {
 		$account = User::orderBy('id','DESC')->get();
 		return view('account.index', compact('account'));
 	}else{
-		$id = Auth()->user()->id;
+		/* $id = Auth()->user()->id;
 		$user = User::find(1);
 		$userdata = User::find($id);
 		Notification::send($user, new \App\Notifications\TaskAccess($userdata));
-		return redirect()->back()->with('message', 'Anda tidak di perkenankan masuk ke area ini!');
+		*/
+		return redirect()->back()->with('messageerror', 'Anda tidak di perkenankan masuk ke area ini!');
 	}
 }])->middleware('auth');
 
@@ -96,9 +97,13 @@ Route::get('/kelas/deletechecked/{id}', 'KelasController@destroychecked')->middl
 
 //AccountController
 Route::post('/account/add', 'AccountController@store')->middleware('auth');
+//import the student's account.
+Route::post('/account/import-excel', 'AccountController@importSiswa')->middleware('auth');
+//import the teacher's account.
+Route::post('/account/import-excel/guru', 'AccountController@importGuru')->middleware('auth');
 Route::post('/account/update/{id}', 'AccountController@update')->middleware('auth');
 Route::get('/account/delete/{id}', 'AccountController@destroy')->middleware('auth');
-Route::get('/account/deletechecked/{id}', 'AccountController@destroychecked')->name('account.destroy')->middleware('auth');
+Route::post('/account/deletechecked/{id}', 'AccountController@destroychecked')->name('account.destroy')->middleware('auth');
 
 
 //mapel

@@ -73,7 +73,6 @@
                   @elseif(Auth::user()->role == '1')
                     <small>Anda login sebagai Siswa</small> 
                   @endif
-                  <small>Member sejak {{ Auth::user()->created_at->format('F Y h:i') }}</small>
                 </p>
               </li>
               <!-- Menu Body -->

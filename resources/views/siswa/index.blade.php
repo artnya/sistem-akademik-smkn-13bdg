@@ -108,8 +108,8 @@
     <!-- /.content -->
   </div>
 
-@include('siswa.detail')
-@include('siswa.edit')
-@include('siswa.delete')
-@include('siswa.upload-pic')
+@yield('siswa.detail')
+@yield('siswa.edit')
+@yield('siswa.delete')
+@yield('siswa.upload-pic')
 @endsection

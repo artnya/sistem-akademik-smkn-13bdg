@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Hash;
 use App\Notifications\AcceptedVerification;
 use Notification;
+use Excel;
 
 class AccountController extends Controller
 {
@@ -27,7 +28,7 @@ class AccountController extends Controller
     public function index()
     {
         if (Auth()->user()->role == '2') {
-            $account = User::all()->orderBy('name', 'desc')->get();
+            $account = User::orderBy('name', 'DESC')->paginate(15);
             return view('account.index', compact('account'));
         }else{
             return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini!');
@@ -61,6 +62,81 @@ class AccountController extends Controller
         // return a view 
         return redirect()->back()->with('message', 'Akun berhasil di tambahkan');
         
+    }
+
+    public function importSiswa(Request $request)
+    {
+         if($request->hasFile('imported-file'))
+      {
+                $path = $request->file('imported-file')->getRealPath();
+                $data = Excel::load($path, function($reader)
+                {
+                    $reader->select(array('username', 'password','name','id_kelas','id_jurusan', 'jenis_kelamin','role'));
+
+                })->get();
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $user[] =
+                [
+                  'id' => $row['username'],
+                  'username' => $row['username'],
+                  // max hashing an account is 150 row
+                  'password' => Hash::make($row['password']),
+                  'name' => $row['name'],
+                  'id_kelas' => $row['id_kelas'],
+                  'id_jurusan' => $row['id_jurusan'],
+                  'jenis_kelamin' => $row['jenis_kelamin'],
+                  'role' => $row['role']
+                ];
+              }
+          }
+          if(!empty($user))
+          {
+                 User::insert($user);
+                 return back()->with('message', 'Import berhasil!');   
+           }
+       }
+    }
+
+    public function importGuru(Request $request)
+    {
+         if($request->hasFile('imported-file-guru'))
+      {
+                $path = $request->file('imported-file-guru')->getRealPath();
+                $data = Excel::load($path, function($reader)
+                {
+                    $reader->select(array('id', 'nip','username', 'password','name','tmp_lahir','tgl_lahir', 'jenis_kelamin', 'role'));
+
+                })->get();
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $user[] =
+                [
+                  'id' => rand(),
+                  'nip' => $row['username'],
+                  'username' => $row['username'],
+                  // max hashing an account is 150 row
+                  'password' => Hash::make($row['password']),
+                  'name' => $row['name'],
+                  'tmp_lahir' => $row['tmp_lahir'],
+                  'tgl_lahir' => $row['tgl_lahir'],
+                  'jenis_kelamin' => $row['jenis_kelamin'],
+                  'role' => $row['role']
+
+                ];
+              }
+          }
+          if(!empty($user))
+          {
+                 User::insert($user);
+                 return back()->with('message', 'Import berhasil!');   
+           }
+       }
+
     }
 
     /**

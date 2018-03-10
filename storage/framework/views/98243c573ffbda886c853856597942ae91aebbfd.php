@@ -42,7 +42,7 @@
                             <label for="nip" class="col-md-4 control-label">Wali Kelas</label>
 
                             <div class="col-md-6">
-                                <select id="nip" type="text" class="form-control" name="nip">
+                                <select id="nip" type="text" class="form-control select2" data-width="100%" name="nip">
                                     <?php $__currentLoopData = $user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($x->id); ?>" <?php if(($in->nip) == ($x->id)): ?> selected <?php endif; ?>><?php echo e($x->name); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

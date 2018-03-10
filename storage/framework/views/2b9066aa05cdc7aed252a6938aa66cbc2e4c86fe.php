@@ -73,7 +73,6 @@
                   <?php elseif(Auth::user()->role == '1'): ?>
                     <small>Anda login sebagai Siswa</small> 
                   <?php endif; ?>
-                  <small>Member sejak <?php echo e(Auth::user()->created_at->format('F Y h:i')); ?></small>
                 </p>
               </li>
               <!-- Menu Body -->

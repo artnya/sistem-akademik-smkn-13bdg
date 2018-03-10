@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Kelas;
 use App\Timeline;
 use App\Comment;
 use Auth;
@@ -25,8 +26,9 @@ class ProfileController extends Controller
     {
         $timeline = Timeline::orderBy('created_at', 'DESC')->get();
         $currentuserid = Auth::id();
+        $walikelas = Kelas::where('nip', $currentuserid)->get();
         $postsaya = Timeline::where('id_user', $currentuserid)->orderBy('created_at', 'ASC')->get();  
-        return view('profile-user.index', compact('timeline', 'postsaya'));
+        return view('profile-user.index', compact('timeline', 'postsaya', 'walikelas'));
     }
 
     /**

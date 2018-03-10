@@ -50,6 +50,7 @@
                   <td>NIP</td>
                   <td>Nama Guru</td>
                   <td>Mata Pelajaran</td>
+                  <td>L/P</td>
                   <td>Aksi</td>
                 </tr>
               </thead>
@@ -75,6 +76,7 @@
 
                     <?php endif; ?>
                   </td>
+                  <td><?php echo e($x->jenis_kelamin); ?></td>
                   <td>
                     <a title="Detail" href="#" data-toggle="modal" data-target="#detail<?php echo e($x->id); ?>" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                         <?php if(Auth::user()->role == '2'): ?>

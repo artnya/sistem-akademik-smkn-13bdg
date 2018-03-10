@@ -20,7 +20,7 @@
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
 <script>
-    swal("<?php echo session('message'); ?>", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
+    swal("<?php echo e(session('message')); ?>", "Pastikan hanya administrator yang bisa mengendalikan sistem verifikasi ini", "success");
 </script>
 <?php endif; ?>
     <!-- Main content -->
@@ -40,12 +40,12 @@
           </div>
         </div>
         <div class="box-body">
-          <a href="#" data-toggle="modal" data-target="#add" class="btn btn-default text-aqua ajax"><i class="fa fa-add"></i> Tambah Akun</a> 
+          <a href="#" data-toggle="modal" data-target="#add" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Akun</a> 
           <?php $__currentLoopData = $account; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <form action="<?php echo e(route('account.destroy', $x->id)); ?>">
+          <form action="/account/deletechecked/<?php echo e($x->id); ?>" method="POST">
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php echo e(csrf_field()); ?>
 
-          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
@@ -53,6 +53,7 @@
               <thead>
                 <tr>
                   <td><input type="checkbox" id="select_all" name="select_all" /></td>
+                  <td>No</td>
                   <td>Nama pengguna</td>
                   <td>Username</td>
                   <td>Verifikasi sebagai</td>
@@ -62,24 +63,26 @@
               </thead>
               <tbody>
                 <tr>
+                  <?php $no = 1; ?>
                   <?php $__currentLoopData = $account; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <td>
                     <input type="checkbox" name="checked[]" data-id="checkbox" value="<?php echo e($x->id); ?>" />
                   </td>
+                  <td><?php echo e($no); ?></td>
                   <td><?php echo e($x->name); ?></td>
                   <td><?php echo e($x->username); ?></td>
                   <td>
                     <!-- back-end -->
                         <?php if($x->role == '1'): ?>
-                        <small class="label label-info">Terverifikasi sebagai siswa</small>
+                        Terverifikasi sebagai siswa
                         <?php elseif($x->role == '2'): ?>
-                        <small class="label label-warning">Terverifikasi sebagai Admin</small>
+                        Terverifikasi sebagai Admin
                         <?php elseif($x->role == '3'): ?>
-                        <small class="label label-success">Terverifikasi sebagai Guru</small>
+                        Terverifikasi sebagai Guru
                         <?php elseif($x->role == '4'): ?>
-                        <small class="label label-danger">Account di banned!</small>
+                        Account di banned!
                         <?php else: ?>
-                        <small class="label label-default">Belum terverifikasi!</small>
+                        Belum terverifikasi!
                         <?php endif; ?>
                     <!-- end oef back end -->
                   </td>
@@ -91,6 +94,7 @@
                     </div>
                     </td>
                 </tr>
+                <?php $no++; ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
             </table>
@@ -98,6 +102,24 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
+          <div class="row">
+            <div class="col-md-6">
+              <form action="/account/import-excel" method="POST" enctype="multipart/form-data">
+                <?php echo e(csrf_field()); ?>
+
+                <input type="file" name="imported-file" class="form-control" required>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-file-excel-o"></i> Import akun siswa via excel</button>
+              </form>              
+            </div>
+            <div class="col-md-6">
+              <form action="/account/import-excel/guru" method="POST" enctype="multipart/form-data">
+                <?php echo e(csrf_field()); ?>
+
+                <input type="file" name="imported-file-guru" class="form-control" required>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-file-excel-o"></i> Import akun guru via excel</button>
+              </form>
+            </div>
+          </div>
         </div>
         <!-- /.box-footer-->
       </div>
