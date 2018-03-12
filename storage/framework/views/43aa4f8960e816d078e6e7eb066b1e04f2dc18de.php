@@ -32,6 +32,38 @@
 <?php endif; ?>
     <!-- Main content -->
     <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cari Siswa Per-Kelas</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>  
+        <div class="box-body">
+          <form action="/siswa" method="GET" class="form-horizontal">
+            <div class="row">
+              <div class="col-md-6">
+                <select name="search" class="form-control select2" data-width="100%" id="">
+                  <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <option value="<?php echo e($in->id); ?>" <?php if($in->id == $cari): ?> selected <?php else: ?> <?php endif; ?>><?php echo e($in->tingkat_kelas); ?> <?php echo e($in->jurusan['nama_jurusan']); ?> <?php echo e($in->jumlah_kelas); ?></option>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+              </div>
+              <div class="col-sm-4" style="">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>
+                <?php if(count($cari) > 0): ?>
+                <a href="/siswa" class="btn btn-danger"><i class="fa fa-back"></i> Kembali</a>
+                <?php endif; ?>
+              </div>
+            </div>
+          </form>
+        </div>      
+      </div>
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -52,7 +84,11 @@
           <div>
               <input type="submit" id="actions" value="Hapus" hidden>
           </div>
-            <table id="example" class="table table-stripped table-responsive">
+          <div class="col-md-12">
+            <?php echo e($siswa->appends(Request::only('search'))->links()); ?>
+
+          </div>
+            <table <?php if(count($cari) > 0 ): ?> id="example" <?php endif; ?> class="table table-hover table-striped table-bordered table-responsive">
               <thead>
                 <tr>
                   <th><input type="checkbox" name="select_all" id="select_all"></th>
@@ -64,6 +100,7 @@
               </thead>
               <tbody>
                 <tr>
+                  <?php if(count($siswa) > 0): ?>
                   <?php $__currentLoopData = $siswa; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <td>
                         <input type="checkbox" name="checked[]" id="option-1">
@@ -81,6 +118,11 @@
                   </td>
                 </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php else: ?>
+                  <tr>
+                    <td colspan="8"><h2 class="text-center text-muted">Ooops! Data yang anda cari tidak ditemukan.</h2></td>
+                  </tr>
+                  <?php endif; ?>
               </tbody>
               <tfoot>
                 <tr>
@@ -98,6 +140,10 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
+          <div class="col-md-offset-5">
+            <?php echo e($siswa->appends(Request::only('search'))->links()); ?>
+
+          </div>
         </div>
         <!-- /.box-footer-->
       </div>
@@ -107,10 +153,10 @@
     <!-- /.content -->
   </div>
 
-<?php echo $__env->yieldContent('siswa.detail'); ?>
-<?php echo $__env->yieldContent('siswa.edit'); ?>
-<?php echo $__env->yieldContent('siswa.delete'); ?>
-<?php echo $__env->yieldContent('siswa.upload-pic'); ?>
+<?php echo $__env->make('siswa.detail', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('siswa.edit', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('siswa.delete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('siswa.upload-pic', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

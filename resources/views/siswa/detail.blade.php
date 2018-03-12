@@ -1,4 +1,3 @@
-@section(siswa.detail)
 <!-- Modal SHOW -->
 @foreach ($siswa as $in)    
     <div class="modal fade" id="detail{{$in->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -69,5 +68,4 @@
       </div>
     </div>
 @endforeach
-@stop
 <!-- end modal SHOW -->

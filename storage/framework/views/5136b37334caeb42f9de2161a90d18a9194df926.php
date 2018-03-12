@@ -68,5 +68,4 @@
       </div>
     </div>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
 <!-- end modal SHOW -->

@@ -79,6 +79,7 @@ Route::post('/siswa/uploadpic/{id}', 'SiswaController@uploadpic')->middleware('a
 Route::post('/siswa/resetpic/{id}', 'SiswaController@resetpic')->middleware('auth');
 Route::get('/siswa/delete/{id}', 'SiswaController@destroy')->middleware('auth');
 Route::get('/siswa/deletechecked/{id}', 'SiswaController@destroychecked')->middleware('auth');
+Route::get('/siswa/per-kelas', 'SiswaController@cariSiswa')->name('cari.siswa.per-kelas')->middleware('auth');
 
 
 //rekap nilai

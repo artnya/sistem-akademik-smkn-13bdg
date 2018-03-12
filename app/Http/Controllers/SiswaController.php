@@ -15,17 +15,31 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = User::where('role', '1')->orderBy('name','ASC')->get();
-        $jurusan = Jurusan::all();
-        $kelas = Kelas::all();
-        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
-             return view('siswa.index', compact('siswa', 'jurusan', 'kelas'));
+        if($request->get('search') != NULL) {
+            $cari = $request->get('search');  
+            $jurusan = Jurusan::all();
+            $kelas = Kelas::orderBy('jumlah_kelas', 'ASC')->get();
+            $siswa = User::orderBy('name', 'ASC')->where('role', '1')->where('id_kelas','LIKE','%'. $cari .'%')->paginate(90);
+            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
+                 return view('siswa.index', compact('siswa', 'jurusan', 'kelas', 'cari'));
+            }else{
+                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            }
         }else{
-            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            $cari = null;
+            $siswa = User::where('role', '1')->orderBy('name','ASC')->paginate(15);   
+            $jurusan = Jurusan::all();
+            $kelas = Kelas::orderBy('tingkat_kelas', 'ASC')->get();
+            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
+                 return view('siswa.index', compact('siswa', 'jurusan', 'kelas', 'cari'));
+            }else{
+                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            }
         }
     }
+
 
     /**
      * Show the form for creating a new resource.

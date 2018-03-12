@@ -33,6 +33,38 @@
 @endif
     <!-- Main content -->
     <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cari Siswa Per-Kelas</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>  
+        <div class="box-body">
+          <form action="/siswa" method="GET" class="form-horizontal">
+            <div class="row">
+              <div class="col-md-6">
+                <select name="search" class="form-control select2" data-width="100%" id="">
+                  @foreach($kelas as $in)
+                  <option value="{{ $in->id }}" @if($in->id == $cari) selected @else @endif>{{ $in->tingkat_kelas }} {{ $in->jurusan['nama_jurusan'] }} {{ $in->jumlah_kelas }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-sm-4" style="">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>
+                @if(count($cari) > 0)
+                <a href="/siswa" class="btn btn-danger"><i class="fa fa-back"></i> Kembali</a>
+                @endif
+              </div>
+            </div>
+          </form>
+        </div>      
+      </div>
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -53,7 +85,10 @@
           <div>
               <input type="submit" id="actions" value="Hapus" hidden>
           </div>
-            <table id="example" class="table table-stripped table-responsive">
+          <div class="col-md-12">
+            {{ $siswa->appends(Request::only('search'))->links() }}
+          </div>
+            <table @if(count($cari) > 0 ) id="example" @endif class="table table-hover table-striped table-bordered table-responsive">
               <thead>
                 <tr>
                   <th><input type="checkbox" name="select_all" id="select_all"></th>
@@ -65,6 +100,7 @@
               </thead>
               <tbody>
                 <tr>
+                  @if(count($siswa) > 0)
                   @foreach($siswa as $x)
                   <td>
                         <input type="checkbox" name="checked[]" id="option-1">
@@ -82,6 +118,11 @@
                   </td>
                 </tr>
                   @endforeach
+                  @else
+                  <tr>
+                    <td colspan="8"><h2 class="text-center text-muted">Ooops! Data yang anda cari tidak ditemukan.</h2></td>
+                  </tr>
+                  @endif
               </tbody>
               <tfoot>
                 <tr>
@@ -99,6 +140,9 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
+          <div class="col-md-offset-5">
+            {{ $siswa->appends(Request::only('search'))->links() }}
+          </div>
         </div>
         <!-- /.box-footer-->
       </div>
@@ -108,8 +152,8 @@
     <!-- /.content -->
   </div>
 
-@yield('siswa.detail')
-@yield('siswa.edit')
-@yield('siswa.delete')
-@yield('siswa.upload-pic')
+@include('siswa.detail')
+@include('siswa.edit')
+@include('siswa.delete')
+@include('siswa.upload-pic')
 @endsection

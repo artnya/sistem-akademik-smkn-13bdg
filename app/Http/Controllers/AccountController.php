@@ -83,7 +83,7 @@ class AccountController extends Controller
                   'id' => $row['username'],
                   'username' => $row['username'],
                   // max hashing an account is 150 row
-                  'password' => Hash::make($row['password']),
+                  'password' => bcrypt($row['password']),
                   'name' => $row['name'],
                   'id_kelas' => $row['id_kelas'],
                   'id_jurusan' => $row['id_jurusan'],
