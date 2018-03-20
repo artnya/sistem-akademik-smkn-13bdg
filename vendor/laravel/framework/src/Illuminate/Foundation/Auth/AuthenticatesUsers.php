@@ -114,7 +114,8 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        $request->session()->flash('notification', 'Selamat datang '. $user->name .'!');
+        return redirect()->intended($this->redirectPath());
     }
 
     /**

@@ -18,7 +18,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("{!! session('message') !!}", "", "success");
+        swal("{{ session('message') }}", "", "success");
     </script>
 @endif
 
@@ -28,7 +28,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("{!! session('messageerror') !!}", "", "success");
+        swal("{!! session('messageerror') !!}", "Error!", "error");
     </script>
 @endif
     <!-- Main content -->
@@ -79,19 +79,23 @@
           </div>
         </div>
         <div class="box-body">
+          @if(Auth::user()->role == '2')
           @foreach($siswa as $in)
           <form action="/siswa/deletechecked/{{ $in->id }}" method="get">
           @endforeach
           <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
+              <input type="submit" id="actions" value="Hapus" onclick="confirm('Anda Yakin?', 'cancel')" hidden>
           </div>
+          @endif
           <div class="col-md-12">
             {{ $siswa->appends(Request::only('search'))->links() }}
           </div>
             <table @if(count($cari) > 0 ) id="example" @endif class="table table-hover table-striped table-bordered table-responsive">
               <thead>
                 <tr>
+                  @if(Auth::user()->role == '2')
                   <th><input type="checkbox" name="select_all" id="select_all"></th>
+                  @endif
                   <th>NIS</th>
                   <th>Nama Siswa</th>
                   <th>Kelas</th>
@@ -102,9 +106,11 @@
                 <tr>
                   @if(count($siswa) > 0)
                   @foreach($siswa as $x)
+                    @if(Auth::user()->role == '2')
                   <td>
                         <input type="checkbox" name="checked[]" id="option-1">
                   </td>
+                    @endif
                   <td>{{ $x->username }}</td>
                   <td>{{ $x->name }}</td>
                   <td>{{ $x->kelas['tingkat_kelas'] }} {{ $x->jurusan['nama_jurusan'] }} {{ $x->kelas['jumlah_kelas'] }}</td>
@@ -112,8 +118,10 @@
                     <a href="#" data-toggle="modal" data-target="#detail{{$x->id}}" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                     @if(Auth::user()->role == '2') 
                     <a data-toggle="modal" data-target="#edit{{$x->id}}" class="btn text-yellow"><i class="fa fa-pencil"></i></a> 
-                    <a href="/siswa/uploadpic/#{{$x->id}}" data-toggle="modal" data-target="#edit-photo{{$x->id}}" class="btn text-yellow"><i class="fa fa-upload"></i></a>
+                    <a href="/siswa/uploadpic/#{{$x->id}}" data-toggle="modal" data-target="#edit-photo{{$x->id}}" class="btn text-green"><i class="fa fa-upload"></i></a>
+                    <!-- vacum action 
                     <a href="#" data-toggle="modal" class="btn text-red" data-target="#delete{{$x->id}}"><i class="fa fa-trash"></i></a>
+                    -->
                     @endif
                   </td>
                 </tr>
@@ -140,7 +148,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <div class="col-md-offset-5">
+          <div class="col-md-offset-6">
             {{ $siswa->appends(Request::only('search'))->links() }}
           </div>
         </div>

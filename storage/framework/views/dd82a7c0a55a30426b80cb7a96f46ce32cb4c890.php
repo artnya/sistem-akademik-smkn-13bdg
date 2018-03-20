@@ -36,11 +36,69 @@
 <?php endif; ?>
     <!-- Main content -->
     <section class="content">
-
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cari Siswa Per-kelas</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                  <i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                  <i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <form action="rekapnilai" class="form-horizontal" method="get">
+                <div class="row">
+                  <div class="col-md-6">
+                    <select name="search" id="" class="form-control select2">
+                      <?php $__currentLoopData = $kelas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($in->id); ?>" <?php if($in->id == $cari): ?> selected <?php endif; ?>><?php echo e($in->tingkat_kelas); ?> <?php echo e($in->jurusan['nama_jurusan']); ?> <?php echo e($in->jumlah_kelas); ?></option>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Cari</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cari Nama/NIS Siswa</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                  <i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                  <i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <form action="" class="form-horizontal" method="get">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="text" name="search-siswa" class="form-control" <?php if($cari): ?> value="<?php echo e($cari); ?>"  <?php else: ?> placeholder="Cari nama/nis..." <?php endif; ?> required>
+                  </div>
+                  <div class="col-md-6">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Cari</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Default box -->
+      <?php if(count($cari) > 0): ?>
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Cari Siswa yang akan di input / rekap nilai</h3>
+          <h3 class="box-title">Hasil pencarian siswa yang akan di input / rekap nilai</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
@@ -68,6 +126,7 @@
               </thead>
               <tbody>
                 <tr>
+                  <?php if(count($cari) > 0): ?>
                   <?php $__currentLoopData = $siswa; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <td>
                       <input type="checkbox" name="checked[]" id="option-1">
@@ -83,6 +142,9 @@
                     </td>
                 </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php else: ?>
+                  <td colspan="8"><p class="text-muted text-center">Data tidak di temukan!</p></td>
+                  <?php endif; ?>
               </tbody>
               <tfoot>
                 <tr>
@@ -101,6 +163,7 @@
         </div>
         <!-- /.box-footer-->
       </div>
+      <?php endif; ?>
       <!-- /.box -->
     </section>
     <!-- /.content -->

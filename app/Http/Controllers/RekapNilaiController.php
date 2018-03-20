@@ -24,13 +24,38 @@ class RekapNilaiController extends Controller
         $this->middleware('admin', ['except' => ['home']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = User::where('role', '1')->orderby('name', 'ASC')->get();
-        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
-            return view('rekapnilai.index', compact('siswa'));
+        if($request->get('search')) {
+            $cari = $request->get('search');  
+            $kelas = Kelas::orderBy('tingkat_kelas', 'ASC')->get();
+            $jurusan = Jurusan::all();
+            $siswa = User::orderBy('name', 'ASC')->where('role', '1')->where('id_kelas','LIKE','%'. $cari .'%')->paginate(90);
+            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
+                 return view('rekapnilai.index', compact('siswa', 'kelas', 'jurusan', 'cari'));
+            }else{
+                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            }
+        }elseif ($request->get('search-siswa')) {
+            $cari = $request->get('search-siswa');  
+            $kelas = Kelas::orderBy('tingkat_kelas', 'ASC')->get();
+            $jurusan = Jurusan::all();
+            $siswa = User::orderBy('name', 'ASC')->where('role', '1')->where('name', 'LIKE', '%'. $cari .'%')->orWhere('username', 'LIKE', '%'. $cari .'%')->paginate(90);
+            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
+                 return view('rekapnilai.index', compact('siswa', 'kelas', 'jurusan', 'cari'));
+            }else{
+                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            }
         }else{
-            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini!');
+            $cari = null;   
+            $kelas = Kelas::orderBy('tingkat_kelas', 'ASC')->get();
+            $jurusan = Jurusan::all();
+            $siswa = User::where('role', '1')->orderBy('name','ASC')->paginate(15);
+            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
+                 return view('rekapnilai.index', compact('siswa', 'kelas', 'jurusan', 'cari'));
+            }else{
+                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            }
         }
     }
 

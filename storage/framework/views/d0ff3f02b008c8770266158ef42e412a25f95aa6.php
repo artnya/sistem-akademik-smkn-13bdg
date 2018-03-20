@@ -18,7 +18,7 @@
     /* CSS used here will be applied after bootstrap.css */
 
       body::before { 
-       background: url('<?php echo e(asset("/img/header.jpg")); ?>') no-repeat center center fixed; 
+       background: url('<?php echo e(asset("/img/header(cadangan1).jpg")); ?>') no-repeat center center fixed; 
         content: '';
         z-index: -1;
         width: 100%;
@@ -35,7 +35,7 @@
         filter: blur(1px);
       }
 
-      .panel-default {
+      .panel-primary {
        opacity: 0.9;
        margin-top:100px;
       }
@@ -49,115 +49,9 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <strong class="">REGISTER SISWA</strong>
-          </div>
-            <div class="panel-body">
-              <p>Isi form di bawah jika anda ingin me-register</p>
-              <form class="form-horizontal" method="POST" action="<?php echo e(route('register')); ?>">
-                        <?php echo e(csrf_field()); ?>
-
-
-                        <div class="form-group<?php echo e($errors->has('nis') ? ' has-error' : ''); ?>">
-                            <label for="name" class="col-md-4 control-label">NIS</label>
-
-                            <div class="col-md-6">
-                                <input id="nis" type="text" class="form-control" name="id" value="<?php echo e(old('nis')); ?>" required autofocus>
-
-                                <?php if($errors->has('nis')): ?>
-                                    <span class="help-block">
-                                        <strong><?php echo e($errors->first('nis')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="<?php echo e(old('name')); ?>" required autofocus>
-
-                                <?php if($errors->has('name')): ?>
-                                    <span class="help-block">
-                                        <strong><?php echo e($errors->first('name')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="<?php echo e(old('email')); ?>" required>
-
-                                <?php if($errors->has('email')): ?>
-                                    <span class="help-block">
-                                        <strong><?php echo e($errors->first('email')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group<?php echo e($errors->has('username') ? ' has-error' : ''); ?>">
-                            <label for="username" class="col-md-4 control-label">Username</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="<?php echo e(old('username')); ?>" required>
-
-                                <?php if($errors->has('username')): ?>
-                                    <span class="help-block">
-                                        <strong><?php echo e($errors->first('username')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group<?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                <?php if($errors->has('password')): ?>
-                                    <span class="help-block">
-                                        <strong><?php echo e($errors->first('password')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                              <input type="checkbox" required> Saya paham dan akan mengikuti aturan tertentu
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-            </div>
-        </div>
-      </div>
       <!-- Login area -->
-        <div class="col-md-4 col-md-offset-1">
-            <div class="panel panel-default">
+        <div class="col-md-4 col-md-offset-7">
+            <div class="panel panel-primary">
                 <div class="panel-heading"> <strong class="">SISTEM INFORMASI AKADEMIK SMKN 13 BANDUNG</strong>
                 </div>
                 <div class="panel-body">
@@ -205,9 +99,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="panel-footer">Tidak terdaftar? <a href="/register" class="">Register</a>
-                </div>
-                <div class="panel-footer"> <a href="<?php echo e(route('password.request')); ?>" class="">Lupa Password?</a>
+                <div class="panel-footer">Tidak terdaftar? <a href="/register" class="">Register</a><a href="<?php echo e(route('password.request')); ?>" class="">Lupa Password?</a>
                 </div>
             </div>
         </div>

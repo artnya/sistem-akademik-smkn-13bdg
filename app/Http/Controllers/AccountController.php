@@ -56,7 +56,7 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         // save the user to the database
-        $credentials = Input::only('email', 'password','name', 'username', 'role');
+        $credentials = Input::only('id', 'email', 'password','name', 'username', 'role');
         $credentials['password'] = Hash::make($credentials['password']);
         $user = User::create($credentials);
         // return a view 

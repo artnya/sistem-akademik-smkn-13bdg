@@ -60,6 +60,9 @@ Bootstrap WYSIHTML5 -->
 <!-- FastClick -->
 <!-- PACE -->
 <script src="/js/pace.js"></script>
+<!-- bootstrap toast -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 <!-- checked at least for button showing -->
 <script>
   $( document ).ready(function() {

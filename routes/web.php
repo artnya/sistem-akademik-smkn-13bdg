@@ -5,6 +5,7 @@ use App\User;
 use App\AccountController;
 use Carbon\Carbon;
 use Nexmo\Laravel\Facade\Nexmo;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,19 +24,26 @@ Route::get('/', function () {
 });
 
 //this is just for an admin authorized
-Route::get('/account', ['middleware', 'admin', function () {
-	if (Auth()->user()->role == '2') {
-		$account = User::orderBy('id','DESC')->get();
-		return view('account.index', compact('account'));
-	}else{
-		/* $id = Auth()->user()->id;
-		$user = User::find(1);
-		$userdata = User::find($id);
-		Notification::send($user, new \App\Notifications\TaskAccess($userdata));
-		*/
-		return redirect()->back()->with('messageerror', 'Anda tidak di perkenankan masuk ke area ini!');
-	}
-}])->middleware('auth');
+Route::get('/account', ['middleware', 'admin', function (Request $request) {
+	
+        if($request->get('search') != NULL) {
+            $cari = $request->get('search');
+            $account = User::orderBy('name', 'ASC')->where('name','LIKE','%'. $cari .'%')->orWhere('username','LIKE','%'. $cari .'%')->orWhere('email','LIKE','%'. $cari .'%')->paginate(90);
+            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
+                 return view('account.index', compact('account', 'cari'));
+            }else{
+                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            }
+        }else{
+            $cari = null;
+            $account = User::orderBy('name','ASC')->paginate(15);
+            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
+                 return view('account.index', compact('account', 'cari'));
+            }else{
+                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
+            }
+        }
+}])->middleware('auth')->middleware('admin');
 
 //detail notification
 Route::get('/admin/notification/{id}', function () {
@@ -147,6 +155,7 @@ Route::post('/home/comments/store', 'CommentController@store')->name('comment.st
 Route::post('/home/comments/store/{id}', 'CommentController@store')->name('comment.store')->middleware('auth');
 Route::get('/home/discuss-group/share/{id}', 'DiscussGroupController@share')->name('home.comment.share')->middleware('auth');
 Route::post('/home/timeline/share/add', 'TimelineCDiscussGroupControllerontroller@shareStore')->middleware('auth');
+Route::get('/home/discuss-group/post/edit/{id}', 'DiscussGroupController@editPost')->middleware('auth');
 
 ///timeline
 Route::resource('home/timeline', 'TimelineController')->middleware('auth');

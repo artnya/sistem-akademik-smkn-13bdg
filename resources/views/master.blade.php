@@ -46,6 +46,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <!-- select 2 -->
   <link rel="stylesheet" href="/css/select2.min.css">
 
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -75,8 +76,19 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <![endif]-->
 
 </head>
-<body class="hold-transition skin-blue fixed sidebar-mini">
+<body class="hold-transition skin-red fixed sidebar-mini">
 <div class="wrapper">
+
+  @if(session()->has('notification'))
+
+      <!-- sweet alert -->
+    <link rel="stylesheet" href="/css/sweetalert.css">
+    <!-- sweet alert -->
+    <script src="/js/sweetalert.js"></script>
+    <script>
+        swal("{!! session('notification') !!}");
+    </script>
+  @endif
 
 	@include('layouts.header')
 

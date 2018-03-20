@@ -38,7 +38,7 @@
               <!-- /.user-block -->
               <div class="box-tools">
                 <?php if($post->id_user == Auth::user()->id ): ?>
-                <a href="/home/timeline/post/edit/<?php echo e($post->id); ?>" class="btn btn-box-tool" data-widget="remove" title="Edit post"><i class="fa fa-pencil"></i></a>
+                <a href="/home/discuss-group/post/edit/<?php echo e($post->id); ?>" class="btn btn-box-tool" title="Edit post"><i class="fa fa-pencil"></i></a>
                 <?php endif; ?>
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -66,7 +66,6 @@
             <div class="box-footer">
               <a href="/home/discuss-group/comment/post/<?php echo e($post->id); ?>" class="btn btn-primary btn-xs"><i class="fa fa-comment"></i> Lihat atau komentar</a>
               <a href="/home/discuss-group/share/<?php echo e($post->id); ?>" class="btn btn-info btn-xs"><i class="fa fa-share"></i> Share</a>
-              <span class="pull-right text-muted"><i class="fa fa-comment"></i><?php echo e($comments); ?> Last comment by </span>
             </div>
             <!-- /.box-footer -->
           </div>

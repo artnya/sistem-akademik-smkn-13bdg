@@ -12,6 +12,20 @@
                         <?php echo e(csrf_field()); ?>
 
 
+                        <div class="form-group<?php echo e($errors->has('id') ? ' has-error' : ''); ?>">
+                            <label for="id" class="col-md-4 control-label">ID</label>
+
+                            <div class="col-md-6">
+                                <input id="id" type="text" class="form-control" name="id" value="<?php echo e(rand()); ?>" required autofocus disabled>
+
+                                <?php if($errors->has('id')): ?>
+                                    <span class="help-block">
+                                        <strong><?php echo e($errors->first('id')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
                         <div class="form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
                             <label for="name" class="col-md-4 control-label">Name</label>
 

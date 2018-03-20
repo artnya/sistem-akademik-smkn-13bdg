@@ -20,9 +20,6 @@ class DiscussGroupController extends Controller
     {
         if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
             $posts = Timeline::withCount('comments')->orderBy('created_at', 'DESC')->paginate(5);
-            foreach ($posts as $post) {
-                $comments = $post->comments->count();
-            }
             return view('timeline.index', compact('posts', 'comments'));
         }else{
             return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
@@ -36,7 +33,13 @@ class DiscussGroupController extends Controller
      */
     public function create()
     {
-        //
+
+    }
+
+    public function editPost($id)
+    {
+        $timeline = Timeline::find($id);
+        return view('timeline.edit', compact('timeline'));
     }
 
     /**
@@ -58,7 +61,7 @@ class DiscussGroupController extends Controller
         $storage->post = $request->post;
         $storage->save();
 
-        return redirect('/home/timeline')->with('message', 'Data berhasil di tambahan');
+        return redirect()->back();
     }
 
     /**
@@ -124,17 +127,15 @@ class DiscussGroupController extends Controller
     {
         $this->validate($request, [
 
-            'id_user' => 'required',
             'post' => 'required',
 
         ]);
 
         $storage = Timeline::find($id);
-        $storage->id_user = $request->id_user;
         $storage->post = $request->post;
         $storage->save();
 
-        return redirect('timeline')->with('message', 'Data berhasil di tambahan');
+        return redirect('home/discuss-group')->with('message', 'Posting berhasil di edit!');
     }
 
     /**

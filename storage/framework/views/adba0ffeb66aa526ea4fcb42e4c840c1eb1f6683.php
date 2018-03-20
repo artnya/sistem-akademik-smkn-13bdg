@@ -10,15 +10,15 @@
                         <?php echo e(csrf_field()); ?>
 
 
-                        <div class="form-group<?php echo e($errors->has('Nis') ? ' has-error' : ''); ?>">
-                            <label for="Nis" class="col-md-4 control-label">NIS</label>
+                        <div class="form-group<?php echo e($errors->has('id') ? ' has-error' : ''); ?>">
+                            <label for="id" class="col-md-4 control-label">NIS</label>
 
                             <div class="col-md-6">
-                                <input id="Nis" type="text" class="form-control" name="Nis" value="<?php echo e(old('Nis')); ?>" required autofocus>
+                                <input id="id" type="text" class="form-control" name="id" value="<?php echo e(old('id')); ?>" required autofocus>
 
-                                <?php if($errors->has('Nis')): ?>
+                                <?php if($errors->has('id')): ?>
                                     <span class="help-block">
-                                        <strong><?php echo e($errors->first('Nis')); ?></strong>
+                                        <strong><?php echo e($errors->first('id')); ?></strong>
                                     </span>
                                 <?php endif; ?>
                             </div>

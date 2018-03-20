@@ -45,7 +45,7 @@ class ProfileController extends Controller
     {
         $this->validate($request,
             [
-                'photo'         => 'required|image|mimes:jpeg,jpg,png|max:5000',                    ]
+                'photo'         => 'required|image|mimes:jpeg,jpg,png|max:10000',                    ]
             );
 
 

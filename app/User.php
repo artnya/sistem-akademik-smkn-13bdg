@@ -20,7 +20,7 @@ class User extends Authenticatable
         return $this->phone;
     }
     
-    protected $fillable = [
+    protected $fillable = ['id',
         'name', 'email', 'password', 'role', 'id_kelas', 'id_jurusan', 'username', 'tmp_lahir', 'tgl_lahir', 'agama', 'goldar', 'alamat', 'nama_ortu', 'pekerjaan_ortu', 'jenis_kelamin', 'nip', 'photo' , 'id_mapel',  
     ];
 

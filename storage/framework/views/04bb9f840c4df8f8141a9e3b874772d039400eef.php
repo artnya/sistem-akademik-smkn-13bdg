@@ -25,6 +25,37 @@
 <?php endif; ?>
     <!-- Main content -->
     <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cari Akun</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>  
+        <div class="box-body">
+          <form action="/account" method="GET" class="form-horizontal">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="search" <?php if($cari == true): ?> placeholder="<?php echo e($cari); ?>" <?php else: ?> placeholder="Cari Akun..." <?php endif; ?>>
+              </div>
+              <div class="col-sm-4" style="">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>
+                  <?php if(count($cari) > 0): ?>
+                  <a href="/account" class="btn btn-danger"><i class="fa fa-back"></i> Kembali</a>
+                  <?php elseif(count($account) == 0): ?>
+                  <a href="/account" class="btn btn-danger"><i class="fa fa-back"></i> Kembali</a>
+                  <?php endif; ?>
+              </div>
+            </div>
+          </form>
+        </div>      
+      </div>
+      <!-- Default box -->
 
       <!-- Default box -->
       <div class="box">
@@ -49,7 +80,11 @@
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
             </div>
-            <table id="example" class="table table-bordered table-hover table-responsive">
+            <div class="col-sm-6">
+              <?php echo e($account->links()); ?>
+
+            </div>
+            <table <?php if(count($cari) > 0): ?> id="example" <?php endif; ?> class="table table-bordered table-hover table-responsive">
               <thead>
                 <tr>
                   <td><input type="checkbox" id="select_all" name="select_all" /></td>
@@ -63,6 +98,7 @@
               </thead>
               <tbody>
                 <tr>
+                  <?php if(count($account) > 0): ?>
                   <?php $no = 1; ?>
                   <?php $__currentLoopData = $account; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <td>
@@ -96,6 +132,9 @@
                 </tr>
                 <?php $no++; ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php else: ?>
+                  <td colspan="10">Ooops! Akun tidak di temukan, silahkan periksa kembali.</td>
+                  <?php endif; ?>
               </tbody>
             </table>
           </form>

@@ -200,19 +200,21 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    /* Not yet for published
     public function destroy($id)
     {
         $siswa = User::find($id);
         $siswa->delete();
         return redirect('siswa')->with('message', 'Data berhasil di hapus');
     }
+    */
 
     public function destroychecked(Request $request, $id)
     {
          $checked = $request->input('checked',[]);
     
         if ($checked == null) {
-          return redirect()->back()->with('message', 'Anda belum menceklis beberapa data untuk di hapus!');        
+          return redirect()->back()->with('messageerror', 'Anda belum menceklis beberapa data untuk di hapus!');        
         }else{
           $siswa = User::whereIn("id",$checked);
           $siswa->delete();

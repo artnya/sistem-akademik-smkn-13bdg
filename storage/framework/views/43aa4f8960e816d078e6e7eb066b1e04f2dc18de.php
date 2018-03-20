@@ -17,7 +17,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("<?php echo session('message'); ?>", "", "success");
+        swal("<?php echo e(session('message')); ?>", "", "success");
     </script>
 <?php endif; ?>
 
@@ -27,7 +27,7 @@
     <!-- sweet alert -->
     <script src="/js/sweetalert.js"></script>
     <script>
-        swal("<?php echo session('messageerror'); ?>", "", "success");
+        swal("<?php echo session('messageerror'); ?>", "Error!", "error");
     </script>
 <?php endif; ?>
     <!-- Main content -->
@@ -78,12 +78,14 @@
           </div>
         </div>
         <div class="box-body">
+          <?php if(Auth::user()->role == '2'): ?>
           <?php $__currentLoopData = $siswa; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <form action="/siswa/deletechecked/<?php echo e($in->id); ?>" method="get">
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           <div>
-              <input type="submit" id="actions" value="Hapus" hidden>
+              <input type="submit" id="actions" value="Hapus" onclick="confirm('Anda Yakin?', 'cancel')" hidden>
           </div>
+          <?php endif; ?>
           <div class="col-md-12">
             <?php echo e($siswa->appends(Request::only('search'))->links()); ?>
 
@@ -91,7 +93,9 @@
             <table <?php if(count($cari) > 0 ): ?> id="example" <?php endif; ?> class="table table-hover table-striped table-bordered table-responsive">
               <thead>
                 <tr>
+                  <?php if(Auth::user()->role == '2'): ?>
                   <th><input type="checkbox" name="select_all" id="select_all"></th>
+                  <?php endif; ?>
                   <th>NIS</th>
                   <th>Nama Siswa</th>
                   <th>Kelas</th>
@@ -102,9 +106,11 @@
                 <tr>
                   <?php if(count($siswa) > 0): ?>
                   <?php $__currentLoopData = $siswa; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if(Auth::user()->role == '2'): ?>
                   <td>
                         <input type="checkbox" name="checked[]" id="option-1">
                   </td>
+                    <?php endif; ?>
                   <td><?php echo e($x->username); ?></td>
                   <td><?php echo e($x->name); ?></td>
                   <td><?php echo e($x->kelas['tingkat_kelas']); ?> <?php echo e($x->jurusan['nama_jurusan']); ?> <?php echo e($x->kelas['jumlah_kelas']); ?></td>
@@ -112,8 +118,10 @@
                     <a href="#" data-toggle="modal" data-target="#detail<?php echo e($x->id); ?>" class="btn text-aqua"><i class="fa fa-eye"></i></a>
                     <?php if(Auth::user()->role == '2'): ?> 
                     <a data-toggle="modal" data-target="#edit<?php echo e($x->id); ?>" class="btn text-yellow"><i class="fa fa-pencil"></i></a> 
-                    <a href="/siswa/uploadpic/#<?php echo e($x->id); ?>" data-toggle="modal" data-target="#edit-photo<?php echo e($x->id); ?>" class="btn text-yellow"><i class="fa fa-upload"></i></a>
+                    <a href="/siswa/uploadpic/#<?php echo e($x->id); ?>" data-toggle="modal" data-target="#edit-photo<?php echo e($x->id); ?>" class="btn text-green"><i class="fa fa-upload"></i></a>
+                    <!-- vacum action 
                     <a href="#" data-toggle="modal" class="btn text-red" data-target="#delete<?php echo e($x->id); ?>"><i class="fa fa-trash"></i></a>
+                    -->
                     <?php endif; ?>
                   </td>
                 </tr>
@@ -140,7 +148,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <div class="col-md-offset-5">
+          <div class="col-md-offset-6">
             <?php echo e($siswa->appends(Request::only('search'))->links()); ?>
 
           </div>
