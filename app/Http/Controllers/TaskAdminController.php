@@ -12,7 +12,7 @@ class TaskAdminController extends Controller
 {
     public function viewTask()
     {
-    	$viewTask = TaskAdmin::orderBy('created_at', 'ASC')->get();
+    	$viewTask = TaskAdmin::orderBy('created_at', 'DESC')->get();
     	return view('taskadmin.index', compact('viewTask'));
     }
 

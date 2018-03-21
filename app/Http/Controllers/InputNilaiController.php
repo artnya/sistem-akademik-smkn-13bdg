@@ -7,10 +7,11 @@ use App\User;
 use App\RekapNilai;
 use App\Mapel;
 use App\Tahun;
+use App\Kelas;
+use App\Jurusan;
 use Carbon;
 use Excel;
 use Input;
-
 
 class InputNilaiController extends Controller
 {
@@ -19,9 +20,24 @@ class InputNilaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['home']]);
+    }
+
     public function index()
     {
         //
+    }
+
+    public function viewImportNilai()
+    {
+        $tahun = Tahun::all();
+        $kelas = Kelas::all();
+        $jurusan = Jurusan::all();
+        $mapel = Mapel::all();
+        return view('rekapnilai.import-nilai-kelas', compact('tahun', 'kelas', 'jurusan', 'mapel'));
     }
 
     /**
@@ -103,6 +119,7 @@ class InputNilaiController extends Controller
         //
     }
 
+    //import nilai for each student's
     public function importNilai(Request $request)
     {
         if($request->hasFile('imported-file'))
@@ -153,6 +170,49 @@ class InputNilaiController extends Controller
        }
     }
 
+    //import nilai for each classes
+    public function storeImportNilai(Request $request)
+    {
+        if($request->hasFile('import_nilai'))
+      {
+                $path = $request->file('import_nilai')->getRealPath();
+                $data = Excel::load($path, function($reader)
+                {})->get();
+
+          if(!empty($data) && $data->count())
+          {
+            foreach ($data->toArray() as $row)
+            {
+              if(!empty($row))
+              {
+                $dataArray[] =
+                [
+                  'id_siswa' => $row['nis'],
+                  'id_jurusan' => $request->id_jurusan,
+                  'id_kelas' => $request->id_kelas,
+                  'id_tahun' => $request->id_tahun,
+                  'id_mapel' => $request->id_mapel,
+                  'semester' => $request->semester,
+                  'tugas1' => $row['tugas1'],
+                  'tugas2' => $row['tugas2'],
+                  'tugas3' => $row['tugas3'],
+                  'nilai_sikap' => $row['sikap'],
+                  'nilai_pengetahuan' => $row['pengetahuan'],
+                  'uts' => $row['uts'],
+                  'uas' => $row['uas'],
+                  'kkm' => $request->kkm
+                ];
+              }
+          }
+          if(!empty($dataArray))
+          {
+            RekapNilai::insert($dataArray);
+            return back()->with('message', 'Nilai berhasil di masukan!');  
+           }
+         }
+       }
+
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->hasMany('App\Comment','id');
+        return $this->hasManyThrough('App\Comment','id', 'App\Timeline', '');
     }
 
     public function rekapnilai()

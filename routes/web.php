@@ -187,6 +187,8 @@ Route::get('/downloadHasilNilai/{type}', 'RekapNilaiController@downloadNilai')->
 Route::get('inputnilai/siswa/{slug}', 'InputNilaiController@show')->name('inputnilai')->middleware('auth');
 Route::post('inputnilai/add', 'InputNilaiController@store')->middleware('auth');
 Route::post('inputnilai/import-excel', 'InputNilaiController@importNilai')->middleware('auth');
+Route::get('/importnilai', 'InputNilaiController@viewImportNilai')->middleware('auth');
+Route::post('/imported-file/progress', 'InputNilaiController@storeImportNilai')->middleware('auth');
 
 //lihat nilai saya (siswa section)
 Route::get('/lihat-datasaya/lihat-nilai/{name}', 'DayaSayaController@index')->name('lihat.nilai')->middleware('auth');

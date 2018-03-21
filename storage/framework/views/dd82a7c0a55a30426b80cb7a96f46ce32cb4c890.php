@@ -163,6 +163,12 @@
         </div>
         <!-- /.box-footer-->
       </div>
+      <?php else: ?>
+      <div class="box box-primary">
+        <div class="box-body">
+          <p class="text-center"><a href="/importnilai" class="text-center btn btn-flat btn-primary"><i class="fa fa-excel"></i> Import Nilai Siswa Via Excel</a></p>
+        </div>
+      </div>
       <?php endif; ?>
       <!-- /.box -->
     </section>
