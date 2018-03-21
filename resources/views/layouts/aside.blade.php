@@ -119,6 +119,7 @@
         <li {{{ (Request::is('tahun-ajaran') ? 'class=active' : '') }}}><a href="/tahun-ajaran"><i class="fa fa-pencil text-yellow"></i> <span>Tahun Ajaran</span></a></li>
         <li {{{ (Request::is('jurusan') ? 'class=active' : '') }}}><a href="/jurusan"><i class="fa fa-university text-blue"></i> <span>Jurusan</span></a></li>
         </li>
+        <li {{{ (Request::is('taskadmin') ? 'class=active' : '') }}}><a href="/taskadmin"><i class="fa fa-table text-red"></i> <span>Task Admin</span></a></li>
         @endif
       </ul>
     </section>

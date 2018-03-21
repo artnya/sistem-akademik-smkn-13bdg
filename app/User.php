@@ -66,5 +66,10 @@ class User extends Authenticatable
         return $this->hasMany('App\RekapNilai', 'id');
     }
 
+    public function task()
+    {
+        return $this->hasMany('App\TaskAdmin', 'id');
+    }
+
 
 }

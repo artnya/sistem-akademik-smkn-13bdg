@@ -51,6 +51,7 @@
             @endforeach
             <!-- END timeline item -->
             <!-- timeline item -->
+            <!-- soon 
             <li>
               <i class="fa fa-envelope bg-blue"></i>
 
@@ -70,9 +71,6 @@
                   <a class="btn btn-danger btn-xs">Delete</a>
                 </div>
               </div>
-            </li>
-            <!-- END timeline item -->
-            <!-- timeline item -->
             <li>
               <i class="fa fa-user bg-aqua"></i>
 
@@ -81,16 +79,11 @@
 
                 <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
               </div>
-            </li>
-            <!-- END timeline item -->
-            <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-green">
                     3 Jan. 2014
                   </span>
             </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
             <li>
               <i class="fa fa-camera bg-purple"></i>
 
@@ -107,8 +100,6 @@
                 </div>
               </div>
             </li>
-            <!-- END timeline item -->
-            <!-- timeline item -->
             <li>
               <i class="fa fa-video-camera bg-maroon"></i>
 
@@ -128,7 +119,7 @@
                 </div>
               </div>
             </li>
-            <!-- END timeline item -->
+          -->
             <li>
               <i class="fa fa-clock-o bg-gray"></i>
             </li>

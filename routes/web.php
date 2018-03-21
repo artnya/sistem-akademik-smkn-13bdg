@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 //this is just for an admin authorized
-Route::get('/account', ['middleware', 'admin', function (Request $request) {
+Route::get('/account',['middleware' => 'admin', function (Request $request) {
 	
         if($request->get('search') != NULL) {
             $cari = $request->get('search');
@@ -43,7 +43,14 @@ Route::get('/account', ['middleware', 'admin', function (Request $request) {
                 return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
             }
         }
-}])->middleware('auth')->middleware('admin');
+}])->middleware('auth');
+
+Route::get('/taskadmin', 'TaskAdminController@viewTask')->middleware('auth');
+Route::get('/taskadmin/read/{id}', 'TaskAdminController@read')->middleware('auth');
+
+/* on developement...
+Route::get('/taskadmin/readAllTask', 'TaskAdminController@readAllTask')->middleware('auth');
+*/
 
 //detail notification
 Route::get('/admin/notification/{id}', function () {
