@@ -32,11 +32,16 @@
               @endif
               <li>
                 <!-- inner menu: contains the actual data -->
+                <!-- pusing sayah -->
                 <ul class="menu">
                   @if(Auth()->user()->notifications->count())
                   <?php $no = 1; ?>
                   @foreach(Auth::user()->unreadNotifications as $notification)
+                  @if($notification->type == 'App\Notifications\CommentNotification')
                   <li><a style="background-color: #d2d6de;" href="/home/timeline">({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  @elseif($notification->type == 'App\Notifications\ReportNotification')
+                  <li><a style="background-color: #d2d6de;" href="/reports">({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  @endif
                   <?php $no++; ?>
                   @endforeach
                   @foreach(Auth::user()->readNotifications()->paginate(3) as $notification)

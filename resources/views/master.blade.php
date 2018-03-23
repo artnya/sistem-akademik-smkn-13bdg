@@ -76,7 +76,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <![endif]-->
 
 </head>
-<body class="hold-transition skin-red fixed sidebar-mini">
+<body @if(Auth::user()->role =='2') class="hold-transition skin-red fixed sidebar-mini" @elseif(Auth::user()->role == '3') class="hold-transition skin-green fixed sidebar-mini" @else class="hold-transition skin-purple layout-boxed sidebar-mini" @endif>
 <div class="wrapper">
 
   @if(session()->has('notification'))

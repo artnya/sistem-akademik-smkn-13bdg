@@ -45,8 +45,8 @@ Route::get('/account',['middleware' => 'admin', function (Request $request) {
         }
 }])->middleware('auth');
 
-Route::get('/taskadmin', 'TaskAdminController@viewTask')->middleware('auth');
-Route::get('/taskadmin/read/{id}', 'TaskAdminController@read')->middleware('auth');
+Route::get('/reports', 'ReportsController@viewTask')->middleware('auth');
+Route::get('/reports/read/{id}', 'ReportsController@read')->middleware('auth');
 
 /* on developement...
 Route::get('/taskadmin/readAllTask', 'TaskAdminController@readAllTask')->middleware('auth');

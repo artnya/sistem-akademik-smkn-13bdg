@@ -32,11 +32,16 @@
               <?php endif; ?>
               <li>
                 <!-- inner menu: contains the actual data -->
+                <!-- pusing sayah -->
                 <ul class="menu">
                   <?php if(Auth()->user()->notifications->count()): ?>
                   <?php $no = 1; ?>
                   <?php $__currentLoopData = Auth::user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <?php if($notification->type == 'App\Notifications\CommentNotification'): ?>
                   <li><a style="background-color: #d2d6de;" href="/home/timeline">(<?php echo e($no); ?>) <?php echo e($notification->data['id']); ?> <?php echo e($notification->data['data']); ?></a></li>
+                  <?php elseif($notification->type == 'App\Notifications\ReportNotification'): ?>
+                  <li><a style="background-color: #d2d6de;" href="/reports">(<?php echo e($no); ?>) <?php echo e($notification->data['id']); ?> <?php echo e($notification->data['data']); ?></a></li>
+                  <?php endif; ?>
                   <?php $no++; ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php $__currentLoopData = Auth::user()->readNotifications()->paginate(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

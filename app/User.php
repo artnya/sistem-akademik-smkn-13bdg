@@ -66,9 +66,9 @@ class User extends Authenticatable
         return $this->hasMany('App\RekapNilai', 'id');
     }
 
-    public function task()
+    public function reports()
     {
-        return $this->hasMany('App\TaskAdmin', 'id');
+        return $this->hasMany('App\Reports', 'id');
     }
 
 

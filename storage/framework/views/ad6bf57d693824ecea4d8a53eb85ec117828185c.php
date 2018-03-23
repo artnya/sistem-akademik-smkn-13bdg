@@ -31,6 +31,7 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
             <?php $__currentLoopData = Auth::user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if($notification->type =='App\Notifications\CommentNotification'): ?>
             <li>
               <i class="fa fa-comments bg-yellow"></i>
 
@@ -48,6 +49,24 @@
                 </div>
               </div>
             </li>
+            <?php elseif($notification->type == 'App\Notifications\ReportNotification'): ?>
+            <li>
+              <i class="fa fa-info bg-red"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> <?php echo e($notification->created_at->diffForHumans()); ?></span>
+
+                <h3 class="timeline-header"><a href="#"><?php echo e($notification->data['id']); ?></a>  <?php echo e($notification->data['data']); ?></h3>
+
+                <div class="timeline-body">
+                  <?php echo e($notification->data['id']); ?> has got auto report!
+                </div>
+                <div class="timeline-footer">
+                  <a href="/reports" class="btn btn-warning btn-flat btn-xs">View report</a>
+                </div>
+              </div>
+            </li>
+            <?php endif; ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <!-- END timeline item -->
             <!-- timeline item -->

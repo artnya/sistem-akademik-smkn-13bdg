@@ -32,6 +32,7 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
             @foreach(Auth::user()->unreadNotifications as $notification)
+            @if($notification->type =='App\Notifications\CommentNotification')
             <li>
               <i class="fa fa-comments bg-yellow"></i>
 
@@ -48,6 +49,24 @@
                 </div>
               </div>
             </li>
+            @elseif($notification->type == 'App\Notifications\ReportNotification')
+            <li>
+              <i class="fa fa-info bg-red"></i>
+
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> {{ $notification->created_at->diffForHumans() }}</span>
+
+                <h3 class="timeline-header"><a href="#">{{ $notification->data['id'] }}</a>  {{ $notification->data['data'] }}</h3>
+
+                <div class="timeline-body">
+                  {{ $notification->data['id'] }} has got auto report!
+                </div>
+                <div class="timeline-footer">
+                  <a href="/reports" class="btn btn-warning btn-flat btn-xs">View report</a>
+                </div>
+              </div>
+            </li>
+            @endif
             @endforeach
             <!-- END timeline item -->
             <!-- timeline item -->

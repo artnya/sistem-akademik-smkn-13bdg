@@ -119,7 +119,14 @@
         <li {{{ (Request::is('tahun-ajaran') ? 'class=active' : '') }}}><a href="/tahun-ajaran"><i class="fa fa-pencil text-yellow"></i> <span>Tahun Ajaran</span></a></li>
         <li {{{ (Request::is('jurusan') ? 'class=active' : '') }}}><a href="/jurusan"><i class="fa fa-university text-blue"></i> <span>Jurusan</span></a></li>
         </li>
-        <li {{{ (Request::is('taskadmin') ? 'class=active' : '') }}}><a href="/taskadmin"><i class="fa fa-table text-red"></i> <span>Task Admin</span></a></li>
+        <li {{{ (Request::is('reports') ? 'class=active' : '') }}}><a href="/reports"><i class="fa fa-table text-red"></i> <span>Reports</span>
+        @foreach(Auth::user()->notifications as $notification)
+        @if($notification->type == 'App\Notifications\ReportNotification')
+          <span class="pull-right-container"><span class="label label-danger pull-right">New</span></span>
+        @endif
+        @endforeach
+        </a>
+        </li>
         @endif
       </ul>
     </section>

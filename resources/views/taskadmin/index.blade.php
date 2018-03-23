@@ -7,12 +7,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Task Admin Panel
+        Reports Data
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Task Admin</a></li>
-        <li class="active">Lihat Task</li>
+        <li><a href="#">Reports</a></li>
+        <li class="active">Lihat Reports</li>
       </ol>
     </section>
 
@@ -32,7 +32,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Table Informasi Task</h3>
+          <h3 class="box-title">Table Informasi Reports</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -47,7 +47,7 @@
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
               <!-- on development
-              <a href="/taskadmin/readAllTask" class="btn btn-success" title="Baca semua task yang tidak perlu"><i class="fa fa-check"></i> Baca semua</a>
+              <a href="/reports/readAllTask" class="btn btn-success" title="Baca semua task yang tidak perlu"><i class="fa fa-check"></i> Baca semua</a>
               -->
             </div>
             <table id="example" class="table table-bordered table-hover table-responsive">
@@ -87,7 +87,7 @@
                   <td>
                     <div class="btn-group">
                     @if($x->read_at == NULL)
-                    <a href="/taskadmin/read/{{ $x->id }}" class="btn btn-default text-green"><i class="fa fa-check" title="Ceklis bila sudah di baca"></i></a>
+                    <a href="/reports/read/{{ $x->id }}" class="btn btn-default text-green"><i class="fa fa-check" title="Ceklis bila sudah di baca"></i></a>
                     @endif
                     <a href="#" data-toggle="modal" class="btn btn-default text-red" data-target="#delete{{$x->id}}"><i class="fa fa-trash"></i></a>
                     </div>
@@ -95,7 +95,7 @@
                 </tr>
                   @endforeach
                   @else
-                  <td colspan="6"><h4 class="text-muted text-center">Tidak ada task untuk sekarang.</h4></td>
+                  <td colspan="6"><h4 class="text-muted text-center">Tidak ada report untuk sekarang.</h4></td>
                   @endif
               </tbody>
             </table>

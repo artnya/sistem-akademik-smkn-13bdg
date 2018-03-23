@@ -1,50 +1,51 @@
-@extends('master-siswa')
-@section('content-siswa')
-<!-- Full Width Column -->
+@extends('master')
+@section('content')
+<!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <div class="container">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Top Navigation
-          <small>Example 2.0</small>
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">Layout</a></li>
-          <li class="active">Top Navigation</li>
-        </ol>
-      </section>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Blank page
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
+      </ol>
+    </section>
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="callout callout-info">
-          <h4>Tip!</h4>
+    <!-- Main content -->
+    <section class="content">
 
-          <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-            sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use regular
-            links instead.</p>
-        </div>
-        <div class="callout callout-danger">
-          <h4>Warning!</h4>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Title</h3>
 
-          <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the navbar
-            and the content will slightly differ than that of the normal layout.</p>
-        </div>
-        <div class="box box-default">
-          <div class="box-header with-border">
-            <h3 class="box-title">Blank Box</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
           </div>
-          <div class="box-body">
-            The great content goes here
-          </div>
-          <!-- /.box-body -->
         </div>
-        <!-- /.box -->
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.container -->
+        <div class="box-body">
+          Start creating your amazing application!
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          Footer
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 @endsection
