@@ -23,7 +23,7 @@ class InputNilaiController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['home']]);
+        $this->middleware('teacher', ['except' => ['home']]);
     }
 
     public function index()

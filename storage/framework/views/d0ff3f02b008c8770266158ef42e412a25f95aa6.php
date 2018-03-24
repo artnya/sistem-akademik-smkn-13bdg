@@ -111,8 +111,6 @@
                         </div>
                     </form>
                 </div>
-                <div class="panel-footer">Tidak terdaftar? <a href="/register" class="">Register</a><a href="<?php echo e(route('password.request')); ?>" class="">Lupa Password?</a>
-                </div>
             </div>
         </div>
     </div>

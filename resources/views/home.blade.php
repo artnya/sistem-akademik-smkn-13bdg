@@ -246,6 +246,4 @@
     </section>
     <!-- /.content -->
   </div>
-@include('siswa.detail')
-@include('account.edit')
 @endsection

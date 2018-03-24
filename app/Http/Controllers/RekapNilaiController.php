@@ -13,9 +13,6 @@ use Excel;
 
 class RekapNilaiController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth', 'ban');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +21,7 @@ class RekapNilaiController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['home']]);
+        $this->middleware('teacher', ['except' => ['home']]);
     }
 
     public function index(Request $request)

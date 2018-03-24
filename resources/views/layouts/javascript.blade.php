@@ -1,8 +1,9 @@
 
 <!-- jQuery 3 -->
 <script src="/js/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
+<!-- jQuery UI 1.11.4 
 <script src="/js/jquery-ui.min.js"></script>
+-->
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
@@ -13,22 +14,13 @@
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/css/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/css/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
-<!-- 
+<!-- -->
 <script src="/js/raphael.min.js"></script>
- Morris.js charts -->
 
 <!-- <script src="/js/morris.min.js"></script> -->
 
 <!-- Sparkline -->
-<!-- <script src="/js/jquery.sparkline.min.js"></script> -->
+<script src="/js/jquery.sparkline.min.js"></script> 
 
 <!-- jvectormap -->
 <!-- <script src="/js/jquery-jvectormap-1.2.2.min.js"></script>-->
@@ -36,7 +28,7 @@
 <!-- <script src="/js/jquery-jvectormap-world-mill-en.js"></script> -->
 <!-- jQuery Knob Chart -->
 
-<!-- <script src="/js/jquery-knob/dist/jquery.knob.min.js"></script> -->
+<script src="/js/jquery-knob/dist/jquery.knob.min.js"></script>
 
 <!-- daterangepicker -->
 
@@ -49,19 +41,15 @@ data pickrange -->
 <script src="/js/bootstrap-datepicker.min.js"></script>
 <!-- select 2 -->
 <script src="/js/select2.full.min.js"></script>
-<!-- 
+<!-- Bootstrap WYSIHTML5 -->
 <script src="/js/bootstrap3-wysihtml5.all.min.js"></script>
-Bootstrap WYSIHTML5 -->
 <!-- sweet alert -->
 <script src="/js/sweetalert.js"></script>
-<!-- Slimscroll 
+<!-- Slimscroll -->
 <script src="/js/jquery.slimscroll.min.js"></script>
--->
 <!-- FastClick -->
 <!-- PACE -->
 <script src="/js/pace.js"></script>
-<!-- bootstrap toast -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 <!-- checked at least for button showing -->
 <script>
@@ -95,9 +83,8 @@ Bootstrap WYSIHTML5 -->
 <script src="/js/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes)
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/js/dashboard.js"></script>
- -->
 <!-- AdminLTE for demo purposes 
 <script src="/js/demo.js"></script>
 -->
@@ -203,13 +190,6 @@ $(document).ready(function() {
         } */
     } );
 } );
-</script>
-<!-- page script -->
-<script type="text/javascript">
-  // To make Pace works on Ajax calls
-  $(document).ajaxStart(function () {
-    Pace.restart()
-  })
 </script>
 <script>
   $(function () {

@@ -111,6 +111,20 @@
             <li {{{ (Request::is('mapel') ? 'class=active' : '') }}}><a href="/mapel"><i class="fa fa-circle-o"></i> Non-Produktif</a></li>
           </ul>
         </li>
+        @if(Auth::user()->role == '2' || Auth::user()->role == '3')
+        <li class="treeview {{{ (Request::is('rekapnilai') ? 'active' : '') }}} {{{ (Request::is('rekapnilai') ? 'active' : '') }}}">
+          <a href="#">
+            <i class="fa fa-database text-purple"></i> <span>Input Nilai</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li {{{ (Request::is('importnilai') ? 'class=active' : '') }}}><a href="/importnilai"><i class="fa fa-file-excel-o"></i> Import nilai</a></li>
+            <li {{{ (Request::is('rekapnilai') ? 'class=active' : '') }}}><a href="/rekapnilai"><i class="fa fa-pencil"></i> Input Nilai Siswa</a></li>
+          </ul>
+        </li>
+        @endif
         @endif
         @if(Auth()->user()->role == '2')
         <li>

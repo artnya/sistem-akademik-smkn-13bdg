@@ -6,42 +6,92 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        Dashboard
+        <small>Halaman siswa</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li class="active">Home</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
 
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
+      <div class="row center-block">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-purple">
+            <span class="info-box-icon"><i class="fa fa-clock-o"></i></span>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
+            <div class="info-box-content">
+              <span class="info-box-text">JAM</span>
+              <span class="info-box-number" id="time"></span>
+            </div>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
-        <div class="box-body">
-          Start creating your amazing application!
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="fa fa-user-md"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Kelas</span>
+              <span class="info-box-number"><?php echo e(Auth::user()->kelas['tingkat_kelas']); ?> <?php echo e(Auth::user()->jurusan['nama_jurusan']); ?> <?php echo e(Auth::user()->kelas['jumlah_kelas']); ?></span>
+            </div>
+              <div class="progress">
+                <div class="progress-bar" style="width: %"></div>
+              </div>
+                  <span class="progress-description">
+                    <?php echo e(Auth::user()->jurusan['nama_jurusan']); ?>
+
+                  </span>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
         </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="fa fa-user"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Jumlah Siswa</span>
+              <span class="info-box-number"></span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: %"></div>
+              </div>
+                  <span class="progress-description">
+                    70% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
         </div>
-        <!-- /.box-footer-->
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="fa fa-users"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Mata Pelajaran</span>
+              <span class="info-box-number"></span>
+
+              <div class="progress">
+                <div class="progress-bar" style="width: %"></div>
+              </div>
+                  <span class="progress-description">
+                    70% Increase in 30 Days
+                  </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
       </div>
-      <!-- /.box -->
+      <!-- /.row -->
 
     </section>
     <!-- /.content -->

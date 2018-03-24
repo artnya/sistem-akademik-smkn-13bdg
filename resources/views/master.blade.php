@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="/css/dataTables.bootstrap.min.css">
-  <link rel="stylesheet" href="
-https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <style>
     tfoot input {
         width: 100%;
@@ -39,8 +37,9 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
   <!-- Pace style -->
   <link rel="stylesheet" href="/css/pace.css">
-  <!-- loading style -->
+  <!-- loading style 
   <link rel="stylesheet" href="/css/loading.css">
+  -->
   <!-- sweet alert -->
   <link rel="stylesheet" href="/css/sweetalert.css">
   <!-- select 2 -->
@@ -76,7 +75,7 @@ https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css">
   <![endif]-->
 
 </head>
-<body @if(Auth::user()->role =='2') class="hold-transition skin-red fixed sidebar-mini" @elseif(Auth::user()->role == '3') class="hold-transition skin-green fixed sidebar-mini" @else class="hold-transition skin-purple layout-boxed sidebar-mini" @endif>
+<body @if(Auth::user()->role =='2') class="hold-transition fixed skin-red sidebar-mini" @elseif(Auth::user()->role == '3') class="hold-transition skin-green fixed sidebar-mini" @else class="hold-transition skin-purple layout-boxed sidebar-mini" @endif>
 <div class="wrapper">
 
   @if(session()->has('notification'))

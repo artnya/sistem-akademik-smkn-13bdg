@@ -244,8 +244,6 @@
     </section>
     <!-- /.content -->
   </div>
-<?php echo $__env->make('siswa.detail', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-<?php echo $__env->make('account.edit', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

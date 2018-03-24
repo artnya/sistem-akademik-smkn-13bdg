@@ -10,6 +10,12 @@ use Carbon\Carbon;
 
 class ReportsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['home']]);
+    }
+
     public function viewTask()
     {
     	$viewTask = Reports::orderBy('created_at', 'ASC')->get();
