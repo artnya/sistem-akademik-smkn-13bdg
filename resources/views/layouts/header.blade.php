@@ -38,14 +38,18 @@
                   <?php $no = 1; ?>
                   @foreach(Auth::user()->unreadNotifications as $notification)
                   @if($notification->type == 'App\Notifications\CommentNotification')
-                  <li><a style="background-color: #d2d6de;" href="/home/timeline">({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  <li><a style="background-color: #d2d6de;" href="/home/timeline"><i class="fa fa-comments text-aqua"></i> ({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
                   @elseif($notification->type == 'App\Notifications\ReportNotification')
-                  <li><a style="background-color: #d2d6de;" href="/reports">({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  <li><a style="background-color: #d2d6de;" href="/home/timeline"><i class="fa fa-warning text-yellow"></i> ({{ $no }}) {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
                   @endif
                   <?php $no++; ?>
                   @endforeach
                   @foreach(Auth::user()->readNotifications()->paginate(3) as $notification)
-                  <li class="active"><a href="#">{{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  @if($notification->type == 'App\Notifications\CommentNotification')
+                  <li><a href="#"><i class="fa fa-comments text-aqua"></i> {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  @elseif($notification->type == 'App\Notifications\ReportNotification')
+                  <li><a href="#"><i class="fa fa-warning text-yellow"></i> {{ $notification->data['id'] }} {{ $notification->data['data'] }}</a></li>
+                  @endif
                   @endforeach
                   @else
                   <li class=""><a href="#"> Tidak ada pemberitahuan apapun</a></li>
@@ -117,4 +121,3 @@
       </div>
     </nav>
   </header>
-  @include('account.notify')

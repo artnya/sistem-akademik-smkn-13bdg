@@ -54,7 +54,7 @@
               <thead>
                 <tr>
                   <td>#</td>
-                  <td>ID</td>
+                  <td>No</td>
                   <td>Nama User</td>
                   <td>Alasan Pelanggaran</td>
                   <td>Status</td>
@@ -64,11 +64,12 @@
               <tbody>
                 <tr>
                   @if(count($viewTask) > 0)
+                  <?php $no = 1; ?>
                   @foreach($viewTask as $x)
                   <td>
                       <input type="checkbox" name="checked[]" id="option-1">
                   </td>
-                  <td>{{ $x->id }}</td>
+                  <td>{{ $no }}</td>
                   <td>{{ $x->user['name'] }}</td>
                   <td>
                     @if($x->read_at == NULL)
@@ -93,6 +94,7 @@
                     </div>
                   </td>
                 </tr>
+                  <?php $no++; ?>
                   @endforeach
                   @else
                   <td colspan="6"><h4 class="text-muted text-center">Tidak ada report untuk sekarang.</h4></td>

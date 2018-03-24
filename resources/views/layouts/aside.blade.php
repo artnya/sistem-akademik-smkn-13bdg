@@ -35,7 +35,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li {{{ (Request::is('/lihat-datasaya') ? 'class=active' : '') }}}><a href="lihat-datasaya/lihat-nilai/{{ str_slug(Auth::user()->name) }}"><i class="fa fa-circle-o"></i> Lihat nilai saya
+            <li {{{ (Request::is('/lihat-datasaya') ? 'class=active' : '') }}}><a href="/lihat-datasaya/lihat-nilai/{{ str_slug(Auth::user()->name) }}"><i class="fa fa-circle-o"></i> Lihat nilai saya
             <span class="pull-right-container">
               <small class="label pull-right bg-red">Soon</small>
             </span>
@@ -120,7 +120,7 @@
         <li {{{ (Request::is('jurusan') ? 'class=active' : '') }}}><a href="/jurusan"><i class="fa fa-university text-blue"></i> <span>Jurusan</span></a></li>
         </li>
         <li {{{ (Request::is('reports') ? 'class=active' : '') }}}><a href="/reports"><i class="fa fa-table text-red"></i> <span>Reports</span>
-        @foreach(Auth::user()->notifications as $notification)
+        @foreach(Auth::user()->unreadNotifications as $notification)
         @if($notification->type == 'App\Notifications\ReportNotification')
           <span class="pull-right-container"><span class="label label-danger pull-right">New</span></span>
         @endif

@@ -35,7 +35,6 @@ class AdminMiddleware
             //will be send a notification to Admin.
             $user_id = Auth::user();
             $admin_id = User::where('role', '=', '2')->get();
-            $reason = 'Mencoba masuk ke dalam panel admin.';
             Notification::send($admin_id, new ReportNotification($user_id));
              return redirect()->back()->with('messageerror', 'Anda tidak di perkenankan masuk ke halaman ini!'); // not admin. redirect whereever you like
         }   

@@ -45,8 +45,20 @@
   </style>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- sweet alert -->
+  <link rel="stylesheet" href="/css/sweetalert.css">
 </head>
 <body>
+<!-- notification session -->
+@if(session('messageerror'))      
+  <!-- sweet alert -->
+<link rel="stylesheet" href="/css/sweetalert.css">
+<!-- sweet alert -->
+<script src="/js/sweetalert.js"></script>
+<script>
+    swal("{{ session('messageerror') }}", "Anda telah menyalah gunakan aturan dan ketentuan. Jika  ini bukan merupakan kesalahan mohon kontak admin.", "error");
+</script>
+@endif
   <div class="container">
     <div class="row">
       <!-- Login area -->
@@ -109,6 +121,8 @@
 <script src="{{asset('/js/js/bootstrap.min.js')}}"></script>
 
 <script src="{{asset('/js/icheck.min.js')}}"></script>
+<!-- sweet alert -->
+<script src="/js/sweetalert.js"></script>
 <script>
   $(function () {
     $('input').iCheck({

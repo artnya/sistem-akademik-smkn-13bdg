@@ -18,10 +18,7 @@ class JurusanController extends Controller
     public function index()
     {
         $jurusan = Jurusan::orderBy('id', 'DESC')->get();
-        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
             return view('jurusan.index', compact('jurusan'));
-        }
-        return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
     }
 
     /**

@@ -12,7 +12,7 @@ class ReportsController extends Controller
 {
     public function viewTask()
     {
-    	$viewTask = Reports::orderBy('created_at', 'DESC')->get();
+    	$viewTask = Reports::orderBy('created_at', 'ASC')->get();
     	return view('taskadmin.index', compact('viewTask'));
     }
 

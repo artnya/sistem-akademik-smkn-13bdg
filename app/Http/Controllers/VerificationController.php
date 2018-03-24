@@ -16,13 +16,9 @@ class VerificationController extends Controller
      */
     public function index()
     {
-        if (Auth()->user()->role == '0') {
             $kelas = Kelas::orderBy('id')->get();
             $jurusan = Jurusan::orderBy('id')->get();
             return view('verify', compact('kelas', 'jurusan'));
-        }else{
-            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
-        }
     }
 
     /**
@@ -38,14 +34,9 @@ class VerificationController extends Controller
 
     public function success()
     {
-
-        if (Auth()->user()->role == '5') {
-            $kelas = Kelas::orderBy('id')->get();
-            $jurusan = Jurusan::orderBy('id')->get();
-            return view('success', compact('kelas', 'jurusan'));
-        }else{
-            return redirect()->route('home')->with('message', 'Akun berhasil di verifikasi oleh admin');
-        }
+        $kelas = Kelas::orderBy('id')->get();
+        $jurusan = Jurusan::orderBy('id')->get();
+        return view('success', compact('kelas', 'jurusan'));
     }
 
     /**

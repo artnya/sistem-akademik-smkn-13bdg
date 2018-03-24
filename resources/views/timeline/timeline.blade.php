@@ -33,7 +33,7 @@
             <!-- timeline item -->
             @foreach(Auth::user()->unreadNotifications as $notification)
             @if($notification->type =='App\Notifications\CommentNotification')
-            <li>
+            <li id="retrieve">
               <i class="fa fa-comments bg-yellow"></i>
 
               <div class="timeline-item">
@@ -62,7 +62,7 @@
                   {{ $notification->data['id'] }} has got auto report!
                 </div>
                 <div class="timeline-footer">
-                  <a href="/reports" class="btn btn-warning btn-flat btn-xs">View report</a>
+                  <a href="{{route('notify-read-one', $notification->id)}}" class="btn btn-warning btn-flat btn-xs">View report</a>
                 </div>
               </div>
             </li>

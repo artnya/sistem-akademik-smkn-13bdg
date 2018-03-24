@@ -114,8 +114,17 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        $request->session()->flash('notification', 'Selamat datang '. $user->name .'!');
-        return redirect()->intended($this->redirectPath());
+        if (Auth::user()->role == '4') {
+                
+            $this->guard()->logout();
+
+            $request->session()->invalidate();
+
+            return redirect('/login')->with('messageerror', 'Anda di blokir oleh admin!');
+        }else{
+            $request->session()->flash('notification', 'Selamat datang '. $user->name .'!');
+            return redirect()->intended($this->redirectPath());
+        }
     }
 
     /**

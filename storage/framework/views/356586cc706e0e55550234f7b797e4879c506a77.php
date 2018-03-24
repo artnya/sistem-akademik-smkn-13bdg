@@ -52,7 +52,7 @@
               <thead>
                 <tr>
                   <td>#</td>
-                  <td>ID</td>
+                  <td>No</td>
                   <td>Nama User</td>
                   <td>Alasan Pelanggaran</td>
                   <td>Status</td>
@@ -62,11 +62,12 @@
               <tbody>
                 <tr>
                   <?php if(count($viewTask) > 0): ?>
+                  <?php $no = 1; ?>
                   <?php $__currentLoopData = $viewTask; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <td>
                       <input type="checkbox" name="checked[]" id="option-1">
                   </td>
-                  <td><?php echo e($x->id); ?></td>
+                  <td><?php echo e($no); ?></td>
                   <td><?php echo e($x->user['name']); ?></td>
                   <td>
                     <?php if($x->read_at == NULL): ?>
@@ -91,6 +92,7 @@
                     </div>
                   </td>
                 </tr>
+                  <?php $no++; ?>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php else: ?>
                   <td colspan="6"><h4 class="text-muted text-center">Tidak ada report untuk sekarang.</h4></td>

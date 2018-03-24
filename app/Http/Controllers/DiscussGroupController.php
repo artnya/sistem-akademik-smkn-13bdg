@@ -18,12 +18,8 @@ class DiscussGroupController extends Controller
      */
     public function index()
     {
-        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
             $posts = Timeline::withCount('comments')->orderBy('created_at', 'DESC')->paginate(5);
             return view('timeline.index', compact('posts', 'comments'));
-        }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
-        }
     }
 
     /**

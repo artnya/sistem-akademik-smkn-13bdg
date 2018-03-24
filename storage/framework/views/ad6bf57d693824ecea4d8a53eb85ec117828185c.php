@@ -32,7 +32,7 @@
             <!-- timeline item -->
             <?php $__currentLoopData = Auth::user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php if($notification->type =='App\Notifications\CommentNotification'): ?>
-            <li>
+            <li id="retrieve">
               <i class="fa fa-comments bg-yellow"></i>
 
               <div class="timeline-item">
@@ -62,7 +62,7 @@
                   <?php echo e($notification->data['id']); ?> has got auto report!
                 </div>
                 <div class="timeline-footer">
-                  <a href="/reports" class="btn btn-warning btn-flat btn-xs">View report</a>
+                  <a href="<?php echo e(route('notify-read-one', $notification->id)); ?>" class="btn btn-warning btn-flat btn-xs">View report</a>
                 </div>
               </div>
             </li>

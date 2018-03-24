@@ -43,6 +43,18 @@
 
       <div class="row center-block">
         <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-purple">
+            <span class="info-box-icon"><i class="fa fa-clock-o"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">JAM</span>
+              <span class="info-box-number" id="time"></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box bg-aqua">
             <span class="info-box-icon"><i class="fa fa-user-md"></i></span>
 

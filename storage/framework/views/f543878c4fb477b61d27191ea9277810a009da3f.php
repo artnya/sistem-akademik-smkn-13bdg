@@ -35,7 +35,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?php echo e((Request::is('/lihat-datasaya') ? 'class=active' : '')); ?>><a href="lihat-datasaya/lihat-nilai/<?php echo e(str_slug(Auth::user()->name)); ?>"><i class="fa fa-circle-o"></i> Lihat nilai saya
+            <li <?php echo e((Request::is('/lihat-datasaya') ? 'class=active' : '')); ?>><a href="/lihat-datasaya/lihat-nilai/<?php echo e(str_slug(Auth::user()->name)); ?>"><i class="fa fa-circle-o"></i> Lihat nilai saya
             <span class="pull-right-container">
               <small class="label pull-right bg-red">Soon</small>
             </span>
@@ -120,7 +120,7 @@
         <li <?php echo e((Request::is('jurusan') ? 'class=active' : '')); ?>><a href="/jurusan"><i class="fa fa-university text-blue"></i> <span>Jurusan</span></a></li>
         </li>
         <li <?php echo e((Request::is('reports') ? 'class=active' : '')); ?>><a href="/reports"><i class="fa fa-table text-red"></i> <span>Reports</span>
-        <?php $__currentLoopData = Auth::user()->notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php $__currentLoopData = Auth::user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <?php if($notification->type == 'App\Notifications\ReportNotification'): ?>
           <span class="pull-right-container"><span class="label label-danger pull-right">New</span></span>
         <?php endif; ?>

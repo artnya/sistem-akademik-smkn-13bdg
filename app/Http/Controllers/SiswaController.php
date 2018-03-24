@@ -22,21 +22,13 @@ class SiswaController extends Controller
             $jurusan = Jurusan::all();
             $kelas = Kelas::orderBy('jumlah_kelas', 'ASC')->get();
             $siswa = User::orderBy('name', 'ASC')->where('role', '1')->where('id_kelas','LIKE','%'. $cari .'%')->paginate(90);
-            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
-                 return view('siswa.index', compact('siswa', 'jurusan', 'kelas', 'cari'));
-            }else{
-                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
-            }
+            return view('siswa.index', compact('siswa', 'jurusan', 'kelas', 'cari'));
         }else{
             $cari = null;
             $siswa = User::where('role', '1')->orderBy('name','ASC')->paginate(15);   
             $jurusan = Jurusan::all();
             $kelas = Kelas::orderBy('tingkat_kelas', 'ASC')->get();
-            if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
-                 return view('siswa.index', compact('siswa', 'jurusan', 'kelas', 'cari'));
-            }else{
-                return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini selama belum verifikasi!');
-            }
+            return view('siswa.index', compact('siswa', 'jurusan', 'kelas', 'cari'));
         }
     }
 

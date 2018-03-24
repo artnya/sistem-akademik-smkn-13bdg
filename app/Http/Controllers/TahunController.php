@@ -22,11 +22,7 @@ class TahunController extends Controller
     {
 
         $tahun = Tahun::all();
-        if (Auth()->user()->role != '0' && Auth()->user()->role != '5') {
-          return view('tahun-ajaran.index', compact('tahun'));
-        }else{
-            return redirect()->back()->with('message', 'Anda tidak boleh memasuki area ini selamat belum verifikasi!');
-        }
+        return view('tahun-ajaran.index', compact('tahun'));
     }
 
     /**

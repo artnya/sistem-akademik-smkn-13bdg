@@ -27,12 +27,8 @@ class AccountController extends Controller
     
     public function index()
     {
-        if (Auth()->user()->role == '2') {
             $account = User::orderBy('name', 'DESC')->paginate(15);
             return view('account.index', compact('account'));
-        }else{
-            return redirect()->back()->with('messageerror', 'Anda tidak boleh memasuki area ini!');
-        }
         
     }
 

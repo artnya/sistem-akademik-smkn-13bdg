@@ -45,8 +45,8 @@ Route::get('/account',['middleware' => 'admin', function (Request $request) {
         }
 }])->middleware('auth');
 
-Route::get('/reports', 'ReportsController@viewTask')->middleware('auth');
-Route::get('/reports/read/{id}', 'ReportsController@read')->middleware('auth');
+Route::get('/reports', 'ReportsController@viewTask')->name('reports')->middleware('auth', 'admin');
+Route::get('/reports/read/{id}', 'ReportsController@read')->middleware('auth', 'admin');
 
 /* on developement...
 Route::get('/taskadmin/readAllTask', 'TaskAdminController@readAllTask')->middleware('auth');
@@ -72,10 +72,10 @@ Route::get('markAsRead', function(){
 	return redirect()->back();
 })->name('notify-read');
 
-//read for one notify
-Route::get('markAsRead/{id}', function(){
-	Auth()->user()->unreadNotifications->markAsRead(Auth()->user()->id);
-	return redirect()->back();
+//read for one notify only for report admin
+Route::get('markAsRead/report/{id}', function($id){
+	Auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+	return redirect()->route('reports');
 })->name('notify-read-one');
 
 //notify-clearly
@@ -88,6 +88,8 @@ Route::get('clearNotify', function(){
 
 Route::group(['middleware' => 'revalidate'],function(){
 	//siswa
+Route::group(['middleware' => 'ban'], function(){
+
 Route::resource('siswa', 'SiswaController')->middleware('auth');
 Route::post('/siswa/update/{id}', 'SiswaController@update')->middleware('auth');
 Route::post('/siswa/uploadpic/{id}', 'SiswaController@uploadpic')->middleware('auth');
@@ -161,7 +163,7 @@ Route::get('/home/discuss-group/comment/post/{id}', 'DiscussGroupController@show
 Route::post('/home/comments/store', 'CommentController@store')->name('comment.store')->middleware('auth');
 Route::post('/home/comments/store/{id}', 'CommentController@store')->name('comment.store')->middleware('auth');
 Route::get('/home/discuss-group/share/{id}', 'DiscussGroupController@share')->name('home.comment.share')->middleware('auth');
-Route::post('/home/timeline/share/add', 'TimelineCDiscussGroupControllerontroller@shareStore')->middleware('auth');
+Route::post('/home/timeline/share/add', 'TimelineCDiscussGroupControllerontroller@shareStore')->name('timeline.home')->middleware('auth');
 Route::get('/home/discuss-group/post/edit/{id}', 'DiscussGroupController@editPost')->middleware('auth');
 
 ///timeline
@@ -199,6 +201,7 @@ Route::get('profile/{id}', 'ProfileController@myProfile')->middleware('auth');
 Route::post('/profile/uploadpic/{id}', 'ProfileController@uploadPic')->middleware('auth');
 Route::post('/profile/resetpic/{id}', 'ProfileController@resetpic')->middleware('auth');
 
+});
 
 //auth route
 Auth::routes();

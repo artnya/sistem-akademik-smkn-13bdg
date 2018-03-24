@@ -43,12 +43,7 @@ class HomeController extends Controller
         $posts = Timeline::where('read_at', NULL);
         $post = $posts->count();
         $accs = User::where('role', '5')->get();
-        if (Auth()->user()->role == '0') {
-            return redirect()->route('verification', str_slug(Auth()->user()->name));
-        }elseif(Auth()->user()->role == '5')
-        {
-            return redirect()->route('verification.last.step', str_slug(Auth()->user()->name));
-        }elseif(Auth()->user()->role == '3')
+        if(Auth()->user()->role == '3')
         {
             return view('home-guru');
         }elseif(Auth()->user()->role == '1')
@@ -56,7 +51,7 @@ class HomeController extends Controller
             return view('home-siswa');
         }else{
             $account = User::all();
-        return view('home')->with('sekarang', $sekarang)->with('gurucount', $gurucount)->with('siswacount', $siswacount)->with('allcount', $allcount)->with('siswa', $siswa)->with('siswascount', $siswascount)->with('post', $post)->with('accs', $accs)->with('account', $account);
+            return view('home')->with('sekarang', $sekarang)->with('gurucount', $gurucount)->with('siswacount', $siswacount)->with('allcount', $allcount)->with('siswa', $siswa)->with('siswascount', $siswascount)->with('post', $post)->with('accs', $accs)->with('account', $account);
         }
     }
 
