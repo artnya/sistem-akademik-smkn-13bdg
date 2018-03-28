@@ -182,8 +182,10 @@ Route::post('rekapnilai/edit-nilai/{id}', 'RekapNilaiController@update')->name('
 Route::get('rekapnilai/cetak-nilai/semester-{slug}/{id} ', 'RekapNilaiController@cetak')->middleware('auth');
 Route::get('/rekapnilai/hapus/{id}', ['as'=>'rekapnilai.destroy', 'uses'=>'RekapNilaiController@destroy']);
 
+/*
 //download nilai
 Route::get('/downloadHasilNilai/{type}', 'RekapNilaiController@downloadNilai')->middleware('auth');
+*/
 
 //input nilai
 Route::get('inputnilai/siswa/{slug}', 'InputNilaiController@show')->name('inputnilai')->middleware('auth');

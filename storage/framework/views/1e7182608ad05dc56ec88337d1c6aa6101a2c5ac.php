@@ -92,7 +92,7 @@
                                 <select id="id_mapel" type="text" class="form-control select2" name="id_mapel" value="<?php echo e(old('id_mapel')); ?>" required autofocus>
                                     <option disabled selected>Pilih Mapel</option>
                                     <?php $__currentLoopData = $mapel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($x->nama_mapel); ?>" <?php if($x->id == Auth::user()->id_mapel): ?> selected <?php elseif(Auth::user()->role): ?> <?php else: ?> disabled <?php endif; ?>><?php echo e($x->nama_mapel); ?></option>
+                                    <option value="<?php echo e($x->id); ?>" <?php if($x->id == Auth::user()->id_mapel): ?> selected <?php elseif(Auth::user()->role): ?> <?php else: ?> disabled <?php endif; ?>><?php echo e($x->nama_mapel); ?></option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
 

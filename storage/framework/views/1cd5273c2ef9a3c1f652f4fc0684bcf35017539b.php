@@ -135,7 +135,7 @@
             <div>
                 <input type="submit" id="actions" value="Hapus" hidden>
             </div>
-            <table id="rekap" class="table table-striped table-bordered table-hover table-responsive">
+            <table id="rekapnilaidownload" class="table table-striped table-bordered table-hover table-responsive">
               <thead>
                 <tr>
                   <th><input type="checkbox" id="select_all" name="select_all" /></th>
@@ -148,7 +148,6 @@
                 	<th>UTS</th>
                 	<th>UAS</th>
                   <th>KKM</th>
-                  <td>Edit Nilai</td>
                 </tr>
               </thead>
               <tbody>
@@ -215,8 +214,6 @@
                     <?php endif; ?>
                   </td>
                   <td><?php echo e($in->mapel['kkm']); ?></td>
-                  <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a>
-                  </td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
@@ -227,8 +224,7 @@
         <div class="box-footer">
           <a class="btn btn-info" href="/inputnilai/siswa/<?php echo e($siswa->id); ?>"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
           <?php if(count($hasil) > 0): ?>
-          <a class="btn btn-info" href="/rekapnilai/cetak-nilai/semester-<?php echo e($q); ?>/<?php echo e($siswa->id); ?>"><i class="fa fa-print"></i> Cetak</a>
-          <a class="btn btn-info" href="/downloadHasilNilai/xlsx"><i class="fa fa-download"></i> Download Nilai</a>
+          <a class="btn btn-info" target="_blank" href="/rekapnilai/cetak-nilai/semester-<?php echo e($q); ?>/<?php echo e($siswa->id); ?>"><i class="fa fa-print"></i> Cetak</a>
           <?php endif; ?>
           <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>

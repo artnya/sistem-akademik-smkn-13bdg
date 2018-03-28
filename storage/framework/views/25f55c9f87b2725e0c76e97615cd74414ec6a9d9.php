@@ -14,6 +14,13 @@
 <script src="<?php echo e(asset('/js/jquery.dataTables.min.js')); ?>"></script>
 <script src="<?php echo e(asset('/css/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
 <script src="<?php echo e(asset('/css/datatables.net-bs/js/dataTables.bootstrap.min.js')); ?>"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 <!-- -->
 <script src="<?php echo e(asset('/js/raphael.min.js')); ?>"></script>
 
@@ -192,18 +199,38 @@ $(document).ready(function() {
 } );
 </script>
 <script>
+    $(document).ready(function() {
+    $('#rekapnilaidownload').DataTable( {
+        paging:         false,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend:    'copyHtml5',
+                className: 'btn btn-info btn-flat',
+                text:      '<i class="fa fa-files-o"></i>',
+                titleAttr: 'Copy'
+            },
+            {
+                extend:    'excelHtml5',
+                className: 'btn btn-info btn-flat',
+                text:      '<i class="fa fa-file-excel-o"></i> Download Excel',
+                titleAttr: 'Download Excel'
+            },
+            {
+                extend:    'pdfHtml5',
+                className: 'btn btn-info btn-flat',
+                text:      '<i class="fa fa-file-pdf-o"></i> Download PDF',
+                titleAttr: 'Download PDF'
+            }
+        ]
+    } );
+} );
+</script>
+<script>
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2().css('width', '100%');
   });
-</script>
-<script>  
-$(function(){
-  cache: false,
-  setInterval(function(){
-     $('#refresh').load('/home/discuss-group');
-  }, 2000
-});
 </script>
 <!-- jam real time -->
 <script type="text/javascript">
@@ -222,13 +249,4 @@ $(function(){
   }
 
   setInterval(showTime, 1000);
-</script>
-<!-- test doang realtime -->
-<script type="text/javascript">
-  function retrieveNotify() {
-    document.getElementById('retrieve');
-    setInterval(1000);
-  }
-
-  
 </script>

@@ -75,7 +75,7 @@ class InputNilaiController extends Controller
         ]);
 
         $all = $request->all();
-        if (RekapNilai::where('semester', $request->semester)->where('id_mapel', $request->id_mapel)->count() > 0) {
+        if (RekapNilai::where('semester', $request->semester)->where('id_mapel', $request->id_mapel)->count() > 0){
           return redirect()->route('lihat.nilai.show', $request->id_siswa . '?id_siswa=' . $request->id_siswa . '&q=' . $request->semester)->with('messageerror', 'Mata pelajaran sudah ada di semester ini!');
         }else{
         $storage = RekapNilai::create($all);

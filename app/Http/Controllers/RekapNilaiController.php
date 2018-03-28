@@ -119,6 +119,7 @@ class RekapNilaiController extends Controller
         */
     }
 
+    /*
     public function downloadNilai($type)
     {
         $data = RekapNilai::select('id','id_siswa','semester','id_mapel','tugas1','tugas2','tugas3','nilai_sikap', 'nilai_pengetahuan','uts','uas')->get()->toArray();
@@ -129,6 +130,7 @@ class RekapNilaiController extends Controller
             });
         })->download($type);
     }
+    */
 
     public function cetak($semester, $id)
     {
