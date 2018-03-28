@@ -119,9 +119,9 @@
                                 <select id="id_mapel" type="text" class="form-control select2" name="id_mapel" value="<?php echo e(old('id_mapel')); ?>" required autofocus>
                                 <?php $__currentLoopData = $mapel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if(Auth()->user()->id_mapel == $in->id): ?>
-                                    <option value="<?php echo e($in->nama_mapel); ?>" selected><?php echo e($in->nama_mapel); ?></option>
+                                    <option value="<?php echo e($in->id); ?>" selected><?php echo e($in->nama_mapel); ?></option>
                                 <?php else: ?>
-                                <option value="<?php echo e($in->nama_mapel); ?>" disabled><?php echo e($in->nama_mapel); ?></option>
+                                <option value="<?php echo e($in->id); ?>" disabled><?php echo e($in->nama_mapel); ?></option>
                                 <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>

@@ -10,9 +10,9 @@
 
   <link rel="stylesheet" href="<?php echo e(asset('/css/font-awesome.min.css')); ?>">
 
-  <link rel="stylesheet" href="/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/AdminLTE.min.css')); ?>">
 
-  <link rel="stylesheet" href="/css/all.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/all.css')); ?>">
 
   <style>
     /* CSS used here will be applied after bootstrap.css */
@@ -46,7 +46,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <!-- sweet alert -->
-  <link rel="stylesheet" href="/css/sweetalert.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/sweetalert.css')); ?>">
 </head>
 <body>
 <!-- notification session -->
@@ -54,7 +54,7 @@
   <!-- sweet alert -->
 <link rel="stylesheet" href="/css/sweetalert.css">
 <!-- sweet alert -->
-<script src="/js/sweetalert.js"></script>
+<script src="<?php echo e(asset('/js/sweetalert.js')); ?>"></script>
 <script>
     swal("<?php echo e(session('messageerror')); ?>", "Anda telah menyalah gunakan aturan dan ketentuan. Jika  ini bukan merupakan kesalahan mohon kontak admin.", "error");
 </script>

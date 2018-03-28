@@ -10,7 +10,7 @@
         }
         </style>
     </head>
-    <body>
+    <body onload='window.print();'>
         <div class="page" style="margin: 0px auto;">
            <div class="imgschool" style="padding:10px; float:left">
                 <img src="<?php echo e(asset('images/image001.png')); ?>" style="height:80px">
@@ -48,7 +48,7 @@
                         <tr>
                         <?php if(!$semester->count() < 1): ?>
                         <?php $__currentLoopData = $semester; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <td><?php echo e($in->id_mapel); ?></td>
+                          <td><?php echo e($in->mapel->nama_mapel); ?></td>
                           <td><?php echo e($in->tugas1); ?></td>
                           <td><?php echo e($in->tugas2); ?></td>
                           <td><?php echo e($in->tugas3); ?></td>

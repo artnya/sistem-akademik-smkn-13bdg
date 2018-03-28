@@ -157,7 +157,7 @@
                   <td>
                     <input type="checkbox" name="checked[]" data-id="checkbox" value="{{$in->id}}" />
                   </td>
-                  <td>{{ $in->id_mapel }}</td>
+                  <td>{{ $in->mapel['nama_mapel'] }}</td>
                   <td>
                     @if($in->tugas1 < $in->kkm)
                       <span class="label label-danger">{{ $in->tugas1 }}</span>
@@ -207,7 +207,7 @@
                       {{ $in->uas }}
                     @endif
                   </td>
-                  <td>{{ $in->kkm }}</td>
+                  <td>{{ $in->mapel['kkm'] }}</td>
                   <td><a href="{{ route('rekapnilai.edit', $in->id) }}" id="elementId" class="btn btn-xs btn-warning">Edit</a>
                   </td>
                 </tr>

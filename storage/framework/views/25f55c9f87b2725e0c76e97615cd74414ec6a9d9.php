@@ -9,18 +9,18 @@
   $.widget.bridge('uibutton', $.ui.button);
 </script>
 <!-- Bootstrap 3.3.7 -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="<?php echo e(asset('/js/bootstrap.min.js')); ?>"></script>
 <!-- DataTables -->
-<script src="/js/jquery.dataTables.min.js"></script>
-<script src="/css/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="/css/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo e(asset('/js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(asset('/css/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(asset('/css/datatables.net-bs/js/dataTables.bootstrap.min.js')); ?>"></script>
 <!-- -->
-<script src="/js/raphael.min.js"></script>
+<script src="<?php echo e(asset('/js/raphael.min.js')); ?>"></script>
 
 <!-- <script src="/js/morris.min.js"></script> -->
 
 <!-- Sparkline -->
-<script src="/js/jquery.sparkline.min.js"></script> 
+<script src="<?php echo e(asset('/js/jquery.sparkline.min.js')); ?>"></script> 
 
 <!-- jvectormap -->
 <!-- <script src="/js/jquery-jvectormap-1.2.2.min.js"></script>-->
@@ -28,7 +28,7 @@
 <!-- <script src="/js/jquery-jvectormap-world-mill-en.js"></script> -->
 <!-- jQuery Knob Chart -->
 
-<script src="/js/jquery-knob/dist/jquery.knob.min.js"></script>
+<script src="<?php echo e(asset('/js/jquery-knob/dist/jquery.knob.min.js')); ?>"></script>
 
 <!-- daterangepicker -->
 
@@ -38,18 +38,18 @@
 data pickrange -->
 
 <!-- datepicker -->
-<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo e(asset('/js/bootstrap-datepicker.min.js')); ?>"></script>
 <!-- select 2 -->
-<script src="/js/select2.full.min.js"></script>
+<script src="<?php echo e(asset('/js/select2.full.min.js')); ?>"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="/js/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="<?php echo e(asset('/js/bootstrap3-wysihtml5.all.min.js')); ?>"></script>
 <!-- sweet alert -->
-<script src="/js/sweetalert.js"></script>
+<script src="<?php echo e(asset('/js/sweetalert.js')); ?>"></script>
 <!-- Slimscroll -->
-<script src="/js/jquery.slimscroll.min.js"></script>
+<script src="<?php echo e(asset('/js/jquery.slimscroll.min.js')); ?>"></script>
 <!-- FastClick -->
 <!-- PACE -->
-<script src="/js/pace.js"></script>
+<script src="<?php echo e(asset('/js/pace.js')); ?>"></script>
 
 <!-- checked at least for button showing -->
 <script>
@@ -80,16 +80,16 @@ data pickrange -->
       
 });
 </script>
-<script src="/js/fastclick.js"></script>
+<script src="<?php echo e(asset('/js/fastclick.js')); ?>"></script>
 <!-- AdminLTE App -->
-<script src="/js/adminlte.min.js"></script>
+<script src="<?php echo e(asset('/js/adminlte.min.js')); ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/js/dashboard.js"></script>
+<script src="<?php echo e(asset('/js/dashboard.js')); ?>"></script>
 <!-- AdminLTE for demo purposes 
 <script src="/js/demo.js"></script>
 -->
 <!-- CK EDITOR -->
-<script src="/js/ckeditor/ckeditor.js"></script>
+<script src="<?php echo e(asset('/js/ckeditor/ckeditor.js')); ?>"></script>
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

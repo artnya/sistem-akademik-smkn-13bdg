@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RekapNilai;
 use App\User;
+use Auth;
 
 class DayaSayaController extends Controller
 {
@@ -13,16 +14,21 @@ class DayaSayaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function viewOwnGrade(Request $request, $id)
     {
 
-         $semester1 = RekapNilai::where('id_siswa', Auth()->user()->id)->where('semester', '1')->get();
-        $semester2 = RekapNilai::where('id_siswa', Auth()->user()->id)->where('semester', '2')->get();
-        $semester3 = RekapNilai::where('id_siswa', Auth()->user()->id)->where('semester', '3')->get();
-        $semester4 = RekapNilai::where('id_siswa', Auth()->user()->id)->where('semester', '4')->get();
-        $semester5 = RekapNilai::where('id_siswa', Auth()->user()->id)->where('semester', '5')->get();
-        $semester6 = RekapNilai::where('id_siswa', Auth()->user()->id)->where('semester', '6')->get();
-        return view('siswa.data-saya.index', compact('semester1', 'semester2', 'semester3','semester4','semester5','semester6'));
+        $siswa = User::find($id);
+        $q = $request->get('q');
+        if ($request->get('q')) {
+        $hasil = RekapNilai::when($q, function ($query) use ($request) {
+        $query->where('id_siswa', 'like', "%{$request->id_siswa}%")->where('semester', 'like', "%{$request->q}%");
+            })->get();
+        return view('siswa.data-saya.index', compact('hasil', 'siswa', 'q'));   
+        }else{
+            $q = 1;
+            $hasil = RekapNilai::where('id_siswa', $id)->where('semester', $q)->get();    
+            return view('siswa.data-saya.index', compact('hasil', 'siswa', 'q'))->with('messageerror', 'Nilai semester'. $q .' belum di di masukan.');   
+        }
     }
 
     /**

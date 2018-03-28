@@ -193,13 +193,14 @@ Route::get('/importnilai', 'InputNilaiController@viewImportNilai')->middleware('
 Route::post('/imported-file/progress', 'InputNilaiController@storeImportNilai')->middleware('auth');
 
 //lihat nilai saya (siswa section)
-Route::get('/lihat-datasaya/lihat-nilai/{name}', 'DayaSayaController@index')->name('lihat.nilai')->middleware('auth');
-Route::get('/nilai/cari/{id}', 'RekapNilaiController@show')->middleware('auth');
+Route::get('/lihat-datasaya/lihat-nilai/{name}', 'DayaSayaController@viewOwnGrade')->name('lihat.nilai')->middleware('auth');
+Route::get('/nilai/cari/{id}', 'RekapNilaiController@show')->name('lihat.nilai.show')->middleware('auth');
 
 //profile (user)
 Route::get('profile/{id}', 'ProfileController@myProfile')->middleware('auth');
 Route::post('/profile/uploadpic/{id}', 'ProfileController@uploadPic')->middleware('auth');
 Route::post('/profile/resetpic/{id}', 'ProfileController@resetpic')->middleware('auth');
+Route::post('/profile/edit-personal', 'ProfileController@update')->middleware('auth');
 
 });
 

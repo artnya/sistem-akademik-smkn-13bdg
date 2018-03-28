@@ -12,9 +12,9 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/bootstrap.min.css')); ?>">
   <!-- DataTables -->
-  <link rel="stylesheet" href="/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/dataTables.bootstrap.min.css')); ?>">
   <style>
     tfoot input {
         width: 100%;
@@ -23,27 +23,25 @@
     }
   </style>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/font-awesome.min.css')); ?>">
   <!-- my css -->
-  <link rel="stylesheet" href="/css/mycss.css">
-  <!-- Ionicons 
+  <link rel="stylesheet" href="<?php echo e(asset('/css/mycss.css')); ?>">
   <link rel="stylesheet" href="/css/ionicons.min.css">
-  -->
   <!-- Theme style -->
-  <link rel="stylesheet" href="/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/AdminLTE.min.css')); ?>">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   
-  <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/skins/_all-skins.min.css')); ?>">
   <!-- Pace style -->
-  <link rel="stylesheet" href="/css/pace.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/pace.css')); ?>">
   <!-- loading style 
   <link rel="stylesheet" href="/css/loading.css">
   -->
   <!-- sweet alert -->
-  <link rel="stylesheet" href="/css/sweetalert.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/sweetalert.css')); ?>">
   <!-- select 2 -->
-  <link rel="stylesheet" href="/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/select2.min.css')); ?>">
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -60,7 +58,7 @@
   <!-- jvectormap
   <link rel="stylesheet" href="/js/jquery-jvectormap.min.css"> -->
   <!-- Date Picker -->
-  <link rel="stylesheet" href="/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="<?php echo e(asset('/css/bootstrap-datepicker.min.css')); ?>">
   <!-- Daterange picker 
   <link rel="stylesheet" href="/css/daterangepicker.min.css">
   -->
@@ -81,9 +79,9 @@
   <?php if(session()->has('notification')): ?>
 
       <!-- sweet alert -->
-    <link rel="stylesheet" href="/css/sweetalert.css">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/sweetalert.css')); ?>">
     <!-- sweet alert -->
-    <script src="/js/sweetalert.js"></script>
+    <script src="<?php echo e(asset('/js/sweetalert.js')); ?>"></script>
     <script>
         swal("<?php echo session('notification'); ?>");
     </script>

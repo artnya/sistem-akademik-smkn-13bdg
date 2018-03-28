@@ -119,9 +119,23 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request,
+            [
+                'tmp_lahir'         => 'required',
+                'tgl_lahir'         => 'required',
+                'alamat'         => 'required',
+                'goldar'         => 'required',
+                'agama'         => 'required',
+                'nama_ortu'         => 'required',
+                'pekerjaan_ortu'         => 'required',
+            ]
+            );
+            $storage = User::find(Auth::id());
+            $storage->fill($request->all());
+            $storage->save();
+            return back()->with('message', 'Berhasil di edit!');
     }
 
     /**

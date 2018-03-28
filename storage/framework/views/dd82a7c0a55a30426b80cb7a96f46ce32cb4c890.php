@@ -5,11 +5,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Input / Rekap Nilai Siswa
+        Rekap Nilai Siswa
       </h1> 
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Input & Rekap Nilai Siswa</a></li>
+        <li><a href="#">Rekap Nilai Siswa</a></li>
         <li class="active">Lihat Data Siswa</li>
       </ol>
     </section>
@@ -136,8 +136,7 @@
                   <td><?php echo e($x->kelas['tingkat_kelas']); ?> <?php echo e($x->jurusan['nama_jurusan']); ?> <?php echo e($x->kelas['jumlah_kelas']); ?></td>
                   <td>
                     <div class="btn-group">
-                    <a href="inputnilai/siswa/<?php echo e($x->id); ?>" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
-                    <a href="/nilai/cari/<?php echo e($x->id); ?>" class="btn btn-info"><i class="fa fa-search"></i> Lihat Nilai</a>
+                    <a href="/nilai/cari/<?php echo e($x->id); ?>" class="btn btn-info"><i class="fa fa-check"></i> Rekap Nilai</a>
                     </div>
                     </td>
                 </tr>
@@ -162,12 +161,6 @@
         <div class="box-footer">
         </div>
         <!-- /.box-footer-->
-      </div>
-      <?php else: ?>
-      <div class="box box-primary">
-        <div class="box-body">
-          <p class="text-center"><a href="/importnilai" class="text-center btn btn-flat btn-primary"><i class="fa fa-excel"></i> Import Nilai Siswa Via Excel</a></p>
-        </div>
       </div>
       <?php endif; ?>
       <!-- /.box -->

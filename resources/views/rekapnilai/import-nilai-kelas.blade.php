@@ -92,7 +92,7 @@
                                 <select id="id_mapel" type="text" class="form-control select2" name="id_mapel" value="{{ old('id_mapel') }}" required autofocus>
                                     <option disabled selected>Pilih Mapel</option>
                                     @foreach($mapel as $x)
-                                    <option value="{{ $x->nama_mapel }}" @if($x->id == Auth::user()->id_mapel) selected @elseif(Auth::user()->role) @else disabled @endif>{{ $x->nama_mapel }}</option>
+                                    <option value="{{ $x->id }}" @if($x->id == Auth::user()->id_mapel) selected @elseif(Auth::user()->role) @else disabled @endif>{{ $x->nama_mapel }}</option>
                                     @endforeach
                                 </select>
 
@@ -108,12 +108,12 @@
                             <div class="col-md-6">
                                 <select id="semester" type="text" class="form-control select2" name="semester" value="{{ old('semester') }}" required autofocus>
                                     <option disabled selected>Pilih Semester</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
+                                    <option value="1">1 (Kelas X)</option>
+                                    <option value="2">2 (Kelas X)</option>
+                                    <option value="3">3 (Kelas XI)</option>
+                                    <option value="4">4 (Kelas XI)</option>
+                                    <option value="5">5 (Kelas XII)</option>
+                                    <option value="6">6 (Kelas XII)</option>
                                 </select>
 
                                 @if ($errors->has('semester'))

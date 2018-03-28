@@ -7,11 +7,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Input / Rekap Nilai Siswa
+        Rekap Nilai Siswa
       </h1> 
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Input & Rekap Nilai Siswa</a></li>
+        <li><a href="#">Rekap Nilai Siswa</a></li>
         <li class="active">Lihat Data Siswa</li>
       </ol>
     </section>
@@ -138,8 +138,7 @@
                   <td>{{ $x->kelas['tingkat_kelas'] }} {{ $x->jurusan['nama_jurusan'] }} {{ $x->kelas['jumlah_kelas'] }}</td>
                   <td>
                     <div class="btn-group">
-                    <a href="inputnilai/siswa/{{ $x->id }}" class="btn btn-success"><i class="fa fa-pencil"></i> Input Nilai</a>
-                    <a href="/nilai/cari/{{ $x->id }}" class="btn btn-info"><i class="fa fa-search"></i> Lihat Nilai</a>
+                    <a href="/nilai/cari/{{ $x->id }}" class="btn btn-info"><i class="fa fa-check"></i> Rekap Nilai</a>
                     </div>
                     </td>
                 </tr>
@@ -164,12 +163,6 @@
         <div class="box-footer">
         </div>
         <!-- /.box-footer-->
-      </div>
-      @else
-      <div class="box box-primary">
-        <div class="box-body">
-          <p class="text-center"><a href="/importnilai" class="text-center btn btn-flat btn-primary"><i class="fa fa-excel"></i> Import Nilai Siswa Via Excel</a></p>
-        </div>
       </div>
       @endif
       <!-- /.box -->

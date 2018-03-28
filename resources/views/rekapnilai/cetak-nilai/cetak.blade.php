@@ -10,7 +10,7 @@
         }
         </style>
     </head>
-    <body>
+    <body onload='window.print();'>
         <div class="page" style="margin: 0px auto;">
            <div class="imgschool" style="padding:10px; float:left">
                 <img src="{{asset('images/image001.png')}}" style="height:80px">
@@ -48,7 +48,7 @@
                         <tr>
                         @if(!$semester->count() < 1)
                         @foreach($semester as $in)
-                          <td>{{ $in->id_mapel }}</td>
+                          <td>{{ $in->mapel->nama_mapel }}</td>
                           <td>{{ $in->tugas1 }}</td>
                           <td>{{ $in->tugas2 }}</td>
                           <td>{{ $in->tugas3 }}</td>

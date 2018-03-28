@@ -157,7 +157,7 @@
                   <td>
                     <input type="checkbox" name="checked[]" data-id="checkbox" value="<?php echo e($in->id); ?>" />
                   </td>
-                  <td><?php echo e($in->id_mapel); ?></td>
+                  <td><?php echo e($in->mapel['nama_mapel']); ?></td>
                   <td>
                     <?php if($in->tugas1 < $in->kkm): ?>
                       <span class="label label-danger"><?php echo e($in->tugas1); ?></span>
@@ -214,7 +214,7 @@
 
                     <?php endif; ?>
                   </td>
-                  <td><?php echo e($in->kkm); ?></td>
+                  <td><?php echo e($in->mapel['kkm']); ?></td>
                   <td><a href="<?php echo e(route('rekapnilai.edit', $in->id)); ?>" id="elementId" class="btn btn-xs btn-warning">Edit</a>
                   </td>
                 </tr>

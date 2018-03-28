@@ -21,7 +21,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-         if (Auth::user()->role != '1') {
+         if (Auth::user()->role == '2') {
             return $next($request);
         }elseif(Auth::user()->role == '3'){
             return redirect()->back()->with('messageerror', 'Hanya admin yang bisa masuk ke panel tersebut.');

@@ -108,12 +108,12 @@
                             <div class="col-md-6">
                                 <select id="semester" type="text" class="form-control select2" name="semester" value="<?php echo e(old('semester')); ?>" required autofocus>
                                     <option disabled selected>Pilih Semester</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
+                                    <option value="1">1 (Kelas X)</option>
+                                    <option value="2">2 (Kelas X)</option>
+                                    <option value="3">3 (Kelas XI)</option>
+                                    <option value="4">4 (Kelas XI)</option>
+                                    <option value="5">5 (Kelas XII)</option>
+                                    <option value="6">6 (Kelas XII)</option>
                                 </select>
 
                                 <?php if($errors->has('semester')): ?>
