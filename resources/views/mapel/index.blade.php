@@ -56,7 +56,9 @@
                 <table id="example" class="table table-bordered table-hover table-responsive">
                   <thead>
                     <tr>
+                      @if(Auth::user()->role != '1')
                       <td><input type="checkbox" name="select_all" id="select_all"></td>
+                      @endif
                       <td>Nama Mata Pelajaran</td>
                       <td>Type Mata Pelajaran</td>
                       <td>KKM</td>
@@ -68,9 +70,11 @@
                   <tbody>
                     <tr>
                       @foreach($mapel as $x)
+                      @if(Auth::user()->role != '1')
                       <td>
                           <input type="checkbox" name="checkeditems[]" id="option-1">
                       </td>
+                      @endif
                       <td>{{ $x->nama_mapel }}</td>
                       <td>{{ $x->type_mapel }}</td>
                       <td>

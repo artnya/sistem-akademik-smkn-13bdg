@@ -86,7 +86,7 @@
                   <td>
                     <div class="btn-group">
                     <?php if($x->read_at == NULL): ?>
-                    <a href="/admin/reports/read/<?php echo e($x->id); ?>" class="btn btn-default text-green"><i class="fa fa-check" title="Ceklis bila sudah di baca"></i></a>
+                    <a href="/reports/read/<?php echo e($x->id); ?>" class="btn btn-default text-green"><i class="fa fa-check" title="Ceklis bila sudah di baca"></i></a>
                     <?php endif; ?>
                     <a href="#" data-toggle="modal" class="btn btn-default text-red" data-target="#delete<?php echo e($x->id); ?>"><i class="fa fa-trash"></i></a>
                     </div>

@@ -21,7 +21,7 @@ class DayaSayaController extends Controller
         $q = $request->get('q');
         if ($request->get('q')) {
         $hasil = RekapNilai::when($q, function ($query) use ($request) {
-        $query->where('id_siswa', 'like', "%{$request->id_siswa}%")->where('semester', 'like', "%{$request->q}%");
+        $query->where('id_siswa', 'like', "%". Auth::id() ."%")->where('semester', 'like', "%{$request->q}%");
             })->get();
         return view('siswa.data-saya.index', compact('hasil', 'siswa', 'q'));   
         }else{

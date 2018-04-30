@@ -76,7 +76,7 @@
             <div>
               <?php if(Auth()->user()->role == '2'): ?>
             <a href="#" style="margin: 10px 10px;" data-toggle="modal" class="btn btn-success ajax" data-target="#add"><i class="fa fa-plus"></i> Tambah Nilai</a>
-            <?php endif; ?>
+              <?php endif; ?>
             </div>
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
@@ -95,14 +95,13 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
                     <?php if(!$hasil->count() < 1): ?>
                     <?php $__currentLoopData = $hasil; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $in): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                      <td><?php echo e($in->id_mapel); ?></td>
+                    <tr>
+                      <td><?php echo e($in->mapel['nama_mapel']); ?></td>
                       <td><?php echo e($in->tugas1); ?></td>
                       <td><?php echo e($in->tugas2); ?></td>
                       <td><?php echo e($in->tugas3); ?></td>
@@ -111,7 +110,6 @@
                       <td><?php echo e($in->uts); ?></td>
                       <td><?php echo e($in->uas); ?></td>
                       <td><?php echo e($in->kkm); ?></td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php else: ?>

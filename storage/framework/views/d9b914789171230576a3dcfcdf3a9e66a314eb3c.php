@@ -55,7 +55,9 @@
                 <table id="example" class="table table-bordered table-hover table-responsive">
                   <thead>
                     <tr>
+                      <?php if(Auth::user()->role != '1'): ?>
                       <td><input type="checkbox" name="select_all" id="select_all"></td>
+                      <?php endif; ?>
                       <td>Mata Pelajaran Produktif</td>
                       <td>Mata Pelajaran Program/Jurusan</td>
                       <td>Jurusan</td>
@@ -68,9 +70,11 @@
                   <tbody>
                     <tr>
                       <?php $__currentLoopData = $mapelproduktif; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <?php if(Auth::user()->role != '1'): ?>
                       <td>
                           <input type="checkbox" name="checkeditems[]" id="option-1">
                       </td>
+                      <?php endif; ?>
                       <td><?php echo e($x->nama_mapel); ?></td>
                       <td><?php echo e($x->type_mapel); ?></td>
                       <td><?php echo e($x->jurusan->nama_jurusan); ?></td>

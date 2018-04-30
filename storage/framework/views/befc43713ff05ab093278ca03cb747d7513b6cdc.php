@@ -24,7 +24,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">JAM</span>
-              <span class="info-box-number" id="time"></span>
+              <span class="info-box-number" id="clock"></span>
             </div>
             <!-- /.info-box-content -->
           </div>

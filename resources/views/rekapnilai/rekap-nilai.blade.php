@@ -213,7 +213,13 @@
             </table>
         </div>
       </form>
-        <!-- /.box-body -->
+      <div class="box-footer">
+          <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+          @if(count($hasil) > 0)
+          <a class="btn btn-info" target="_blank" href="/rekapnilai/cetak-nilai/semester-{{ $q }}/{{ $siswa->id }}"><i class="fa fa-print"></i> Cetak</a>
+          @endif
+      </div>
+        <!-- /.box-body 
         <div class="box-footer">
           <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
           @if(count($hasil) > 0)
@@ -240,7 +246,8 @@
                 </div>
           </form>
         </div>
-        <!-- /.box-footer-->
+
+        /.box-footer-->
       </div>
       @else
       <div class="box box-solid box-warning">
@@ -257,7 +264,10 @@
         <div class="box-body" id="1">
             <p class="text-center text-muted">Belum ada nilai di Semester {{ $q }}.</p>
         </div>
-        <!-- /.box-body -->
+        <div class="box-footer">
+            <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+        </div>
+        <!-- /.box-body
         <div class="box-footer">
           <a class="btn btn-info" href="/inputnilai/siswa/{{ $siswa->id }}"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
           <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
@@ -277,7 +287,7 @@
                 </div>
           </form>
         </div>
-        <!-- /.box-footer-->
+        /.box-footer-->
       </div>
       @endif
       <!-- /.box -->

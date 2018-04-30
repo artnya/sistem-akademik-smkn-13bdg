@@ -11,9 +11,8 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo e(asset('/js/bootstrap.min.js')); ?>"></script>
 <!-- DataTables -->
-<script src="<?php echo e(asset('/js/jquery.dataTables.min.js')); ?>"></script>
-<script src="<?php echo e(asset('/css/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
-<script src="<?php echo e(asset('/css/datatables.net-bs/js/dataTables.bootstrap.min.js')); ?>"></script>
+<script src="<?php echo e(asset('/plugins/datatables.net/js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(asset('/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js')); ?>"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -234,19 +233,26 @@ $(document).ready(function() {
 </script>
 <!-- jam real time -->
 <script type="text/javascript">
-  function showTime() {
-    var date = new Date(),
-        utc = new Date(Date.UTC(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          date.getHours(),
-          date.getMinutes(),
-          date.getSeconds()
-        ));
+  function clock() {// We create a new Date object and assign it to a variable called "time".
+var time = new Date(),
+    
+    // Access the "getHours" method on the Date object with the dot accessor.
+    hours = time.getHours(),
+    
+    // Access the "getMinutes" method with the dot accessor.
+    minutes = time.getMinutes(),
+    
+    
+    seconds = time.getSeconds();
 
-    document.getElementById('time').innerHTML = utc.toLocaleTimeString();
+    document.querySelectorAll('#clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+  
+  function harold(standIn) {
+    if (standIn < 10) {
+      standIn = '0' + standIn
+    }
+    return standIn;
   }
-
-  setInterval(showTime, 1000);
+}
+setInterval(clock, 1000);
 </script>

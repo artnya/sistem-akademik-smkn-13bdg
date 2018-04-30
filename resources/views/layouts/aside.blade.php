@@ -29,21 +29,14 @@
         <li class="header">STUDENT AREA</li>
         <li class="treeview {{{ (Request::is('/lihat-datasaya') ? 'class=active' : '') }}}">
           <a href="#">
-            <i class="fa fa-user"></i> <span>Data saya</span>
+            <i class="fa fa-user"></i> <span>Nilai saya</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li {{{ (Request::is('/lihat-datasaya') ? 'class=active' : '') }}}><a href="/lihat-datasaya/lihat-nilai/{{ str_slug(Auth::user()->name) }}"><i class="fa fa-circle-o"></i> Lihat nilai saya
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">Soon</small>
-            </span>
+            <li {{{ (Request::is('/lihat-datasaya') ? 'class=active' : '') }}}><a href="/lihat-datasaya/lihat-nilai/{{ str_slug(Auth::user()->name) }}"><i class="fa fa-book"></i> Lihat nilai saya
             </a></li>
-            <li><a href="/rekapnilai"><i class="fa fa-circle-o"></i> Dokumen saya
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">Soon</small>
-            </span></a></li>
           </ul>
         </li>
         @endif
@@ -63,6 +56,7 @@
           </ul>
         </li>
         @if(Auth()->user())
+        @if(Auth()->user()->role != '1')
         <li class="treeview {{{ (Request::is('siswa') ? 'active' : '') }}} {{{ (Request::is('rekapnilai') ? 'active' : '') }}}">
           <a href="#">
             <i class="fa fa-user text-green"></i> <span>Data Siswa</span>
@@ -88,6 +82,7 @@
                 <li {{{ (Request::is('guru') ? 'class=active' : '') }}}><a href="/guru"><i class="fa fa-circle-o"></i> Lihat Data Guru</a></li>
              </ul>
         </li>
+        @endif
         <li class="treeview {{{ (Request::is('kelas') ? 'active' : '') }}}">
           <a href="#">
             <i class="fa fa-university text-yellow"></i> <span>Kelas</span>

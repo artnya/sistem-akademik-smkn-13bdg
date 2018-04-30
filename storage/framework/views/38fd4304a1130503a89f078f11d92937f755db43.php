@@ -6,13 +6,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
+        Teacher's Dahboard
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       </ol>
     </section>
 
@@ -22,7 +20,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
+          <h3 class="box-title">Welcome <?php echo e(Auth::user()->name); ?></h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -33,11 +31,10 @@
           </div>
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+          Selamat datang di panel guru SMKN 13 Bandung!
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          Footer
         </div>
         <!-- /.box-footer-->
       </div>

@@ -220,7 +220,13 @@
             </table>
         </div>
       </form>
-        <!-- /.box-body -->
+      <div class="box-footer">
+          <a class="btn btn-info" href="/inputnilai/siswa/<?php echo e($siswa->id); ?>"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+          <?php if(count($hasil) > 0): ?>
+          <a class="btn btn-info" target="_blank" href="/rekapnilai/cetak-nilai/semester-<?php echo e($q); ?>/<?php echo e($siswa->id); ?>"><i class="fa fa-print"></i> Cetak</a>
+          <?php endif; ?>
+      </div>
+        <!-- /.box-body 
         <div class="box-footer">
           <a class="btn btn-info" href="/inputnilai/siswa/<?php echo e($siswa->id); ?>"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
           <?php if(count($hasil) > 0): ?>
@@ -248,7 +254,8 @@
                 </div>
           </form>
         </div>
-        <!-- /.box-footer-->
+
+        /.box-footer-->
       </div>
       <?php else: ?>
       <div class="box box-solid box-warning">
@@ -265,7 +272,10 @@
         <div class="box-body" id="1">
             <p class="text-center text-muted">Belum ada nilai di Semester <?php echo e($q); ?>.</p>
         </div>
-        <!-- /.box-body -->
+        <div class="box-footer">
+            <a class="btn btn-info" href="/inputnilai/siswa/<?php echo e($siswa->id); ?>"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
+        </div>
+        <!-- /.box-body
         <div class="box-footer">
           <a class="btn btn-info" href="/inputnilai/siswa/<?php echo e($siswa->id); ?>"><i class="fa fa-pencil"></i> Input Nilai Via Web</a>
           <form action="/inputnilai/import-excel" method="POST" enctype="multipart/form-data">
@@ -286,7 +296,7 @@
                 </div>
           </form>
         </div>
-        <!-- /.box-footer-->
+        /.box-footer-->
       </div>
       <?php endif; ?>
       <!-- /.box -->

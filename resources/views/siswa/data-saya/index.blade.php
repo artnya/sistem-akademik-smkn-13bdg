@@ -78,7 +78,7 @@
             <div>
               @if(Auth()->user()->role == '2')
             <a href="#" style="margin: 10px 10px;" data-toggle="modal" class="btn btn-success ajax" data-target="#add"><i class="fa fa-plus"></i> Tambah Nilai</a>
-            @endif
+              @endif
             </div>
             <div>
               <input type="submit" id="actions" value="Hapus" hidden>
@@ -97,14 +97,13 @@
                       <th>UTS</th>
                       <th>UAS</th>
                       <th>KKM</th>
-                      <td>Perbaiki Nilai</td>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
                     @if(!$hasil->count() < 1)
                     @foreach($hasil as $in)
-                      <td>{{ $in->id_mapel }}</td>
+                    <tr>
+                      <td>{{ $in->mapel['nama_mapel'] }}</td>
                       <td>{{ $in->tugas1 }}</td>
                       <td>{{ $in->tugas2 }}</td>
                       <td>{{ $in->tugas3 }}</td>
@@ -113,7 +112,6 @@
                       <td>{{ $in->uts }}</td>
                       <td>{{ $in->uas }}</td>
                       <td>{{ $in->kkm }}</td>
-                      <td><button type="button" id="elementId" class="btn btn-xs btn-warning">Perbaiki Nilai</button></td>
                     </tr>
                     @endforeach
                     @else

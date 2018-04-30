@@ -14,7 +14,7 @@
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo e(asset('/css/bootstrap.min.css')); ?>">
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo e(asset('/css/dataTables.bootstrap.min.css')); ?>">
+  <link rel="stylesheet" href="<?php echo e(asset('/plugins/datatables.net-bs/css/dataTables.bootstrap.min.css')); ?>">
   <style>
     tfoot input {
         width: 100%;
